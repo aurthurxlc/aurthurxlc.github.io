@@ -510,10 +510,10 @@
 
 
   
-    <article id="post-SourceCode-Install-LAMP" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Snmp-Vps-Server-Monitor" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/Aurthur-2015/SourceCode-Install-LAMP.html" class="article-date">
+      <a href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html" class="article-date">
   	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
 </a>
     </div>
@@ -527,7 +527,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/SourceCode-Install-LAMP.html">源码安装Apache+PHP+Mysql实战</a>
+      <a class="article-title" href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html">配置监控宝SNMP定时监控VPS主机性能</a>
     </h1>
   
 
@@ -536,13 +536,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>安装的过程整体要分为三大过程：</p>
-<ul>
-<li>安装apache 和 mysql</li>
-<li>安装PHP</li>
-<li>安装 memcached  php-memcache</li>
-</ul>
-<h2 id="安装apache_和_mysql">安装apache 和 mysql</h2><p><strong> 第一步  下载apache mysql;并且为二者建立对应的安装目录</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mkdir –p /opt/soft</span></span><br><span class="line"><span class="comment">#cd /opt/soft</span></span><br><span class="line"><span class="comment">#wget http://download.chyangwa.com/linux/apache/httpd-2.2.4.tar.gz</span></span><br><span class="line"><span class="comment">#wget http://download.chyangwa.com/linux/MySQL/mysql-5.0.19.tar.gz</span></span><br><span class="line"><span class="comment">#mkdir –p /usr/local/apache</span></span><br><span class="line"><span class="comment">#mkdir –p /usr/local/mysql</span></span><br></pre></td></tr></table></figure></p>
+        <p>如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。</p>
+<h2 id="部署安装Net-SNMP">部署安装Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install net-snmp net-snmp-devel net-snmp-utils</span><br></pre></td></tr></table></figure>
+<p>在这篇文章中是用CENTOS系统测试的。</p>
+<h2 id="配置_Net-SNMP">配置 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service snmpd stop <span class="comment">#先停止SNMP服务</span></span><br><span class="line">net-snmp-config --create-snmpv3-user -ro -A aurthur.tk <span class="operator">-a</span> MD5 aurthurlk</span><br></pre></td></tr></table></figure>
+<p>我们这里创建一个一个snmpv3用户，位只读，使用MD5加密传输，用户名为aurthurlk，密码为aurthur.tk， 这里要设置好，后面我们需要在监控宝网站填写。<br>
       
     </div>
     
@@ -550,18 +548,18 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPS/">VPS</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Web/">Web</a>
+	<a class="article-category-link" href="/categories/Server/">Server</a>
 	</div>
 
 
       
         <p class="article-more-link">
-          <a  href="/Aurthur-2015/SourceCode-Install-LAMP.html#more">阅读全文 >></a>
+          <a  href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

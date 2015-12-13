@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>RESTful API 设计原则 | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="协议API与用户的通信协议，总是使用HTTPs协议
+域名应该尽量将API部署在专用域名之下
+1https://api.example.com
+如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下
+1https://example.org/api/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RESTful API 设计原则">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Principles-of-RESTful-API-Design.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="协议API与用户的通信协议，总是使用HTTPs协议
+域名应该尽量将API部署在专用域名之下
+1https://api.example.com
+如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下
+1https://example.org/api/">
+<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RESTful API 设计原则">
+<meta name="twitter:description" content="协议API与用户的通信协议，总是使用HTTPs协议
+域名应该尽量将API部署在专用域名之下
+1https://api.example.com
+如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下
+1https://example.org/api/">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">心动不如行动</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Principles-of-RESTful-API-Design" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/Principles-of-RESTful-API-Design.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RESTful API 设计原则
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RESTful/">RESTful</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/API/">API</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="协议">协议</h2><p>API与用户的通信协议，总是使用HTTPs协议</p>
+<h2 id="域名">域名</h2><p>应该尽量将API部署在专用域名之下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com</span><br></pre></td></tr></table></figure>
+<p>如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://example.org/api/</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="版本">版本</h2><p>应该将API的版本号带入URL<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com/v1/xxx</span><br></pre></td></tr></table></figure></p>
+<p>另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观</p>
+<h2 id="路径（Endpoint）">路径（Endpoint）</h2><p>路径又称”终点”（endpoint），表示API的具体网址</p>
+<p>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数</p>
+<p>举例来说，有一个API提供学校人员（school）的信息，包括老师和学生等信息，则它的路径应该设计成下面这样</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com/v1/students</span><br><span class="line"></span><br><span class="line">https://api.example.com/v1/teachers</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP动词">HTTP动词</h2><p>对于资源的具体操作类型，由HTTP动词表示</p>
+<p>常用的HTTP动词有下面五个（括号里是对应的SQL命令）</p>
+<ul>
+<li>GET（SELECT）：从服务器取出资源（一项或多项）</li>
+<li>POST（CREATE）：在服务器新建一个资源</li>
+<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）</li>
+<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）</li>
+<li>DELETE（DELETE）：从服务器删除资源</li>
+</ul>
+<p>还有两个不常用的HTTP动词</p>
+<ul>
+<li>HEAD：获取资源的元数据</li>
+<li>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的</li>
+</ul>
+<p>下面是一些例子</p>
+<ul>
+<li>GET /students：列出所有学生</li>
+<li>POST /students：新建一个学生</li>
+<li>GET /students/ID：获取某个指定学生的信息</li>
+<li>PUT /students/ID：更新某个指定学生的信息（提供该学生的全部信息）</li>
+<li>PATCH /students/ID：更新某个指定学生的信息（提供该学生的部分信息）</li>
+<li>DELETE /students/ID：删除某个学生</li>
+<li>GET /students/ID/scores：列出某个指定学生的所有成绩</li>
+<li>DELETE /students/ID/scores/ID：删除某个指定学生的指定学科分数</li>
+</ul>
+<h2 id="过滤信息（Filtering）">过滤信息（Filtering）</h2><p>如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果</p>
+<p>下面是一些常见的参数</p>
+<ul>
+<li>?limit=10：指定返回记录的数量</li>
+<li>?offset=10：指定返回记录的开始位置</li>
+<li>?page=2&amp;per_page=100：指定第几页，以及每页的记录数</li>
+<li>?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序</li>
+<li>?animal_type_id=1：指定筛选条件</li>
+<li>参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /students/ID/scores与 GET /scores?student_id=ID 的含义是相同的</li>
+</ul>
+<h2 id="状态码（Status_Codes）">状态码（Status Codes）</h2><p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）</p>
+<ul>
+<li>200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）</li>
+<li>201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功</li>
+<li>202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</li>
+<li>204 NO CONTENT - [DELETE]：用户删除数据成功</li>
+<li>400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的</li>
+<li>401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）</li>
+<li>403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的</li>
+<li>404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的</li>
+<li>406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）</li>
+<li>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的</li>
+<li>422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误</li>
+<li>500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功</li>
+</ul>
+<h2 id="错误处理（Error_handling）">错误处理（Error handling）</h2><p>如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    error: "Invalid API key"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="返回结果">返回结果</h2><p>针对不同操作，服务器向用户返回的结果应该符合以下规范</p>
+<ul>
+<li>GET /collection：返回资源对象的列表（数组）</li>
+<li>GET /collection/resource：返回单个资源对象</li>
+<li>POST /collection：返回新生成的资源对象</li>
+<li>PUT /collection/resource：返回完整的资源对象</li>
+<li>PATCH /collection/resource：返回完整的资源对象</li>
+<li>DELETE /collection/resource：返回一个空文档</li>
+</ul>
+<h2 id="Hypermedia_API">Hypermedia API</h2><p>RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么<br>比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "<span class="attribute">link</span>": <span class="value">&#123;</span><br><span class="line">      "<span class="attribute">rel</span>":   <span class="value"><span class="string">"collection https://www.example.com/students"</span></span>,</span><br><span class="line">      "<span class="attribute">href</span>":  <span class="value"><span class="string">"https://api.example.com/students"</span></span>,</span><br><span class="line">      "<span class="attribute">title</span>": <span class="value"><span class="string">"List of students"</span></span>,</span><br><span class="line">      "<span class="attribute">type</span>":  <span class="value"><span class="string">"application/vnd.yourformat+json"</span></span><br><span class="line">    </span>&#125;</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型<br>Hypermedia API的设计被称为HATEOAS。Github的API就是这种设计，访问api.github.com会得到一个所有可用API的网址列表<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">current_user_url</span>": <span class="value"><span class="string">"https://api.github.com/user"</span></span>,</span><br><span class="line">  "<span class="attribute">current_user_authorizations_html_url</span>": <span class="value"><span class="string">"https://github.com/settings/connections/applications&#123;/client_id&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">authorizations_url</span>": <span class="value"><span class="string">"https://api.github.com/authorizations"</span></span>,</span><br><span class="line">  "<span class="attribute">code_search_url</span>": <span class="value"><span class="string">"https://api.github.com/search/code?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">emails_url</span>": <span class="value"><span class="string">"https://api.github.com/user/emails"</span></span>,</span><br><span class="line">  "<span class="attribute">emojis_url</span>": <span class="value"><span class="string">"https://api.github.com/emojis"</span></span>,</span><br><span class="line">  "<span class="attribute">events_url</span>": <span class="value"><span class="string">"https://api.github.com/events"</span></span>,</span><br><span class="line">  "<span class="attribute">feeds_url</span>": <span class="value"><span class="string">"https://api.github.com/feeds"</span></span>,</span><br><span class="line">  "<span class="attribute">followers_url</span>": <span class="value"><span class="string">"https://api.github.com/user/followers"</span></span>,</span><br><span class="line">  "<span class="attribute">following_url</span>": <span class="value"><span class="string">"https://api.github.com/user/following&#123;/target&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">gists_url</span>": <span class="value"><span class="string">"https://api.github.com/gists&#123;/gist_id&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">hub_url</span>": <span class="value"><span class="string">"https://api.github.com/hub"</span></span>,</span><br><span class="line">  "<span class="attribute">issue_search_url</span>": <span class="value"><span class="string">"https://api.github.com/search/issues?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">issues_url</span>": <span class="value"><span class="string">"https://api.github.com/issues"</span></span>,</span><br><span class="line">  "<span class="attribute">keys_url</span>": <span class="value"><span class="string">"https://api.github.com/user/keys"</span></span>,</span><br><span class="line">  "<span class="attribute">notifications_url</span>": <span class="value"><span class="string">"https://api.github.com/notifications"</span></span>,</span><br><span class="line">  "<span class="attribute">organization_repositories_url</span>": <span class="value"><span class="string">"https://api.github.com/orgs/&#123;org&#125;/repos&#123;?type,page,per_page,sort&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">organization_url</span>": <span class="value"><span class="string">"https://api.github.com/orgs/&#123;org&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">public_gists_url</span>": <span class="value"><span class="string">"https://api.github.com/gists/public"</span></span>,</span><br><span class="line">  "<span class="attribute">rate_limit_url</span>": <span class="value"><span class="string">"https://api.github.com/rate_limit"</span></span>,</span><br><span class="line">  "<span class="attribute">repository_url</span>": <span class="value"><span class="string">"https://api.github.com/repos/&#123;owner&#125;/&#123;repo&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">repository_search_url</span>": <span class="value"><span class="string">"https://api.github.com/search/repositories?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">current_user_repositories_url</span>": <span class="value"><span class="string">"https://api.github.com/user/repos&#123;?type,page,per_page,sort&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">starred_url</span>": <span class="value"><span class="string">"https://api.github.com/user/starred&#123;/owner&#125;&#123;/repo&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">starred_gists_url</span>": <span class="value"><span class="string">"https://api.github.com/gists/starred"</span></span>,</span><br><span class="line">  "<span class="attribute">team_url</span>": <span class="value"><span class="string">"https://api.github.com/teams"</span></span>,</span><br><span class="line">  "<span class="attribute">user_url</span>": <span class="value"><span class="string">"https://api.github.com/users/&#123;user&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">user_organizations_url</span>": <span class="value"><span class="string">"https://api.github.com/user/orgs"</span></span>,</span><br><span class="line">  "<span class="attribute">user_repositories_url</span>": <span class="value"><span class="string">"https://api.github.com/users/&#123;user&#125;/repos&#123;?type,page,per_page,sort&#125;"</span></span>,</span><br><span class="line">  "<span class="attribute">user_search_url</span>": <span class="value"><span class="string">"https://api.github.com/search/users?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;"</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从上面可以看到，如果想获取当前用户的信息，应该去访问api.github.com/user，然后就得到了下面结果<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">message</span>": <span class="value"><span class="string">"Requires authentication"</span></span>,</span><br><span class="line">  "<span class="attribute">documentation_url</span>": <span class="value"><span class="string">"https://developer.github.com/v3"</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码表示，服务器给出了提示信息，以及文档的网址</p>
+<h2 id="其他">其他</h2><ol>
+<li>API的身份认证应该使用OAuth 2.0框架</li>
+<li>服务器返回的数据格式，应该尽量使用JSON，避免使用XML</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Aurthur-2015/SSH-Key-Login.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          SSH配置私钥登陆服务器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac下dd命令制作Centos USB启动盘</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'aurthur'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP编码规范 | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、文件格式
+对于只含有 php 代码的文件，我们将在文件结尾处忽略掉 “?&amp;gt;” 。这是为了防止多余的空格或者其它字符影响到代码。例如：
+12&amp;lt;?php$foo = &apos;foo&apos;;
+
+缩进应该能够反映出代码的逻辑结果，尽量使用四个空格，禁止使用制表符TAB，因为这样能够保证有跨客户端编程器软件的灵活性。例如：
+123456if (1 == $x) &amp;#123;    $indented_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP编码规范">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/PHP-Coding-Standards.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="一、文件格式
+对于只含有 php 代码的文件，我们将在文件结尾处忽略掉 “?&amp;gt;” 。这是为了防止多余的空格或者其它字符影响到代码。例如：
+12&amp;lt;?php$foo = &apos;foo&apos;;
+
+缩进应该能够反映出代码的逻辑结果，尽量使用四个空格，禁止使用制表符TAB，因为这样能够保证有跨客户端编程器软件的灵活性。例如：
+123456if (1 == $x) &amp;#123;    $indented_">
+<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP编码规范">
+<meta name="twitter:description" content="一、文件格式
+对于只含有 php 代码的文件，我们将在文件结尾处忽略掉 “?&amp;gt;” 。这是为了防止多余的空格或者其它字符影响到代码。例如：
+12&amp;lt;?php$foo = &apos;foo&apos;;
+
+缩进应该能够反映出代码的逻辑结果，尽量使用四个空格，禁止使用制表符TAB，因为这样能够保证有跨客户端编程器软件的灵活性。例如：
+123456if (1 == $x) &amp;#123;    $indented_">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">心动不如行动</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-PHP-Coding-Standards" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/PHP-Coding-Standards.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP编码规范
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/PHP/">PHP</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、文件格式">一、文件格式</h2><ol>
+<li><p>对于只含有 php 代码的文件，我们将在文件结尾处忽略掉 “?&gt;” 。这是为了防止多余的空格或者其它字符影响到代码。<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$foo</span> = <span class="string">'foo'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缩进应该能够反映出代码的逻辑结果，尽量使用四个空格，禁止使用制表符TAB，因为这样能够保证有跨客户端编程器软件的灵活性。<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">1</span> == <span class="variable">$x</span>) &#123;</span><br><span class="line">    <span class="variable">$indented_code</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">1</span> == <span class="variable">$new_line</span>) &#123;</span><br><span class="line">        <span class="variable">$more_indented_code</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量赋值必须保持相等间距和排列。<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$variable</span> = <span class="string">'demo'</span>;</span><br><span class="line"><span class="variable">$var</span>      = <span class="string">'demo2'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li><p>每行代码长度应控制在80个字符以内，最长不超过120个字符。因为 linux 读入文件一般以80列为单位，就是说如果一行代码超过80个字符，那么系统将为此付出额外操作指令。这个虽然看起来是小问题，但是对于追求完美的程序员来说也是值得注意并遵守的规范。</p>
+</li>
+<li><p>每行结尾不允许有多余的空格。</p>
+</li>
+</ol>
+<h2 id="二、命名约定">二、命名约定</h2><ol>
+<li><p>类文件都是以“.class.php“为后缀，且类文件名只允许字母，使用驼峰法命名，并且首字母大写，例如：DbMysql.class.php 。</p>
+</li>
+<li><p>配置和函数等其他类库文件之外的文件一般是分别以“.inc.php“和”.php“为后缀，且文件名命名使用小写字母和下划线的方式，多个单词之间以下 划线分隔，例如config.inc.php ， common.php，install_function.php 。</p>
+</li>
+<li><p>确保文件的命名和调用大小写一致，是由于在类Unix系统上面，对大小写是敏感的。</p>
+</li>
+<li><p>类名和文件名一致（包括上面说的大小写一致），且类名只允许字母，例如 UserAction类的文件命名是UserAction.class.php， InfoModel类的文件名是InfoModel.class.php 。</p>
+</li>
+<li><p>控制器类以Action为后缀，例如 UserAction、InfoAction ，模型类以Model为后缀，例如UserModel、InfoModel ，其他类也分别以相应分类为后缀，例如Service 、Widget。</p>
+</li>
+<li><p>方法名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，且越详细越好，应该能够描述清楚该方法的功能，例如switchModel、findPage。</p>
+</li>
+<li><p>属性的命名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，例如tablePrefix、tableName 。</p>
+</li>
+<li><p>对于对象成员的访问，我们必须始终使用 “get” 和 “set” 方法。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_testObj</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTestObj</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;_testObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setTestObj</span><span class="params">(<span class="variable">$testObj</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;testObj = <span class="variable">$_testObj</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当类成员方法被声明为 private 时，必须分别以双下划线开头；被声明为 protected 时，必须分别以单下划线 “_” 为开头；一般情况下的方法不含下划线。例如 ：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__example</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">_example</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果我们需要把一些经常使用的方法定义为全局函数，那么应该把它们以静态 (static) 的形式定义在类中。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Think</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">autoload</span><span class="params">(<span class="variable">$classname</span>)</span></span><br><span class="line"></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>被声明为 private的类成员属性必须由双下划线 “_<em>“ 作为开头；被声明为 protected 的类成员属性必须由下划线 “</em>“ 作为开头；而声明为 public 的成员属性则在任何时候都不允许含有下划线。</p>
+</li>
+<li><p>函数的命名使用小写字母和下划线的方式，且越详细越好，应该能够描述清楚该函数的功能，例如 get_client_ip 。</p>
+</li>
+<li><p>当方法或函数参数不一定需要被赋值的时候，用 “null” 来代替 “false” 作为函数参数的默认值，除非该参数是 boolean 值。</p>
+</li>
+<li><p>变量只允许由小写字母和下划线组成，且建议用描述性的变量的命名，越详细越好，以至于像 $i 或 $n 等等都是不鼓励使用的。</p>
+</li>
+<li><p>类中的常量 constant 和全局范围内常量define，只能由大写字母和下划线组成，各个单词之间以下划线分割。</p>
+</li>
+<li><p>boolean 值和 null 值都采用小写。</p>
+</li>
+</ol>
+<h2 id="三、编码风格">三、编码风格</h2><ol>
+<li><p>php 代码必须以完整的形式来定界（&lt;?php … ?&gt;），即不要使用php 短标签（&lt;? … ?&gt;），且保证在关闭标签后不要有任何空格。</p>
+</li>
+<li><p>当一个字符串是纯文本组成的时候（即不含有变量），则必须总是以单引号（’）作为定界符。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="string">'Example String'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量替换中的变量只允许用 $+变量名 的形式。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$greeting</span> = <span class="string">"Hello $name, welcome back!"</span>;   <span class="comment">// 允许</span></span><br><span class="line"><span class="variable">$greeting</span> = <span class="string">"Hello &#123;$name&#125;, welcome back!"</span>; <span class="comment">// 允许</span></span><br><span class="line"><span class="variable">$greeting</span> = <span class="string">"Hello $&#123;name&#125;, welcome back!"</span>; <span class="comment">// 不允许</span></span><br></pre></td></tr></table></figure>
+<p>当用点号 “.” 连接各字符串的时候，字符串与点号间必须用一个空格隔开，且允许把它分割成多行以增强可读性。在这种情况下，点号 “.” 必须与等于号 “=” 对齐。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">"SELECT `id`, `name` "</span> . <span class="string">" FROM `people` "</span></span><br><span class="line">      . <span class="string">"WHERE `name` = 'Susan' "</span></span><br><span class="line">      . <span class="string">"ORDER BY `name` ASC "</span>;</span><br></pre></td></tr></table></figure>
+<p>当用 array 类型符号来构造数组的时候，必须在每个逗号之后加上一个空格来增强可读性。例如：$sampleArray = array(1, 2, 3, ‘Think’, ‘SNS’);</p>
+</li>
+<li><p>当使用 array 类型符声明关联数组的时候，我们鼓励把它分成多个行，只是我们必须同时保证每行的键与值的对齐，以保持美观。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sampleArray</span> = <span class="keyword">array</span>(</span><br><span class="line">                   <span class="string">'firstKey'</span>  =&gt; <span class="string">'firstValue'</span>,</span><br><span class="line">                   <span class="string">'secondKey'</span> =&gt; <span class="string">'secondValue'</span></span><br><span class="line">               );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大括号的开始必须在类名的下一行顶格。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Think</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类中的所有代码都必须用四个空格来进行缩进。</p>
+</li>
+<li><p>每个 php 文件只允许声明一个类。在类文件里面写其它代码是允许的，但并不鼓励这样做。假如真要附加代码的话，必须用空行来分隔。</p>
+</li>
+<li><p>任何类变量的声明都必须放在类顶部，先于任何函数的声明。</p>
+</li>
+<li><p>不允许用 var 符号来声明变量，类成员变量必须以 private，protected 和 public 来声明。其次，把类成员声明为 public 而直接引用虽然是允许的，但通常更好的方法是使用 get 和 set 方法来访问类成员。</p>
+</li>
+<li><p>方法必须总是用 private，protected 或者 public 来声明其作用域。</p>
+</li>
+<li><p>静态 static 方法应该声明其作用域，且不应该再被声明为 private 私有，而应该为 protected 或者public ，如果只是不想被子类继承，则应该用 final 声明它们。</p>
+</li>
+<li><p>函数或方法的初始大括号应该在函数声明的下一行顶格。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_client_ip</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在函数或方法名与参数括号之间不允许出现多余的空格。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_client_ip</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用只允许定义在函数参数中，实时传递引用是禁止的。例如：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 引用定义在函数参数-允许的</span><br><span class="line"><span class="keyword">function</span> defineRefInMethod(&amp;<span class="variable">$a</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line">defineRefInMethod(<span class="variable">$b</span>);</span><br><span class="line">echo <span class="variable">$b</span>; // <span class="string">'a'</span></span><br><span class="line"></span><br><span class="line">// 实时传递引用-禁止的</span><br><span class="line"><span class="keyword">function</span> callTimePassRef(<span class="variable">$a</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line">callTimePassRef(&amp;<span class="variable">$c</span>);</span><br><span class="line">echo <span class="variable">$c</span>; // <span class="string">'a'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数或方法返回值不可以用括号包住，不然会降低可读性，而且假如以后函数修改为返回引用的话，这将会抛出一个异常。</p>
+</li>
+<li><p>鼓励尽量使用类型提示，特别是在模块设计中。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">(SomeInterface <span class="variable">$object</span>)</span></span><br><span class="line">   </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">(array <span class="variable">$options</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数和方法参数必须用逗号+空格来分隔。</p>
+</li>
+<li><p>对于参数为数组的函数，参数中的数组应该分成多行以增强可读性。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">threeArguments(<span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">threeArguments(<span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'Think'</span>,</span><br><span class="line">                    <span class="string">'SNS'</span>, <span class="variable">$a</span>, <span class="variable">$b</span>, <span class="variable">$c</span>,</span><br><span class="line">                    <span class="number">56.44</span>, <span class="variable">$d</span>, <span class="number">500</span>), <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基于”if”, “else”和”else if”的条件控制里，我们必须用空格间隔开语句和括号，大括号的开始 “{“ 必须与条件控制语句位于同一行，结束 “}” 必须总是独占一行且顶格，控制流程内容必须用四个空格进行缩进，且不使用”elseif”。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$condition</span>) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$_condition</span>) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在条件控制语句的条件括号内，必须用空格将操作符与其它元素隔开。如果遇到很长的逻辑判断，则鼓励用内嵌括号来分割各个逻辑。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="variable">$a</span> != <span class="number">2</span>) <span class="keyword">and</span> (<span class="variable">$b</span> == <span class="number">1</span>)) &#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="variable">$b</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>“switch” 条件控制语句中，必须用空格将待测参数与其它元素分隔开。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (<span class="variable">$num</span>) &#123;</span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>“switch” 语句的内容必须以四个空格缩进，”case” 条件控制的内容必须再加四个空格进行缩进。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (<span class="variable">$indentedSpaces</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"错误"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"正确"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 “switch” 语句中应该总是包括 “default” 控制。</p>
+</li>
+<li><p>有时候我们需要在 “case” 语境中省略掉 “break” 或 “return” ，这个时候我们必须为这些 “case” 语句加上 “此处无break” 注释。例如：</p>
+</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (<span class="variable">$numPeople</span>) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>: <span class="comment">// 此处无break</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Mac下dd命令制作Centos USB启动盘
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Aurthur-2015/Nginx-Chkconfig-Script.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CentOS下Nginx启动脚本和Chkconfig管理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'aurthur'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>配置监控宝SNMP定时监控VPS主机性能 | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。
+部署安装Net-SNMP1yum install net-snmp net-snmp-devel net-snmp-u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置监控宝SNMP定时监控VPS主机性能">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Snmp-Vps-Server-Monitor.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。
+部署安装Net-SNMP1yum install net-snmp net-snmp-devel net-snmp-u">
+<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="配置监控宝SNMP定时监控VPS主机性能">
+<meta name="twitter:description" content="如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。
+部署安装Net-SNMP1yum install net-snmp net-snmp-devel net-snmp-u">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">心动不如行动</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Snmp-Vps-Server-Monitor" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      配置监控宝SNMP定时监控VPS主机性能
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPS/">VPS</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Server/">Server</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。</p>
+<h2 id="部署安装Net-SNMP">部署安装Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install net-snmp net-snmp-devel net-snmp-utils</span><br></pre></td></tr></table></figure>
+<p>在这篇文章中是用CENTOS系统测试的。</p>
+<h2 id="配置_Net-SNMP">配置 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service snmpd stop <span class="comment">#先停止SNMP服务</span></span><br><span class="line">net-snmp-config --create-snmpv3-user -ro -A aurthur.tk <span class="operator">-a</span> MD5 aurthurlk</span><br></pre></td></tr></table></figure>
+<p>我们这里创建一个一个snmpv3用户，位只读，使用MD5加密传输，用户名为aurthurlk，密码为aurthur.tk， 这里要设置好，后面我们需要在监控宝网站填写。<br><a id="more"></a></p>
+<h2 id="运行_Net-SNMP">运行 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service snmpd start <span class="comment">#启动</span></span><br><span class="line">chkconfig snmpd on <span class="comment">#设置开机检测</span></span><br></pre></td></tr></table></figure>
+<h2 id="检测_Net-SNMP">检测 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snmpwalk -v <span class="number">3</span> -u aurthurlk <span class="operator">-a</span> MD5 -A <span class="string">"aurthur.tk"</span> <span class="operator">-l</span> authNoPriv <span class="number">127.0</span>.<span class="number">0.1</span> sysDescr</span><br></pre></td></tr></table></figure>
+<p>如果检测没有问题，就有一个正确的返回数据。</p>
+<h2 id="配置防火墙">配置防火墙</h2><p>如果我们的VPS服务器开启了iptables防火墙设置，那我们需要把2行添加入iptables设置中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p udp <span class="operator">-s</span> <span class="number">60.195</span>.<span class="number">252.107</span> --dport <span class="number">161</span> -j ACCEPT</span><br><span class="line">iptables -I INPUT -p udp <span class="operator">-s</span> <span class="number">60.195</span>.<span class="number">252.110</span> --dport <span class="number">161</span> -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置监控宝网站后台账户">配置监控宝网站后台账户</h2><p>我们需要拥有一个监控宝账户，如果没有就需要注册，免费账户可以添加2个服务器监控，5个网站监控。</p>
+<p>so easy!</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Aurthur-2015/SourceCode-Install-LAMP.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          源码安装Apache+PHP+Mysql实战
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Aurthur-2015/SSH-Key-Login.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SSH配置私钥登陆服务器</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'aurthur'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

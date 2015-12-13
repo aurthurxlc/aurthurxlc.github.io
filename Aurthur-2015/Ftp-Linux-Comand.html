@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>FTP常用命令详解 | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、FTP概述FTP是文件传输协议（File Transfer Protocal）的简写，主要完成与远程计算机的文件传输。
+FTP采用客户/服务器模式，客户机与服务器之间利用TCP建立连接，客户可以从服务器上下载文件，也可以把本地文件上传至服务器。
+FTP服务器有匿名的和授权的两种。匿名的FTP服务器向公众开放，用户可以用“ftp”或“anonymous”为帐号，用电子邮箱地址为密码登录服务器；授">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FTP常用命令详解">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Ftp-Linux-Comand.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="一、FTP概述FTP是文件传输协议（File Transfer Protocal）的简写，主要完成与远程计算机的文件传输。
+FTP采用客户/服务器模式，客户机与服务器之间利用TCP建立连接，客户可以从服务器上下载文件，也可以把本地文件上传至服务器。
+FTP服务器有匿名的和授权的两种。匿名的FTP服务器向公众开放，用户可以用“ftp”或“anonymous”为帐号，用电子邮箱地址为密码登录服务器；授">
+<meta property="og:updated_time" content="2015-12-09T15:29:52.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FTP常用命令详解">
+<meta name="twitter:description" content="一、FTP概述FTP是文件传输协议（File Transfer Protocal）的简写，主要完成与远程计算机的文件传输。
+FTP采用客户/服务器模式，客户机与服务器之间利用TCP建立连接，客户可以从服务器上下载文件，也可以把本地文件上传至服务器。
+FTP服务器有匿名的和授权的两种。匿名的FTP服务器向公众开放，用户可以用“ftp”或“anonymous”为帐号，用电子邮箱地址为密码登录服务器；授">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">心动不如行动</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Ftp-Linux-Comand" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/Ftp-Linux-Comand.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.263Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      FTP常用命令详解
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FTP/">FTP</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/FTP/">FTP</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、FTP概述">一、FTP概述</h2><p>FTP是文件传输协议（File Transfer Protocal）的简写，主要完成与远程计算机的文件传输。</p>
+<p>FTP采用客户/服务器模式，客户机与服务器之间利用TCP建立连接，客户可以从服务器上下载文件，也可以把本地文件上传至服务器。</p>
+<p>FTP服务器有匿名的和授权的两种。匿名的FTP服务器向公众开放，用户可以用“ftp”或“anonymous”为帐号，用电子邮箱地址为密码登录服务器；授权的FTP服务器必须用授权的账户名和密码才能登录服务器。通常匿名的用户权限较低，只能下载文件，不能上传文件。</p>
+<p>客户机访问FTP服务器通常有两种方法：用FTP命令访问和用FTP客户端软件访问</p>
+<h2 id="二、常用FTP命令的使用">二、常用FTP命令的使用</h2><h3 id="1、登录FTP服务器">1、登录FTP服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">方法一：输入命令 ftp host</span><br><span class="line"></span><br><span class="line">方法二：先输入命令 ftp 启动FTP，再用命令 open host 登录服务器</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>注意：在输入密码时，屏幕没有任何显示，但已经输入了，不要认为出错。登录成功后就可以访问FTP服务器上的文件了</p>
+<h3 id="2、查看FTP服务器上的文件">2、查看FTP服务器上的文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dir 命令：显示目录和文件列表。</span><br><span class="line"></span><br><span class="line">ls 命令：显示简易的文件列表。</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> 命令：进入指定的目录。</span><br><span class="line"></span><br><span class="line"><span class="comment">#dir命令可以使用通配符“*”和“?”，比如，显示当前目录中所有扩展名为jpg的文件，可使用命令 dir *.jpg。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#cd命令中必须带目录名。比如 cd main 表示进入当前目录下的main子目录，cd .. 表示退回上一级子目录。</span></span><br></pre></td></tr></table></figure>
+<h3 id="3、下载文件">3、下载文件</h3><p>上传和下载文件时应该使用正确的传输类型，FTP的传输类型分为ASCII码方式和二进制方式两种，对.txt、.htm等文件应采用ASCII码方式传输，对.exe或图片、视频、音频等文件应采用二进制方式传输。在默认情况下，FTP为ASCII码传输方式。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> 命令：查看当前的传输方式。</span><br><span class="line"></span><br><span class="line">ascii 命令：设定传输方式为ASCII码方式。</span><br><span class="line"></span><br><span class="line">binary 命令：设定传输方式为二进制方式。</span><br><span class="line"></span><br><span class="line"><span class="comment">#以上命令都不带参数</span></span><br><span class="line"></span><br><span class="line">get 命令：下载指定文件。</span><br><span class="line"></span><br><span class="line">get命令的格式：get filename [newname]，filename为下载的FTP服务器上的文件名，newname为保存在本地计算机上时使用的名字，如果不指定newname，文件将以原名保存。</span><br><span class="line"></span><br><span class="line"><span class="comment">#get命令下载的文件将保存在本地计算机的工作目录下</span></span><br><span class="line"></span><br><span class="line">mget 命令：下载多个文件。</span><br><span class="line"></span><br><span class="line">mget命令的格式：mget filename [filename ……]。</span><br><span class="line"></span><br><span class="line"><span class="comment">#mget命令支持通配符“*”和“?”，比如：mget *.mp3 表示下载FTP服务器当前目录下的所有扩展名为mp3的文件。</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="4、上传文件">4、上传文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">put 命令：上传指定文件。</span><br><span class="line"></span><br><span class="line">put命令的格式：put filename [newname]，filename为上传的本地文件名，newname为上传至FTP服务器上时使用的名字，如果不指定newname，文件将以原名上传。</span><br><span class="line"></span><br><span class="line"><span class="comment">#上传文件前，应该根据文件的类型设置传输方式，本机的工作目录也应该设置为上传文件所在的目录</span></span><br></pre></td></tr></table></figure>
+<h3 id="5、结束并退出FTP">5、结束并退出FTP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">close 命令：结束与服务器的FTP会话。</span><br><span class="line"></span><br><span class="line">quit 命令：结束与服务器的FTP会话并退出FTP环境。</span><br></pre></td></tr></table></figure>
+<h3 id="6、其它FTP命令">6、其它FTP命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span> 命令：查看FTP服务器上的当前工作目录。</span><br><span class="line"></span><br><span class="line">rename filename newfilename 命令：重命名FTP服务器上的文件。</span><br><span class="line"></span><br><span class="line">delete filename 命令：删除FTP服务器上的文件。</span><br><span class="line"></span><br><span class="line"><span class="built_in">help</span> [cmd] 命令：显示FTP命令的帮助信息，cmd是命令名，如果不带参数，则显示所有FTP命令</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Aurthur-2015/Install-PHP-In-Centos.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          在CentOS上搭建PHP服务器环境
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Aurthur-2015/Centos-Vpn-Config.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Centos 6.x搭建VPN实战</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'aurthur'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

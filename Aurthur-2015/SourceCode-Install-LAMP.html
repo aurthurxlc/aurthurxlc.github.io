@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>源码安装Apache+PHP+Mysql实战 | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装的过程整体要分为三大过程：
+
+安装apache 和 mysql
+安装PHP
+安装 memcached  php-memcache
+
+安装apache 和 mysql 第一步  下载apache mysql;并且为二者建立对应的安装目录123456#mkdir –p /opt/soft#cd /opt/soft#wget http://download.chyangwa.com/linux/ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="源码安装Apache+PHP+Mysql实战">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/SourceCode-Install-LAMP.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="安装的过程整体要分为三大过程：
+
+安装apache 和 mysql
+安装PHP
+安装 memcached  php-memcache
+
+安装apache 和 mysql 第一步  下载apache mysql;并且为二者建立对应的安装目录123456#mkdir –p /opt/soft#cd /opt/soft#wget http://download.chyangwa.com/linux/ap">
+<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="源码安装Apache+PHP+Mysql实战">
+<meta name="twitter:description" content="安装的过程整体要分为三大过程：
+
+安装apache 和 mysql
+安装PHP
+安装 memcached  php-memcache
+
+安装apache 和 mysql 第一步  下载apache mysql;并且为二者建立对应的安装目录123456#mkdir –p /opt/soft#cd /opt/soft#wget http://download.chyangwa.com/linux/ap">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">心动不如行动</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-SourceCode-Install-LAMP" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/SourceCode-Install-LAMP.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      源码安装Apache+PHP+Mysql实战
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Web/">Web</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>安装的过程整体要分为三大过程：</p>
+<ul>
+<li>安装apache 和 mysql</li>
+<li>安装PHP</li>
+<li>安装 memcached  php-memcache</li>
+</ul>
+<h2 id="安装apache_和_mysql">安装apache 和 mysql</h2><p><strong> 第一步  下载apache mysql;并且为二者建立对应的安装目录</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mkdir –p /opt/soft</span></span><br><span class="line"><span class="comment">#cd /opt/soft</span></span><br><span class="line"><span class="comment">#wget http://download.chyangwa.com/linux/apache/httpd-2.2.4.tar.gz</span></span><br><span class="line"><span class="comment">#wget http://download.chyangwa.com/linux/MySQL/mysql-5.0.19.tar.gz</span></span><br><span class="line"><span class="comment">#mkdir –p /usr/local/apache</span></span><br><span class="line"><span class="comment">#mkdir –p /usr/local/mysql</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><strong> 第二步   解压以及安装apache</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#tar –zxvf httpd-2.2.4.tar.gz</span></span><br><span class="line"><span class="comment">#tar –zxvf mysql-5.0.19.tar.gz</span></span><br><span class="line"><span class="comment">#cd httpd-2.2.4</span></span><br><span class="line"><span class="comment">#./configure --prefix=/usr/local/apache --enable-so --enable-rewrite --enable-deflate --with-mpm=worker</span></span><br><span class="line"><span class="comment">#make &amp;&amp; make install</span></span><br><span class="line"><span class="comment">#make clean</span></span><br><span class="line"><span class="comment">#cd</span></span><br></pre></td></tr></table></figure></p>
+<p>启动服务：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/usr/local/apache/bin/apachectl –k start</span></span><br></pre></td></tr></table></figure></p>
+<p>然后在地址栏里面输入：本机IP/index.html 如果可以看到“It works!”</p>
+<p>就说明apache已经安装成功了</p>
+<p><strong> 第三步 解压以及安装mysql</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> //建立数据库的用户和用户组：</span><br><span class="line"><span class="comment"># groupadd mysql</span></span><br><span class="line"> <span class="comment"># useradd -g mysql mysql</span></span><br><span class="line"> //编译安装数据库：</span><br><span class="line"><span class="comment">#cd mysql-5.0.19</span></span><br><span class="line"> <span class="comment">#./configure --prefix=/usr/local/mysql --with-extra-charsets=complex --enable-thread-safe-client --enable-local-infile --enable-assembler --disable-shared --with-client-ldflags=-all-static --with-mysqld-ldflags=-all-staticm --with-embedded-server --with-innodb --with-extra-charsets=gbk,gb2312,big5 --without-debug CFLAGS=-O3 -mcpu=pentium4 CXXFLAGS=-O3 -march=pentium4 -felide-constructors -fno-exceptions -fno-rtti CXX=gcc</span></span><br><span class="line"> <span class="comment"># make &amp;&amp; make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"> <span class="comment"># cp -r mysql-5.0.19 /usr/local/mysql</span></span><br><span class="line"> <span class="comment"># cp support-files/mysql.server /etc/rc.d/init.d/mysql</span></span><br><span class="line"> <span class="comment"># cp support-files/my-medium.cnf /etc/my.cnf</span></span><br><span class="line">修改mysql目录权限</span><br><span class="line"><span class="comment"># chown -R root /usr/local/mysql</span></span><br><span class="line"> <span class="comment"># chgrp -R mysql /usr/local/mysql</span></span><br><span class="line"> <span class="comment"># chown -R mysql /usr/local/mysql/data</span></span><br><span class="line">生成mysql系统数据库</span><br><span class="line"><span class="comment"># /usr/local/mysql/bin/mysql_install_db --user=mysql&amp;  </span></span><br><span class="line"> <span class="comment"># /usr/local/mysql/bin/mysqld_safe --user=mysql&amp;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> 如出现 Starting mysqld daemon with databases from /usr/local/mysql/data 代表正常启动mysql服务了.</strong></p>
+<p>make install结束后，新安装的需要执行bin/mysql_install_db文件来安装授权表，然后运行bin/mysqld_safe启动mysql服务。用mysql命令看是否则连接到服务器。</p>
+<p>在./configure的时候通常都会出现 checking for termcap functions library… configure: error: No curses/termcap library found这个错误！安装上libncurses5-dev (不同的系统可能名字也有所差异)这个包就好了</p>
+<h2 id="安装PHP">安装PHP</h2><p><strong> 第一步 下载需要的组件(可以根据工作需要定制)</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd /opt/soft</span></span><br><span class="line"><span class="comment"># wget http://download.chyangwa.com/linux/freetype/freetype-2.2.1.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://download.chyangwa.com/linux/GD/gd-2.0.33.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://download.chyangwa.com/linux/zlib/zlib-1.2.3.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://download.chyangwa.com/linux/jpegsrc/jpegsrc.v6b.tar.gz</span></span><br><span class="line"><span class="comment"># wget ftp://ftp.gnu.org/gnu/gdbm/gdbm-1.8.2.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://download.chyangwa.com/linux/gettext/gettext-0.14.5.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://download.chyangwa.com/linux/libiconv/libiconv-1.10.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://download.chyangwa.com/linux/libxml/libxml-1.8.17.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://download.chyangwa.com/linux/PHP/php-5.0.5.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://www.libpng.org/pub/png/libpng.html/libpng-1.2.25.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>为以上的安装包建立目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mkdir –p /usr/local/libxml</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/freetype</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/gd2</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/zlib</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/jpeg</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/gdbm</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/gettext</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/libiconv</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/libxml</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/php</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/libpng</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> 第二步  安装PHP相关连的包</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">a.安装 jpeg6 建立目录：如果选择默认安装,可能很顺利,指定路径后,请先创建以下文件夹</span><br><span class="line"></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/jpeg6</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/jpeg6/bin</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/jpeg6/lib</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/jpeg6/include</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/jpeg6/man</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/jpeg6/man1</span></span><br><span class="line"> <span class="comment"># mkdir –p /usr/local/jpeg6/man/man1</span></span><br><span class="line"> <span class="comment"># cd /opt/soft/</span></span><br><span class="line"> <span class="comment"># tar –zvxf jpegsrc.v6b.tar.gz</span></span><br><span class="line"> <span class="comment"># cd jpeg6</span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/jpeg6/ --enable-shared –enable-static</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make install-lib</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"></span><br><span class="line"> b.libpng包(支持PNG)</span><br><span class="line"> <span class="comment"># cd /opt/soft/</span></span><br><span class="line"> <span class="comment"># tar –zvxf libpng-(version).tar.gz</span></span><br><span class="line"> <span class="comment"># cd libpng-(version)</span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/libpng</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"></span><br><span class="line"> c.安装 freetype</span><br><span class="line"> <span class="comment"># cd /opt/soft/</span></span><br><span class="line"> <span class="comment"># tar –zvxf freetype-2.2.1.tar.gz</span></span><br><span class="line"> <span class="comment"># cd freetype-2.2.1  </span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/freetype</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"></span><br><span class="line"> d.安装zlib</span><br><span class="line"> <span class="comment"># cd /root/Software/</span></span><br><span class="line"> <span class="comment"># tar –zxvf zlib-1.2.3.tar.gz</span></span><br><span class="line"> <span class="comment"># cd zlib.1.2.3</span></span><br><span class="line"> <span class="comment"># mkdir /usr/local/zlib</span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/zlib</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"></span><br><span class="line"> e.安装gettext</span><br><span class="line"> <span class="comment"># cd /opt/soft /</span></span><br><span class="line"> <span class="comment"># tar –zxvf gettext-0.14.5.tar.gz</span></span><br><span class="line"> <span class="comment"># cd gettext-0.14.5</span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/gettext</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"></span><br><span class="line"> f.安装libxml</span><br><span class="line"> <span class="comment"># cd /opt/soft /</span></span><br><span class="line"> <span class="comment"># tar –zxvf libxml-1.8.17.tar.gz</span></span><br><span class="line"> <span class="comment"># cd libxml-1.8.17</span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/libxml</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"></span><br><span class="line"> g.安装gdbm</span><br><span class="line"> <span class="comment"># cd /opt/soft /</span></span><br><span class="line"> <span class="comment"># tar –zxvf gdbm-1.8.2.tar.gz</span></span><br><span class="line"> <span class="comment"># cd gdbm-1.8.2</span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/gdbm</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"></span><br><span class="line"> h.安装libiconv</span><br><span class="line"> <span class="comment"># cd /opt/soft /</span></span><br><span class="line"> <span class="comment"># tar –zxvf libiconv-1.10.tar.gz</span></span><br><span class="line"> <span class="comment"># cd libiconv-1.10</span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/libiconv</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br><span class="line"></span><br><span class="line"> i.安装gd2</span><br><span class="line"> <span class="comment"># cd /opt/soft /</span></span><br><span class="line"> <span class="comment"># tar –zxvf gd-2.0.33.tar.gz</span></span><br><span class="line"> <span class="comment"># cd gd-2.0.33</span></span><br><span class="line"> <span class="comment"># ./configure –prefix=/usr/local/gd2 –with-zlib=/usr/local/zlib/ --with-png=/usr/local/libpng/ --with-jpeg=/usr/local/jpeg/ --with-freetype=/usr/local/freetype</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> 第三步 安装PHP</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd /opt/soft /</span></span><br><span class="line"><span class="comment"># tar –zxvf php-5.0.5.tar.gz</span></span><br><span class="line"><span class="comment"># cd php-5.0.5.tar.gz</span></span><br><span class="line"><span class="comment"># ./configure –prefix=/usr/local/php –with-apxs2=/usr/local/apache/bin/apxs –with-jpeg-dir=/usr/local/jpeg/ --with-gettext –enable-mbstring –with-libxml-dir=/usr/local/libxml –with-png-dir=/usr/local/libpng/ --with-gd=/usr/local/gd2/ --with-freetype-dir=/usr/local/freetype –enable-trace-vars –with-zlib-dir=/usr/local/zlib/ --with-mysql=/usr/local/mysql –with-gdbm-dir=/usr/local/gdbm/ --enable-wddx  --with-iconv –enable-sockets –disable-ipv6</span></span><br><span class="line"><span class="comment"># make</span></span><br><span class="line"><span class="comment"># make install</span></span><br><span class="line"><span class="comment"># make clean</span></span><br><span class="line"><span class="comment"># cp php.ini-dist /usr/local/php/lib/php.ini</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> 第四步 修改httpd.conf文件</strong></p>
+<p> 编辑apache配置文件httpd.conf<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#vi /usr/local/apache2/conf/httpd.conf</span></span><br></pre></td></tr></table></figure></p>
+<p>要改的有如下几处:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">一般都在</span><br><span class="line"><span class="comment">#AddType application/x-tar .tgz</span></span><br><span class="line">下加一行</span><br><span class="line"></span><br><span class="line"><span class="comment">#LoadModule php5_module modules/libphp5.so</span></span><br><span class="line"> AddType application/x-httpd-php .php</span><br><span class="line"></span><br><span class="line">如果搜索其它地方没有以下这行</span><br><span class="line"></span><br><span class="line">LoadModule php5_module modules/libphp5.so 把上面的<span class="comment">#号去掉</span></span><br><span class="line"></span><br><span class="line">找到 DirectoryIndex index.html index.html.var 在后面加 index.php 让它把index.php做为默认页</span><br><span class="line"></span><br><span class="line"><span class="comment">#ServerName      把#去掉,后面的IP改成本机的IP.</span></span><br></pre></td></tr></table></figure>
+<p><strong> 第五步 测试</strong><br>在apache的根目录下面（/usr/local/apache/htdocs）建立一个文件内容为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line">    phpinfo();</span><br><span class="line"> <span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>保存为test.php文件<br>然后重启apache服务器，进行如下操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/usr/local/apache/bin/apachectl –k stop</span></span><br><span class="line"><span class="comment">#/usr/local/apache/bin/apachectl –k start</span></span><br></pre></td></tr></table></figure></p>
+<p>然后在地址栏里面输入：本机IP/test.php 如果可以看到php的版本以及其他相关信息就说明PHP已经安装成功了</p>
+<h2 id="安装_memcached_php-memcache">安装 memcached  php-memcache</h2><p><strong> 第一步  下载相关组件</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#wget http://www.danga.com/memcached/dist/memcached-1.2.2.tar.gz</span></span><br><span class="line"> <span class="comment">#wget http://pecl.php.net/package/memcache/memcache-1.2.0.tgz</span></span><br><span class="line"> <span class="comment">#wget http://www.monkey.org/~provos/libevent-1.2.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> 第二步 安装组件</strong></p>
+<p>libevent-1.2 安装：<br> 默认安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar –zxvf libevent-1.2.tar.gz</span></span><br><span class="line"> <span class="comment"># cd libevent-1.2</span></span><br><span class="line"> <span class="comment"># ./configure</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br></pre></td></tr></table></figure></p>
+<p>建立一个符号连接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ls -s /usr/local/lib/libevent-1.2.so.1 /usr/lib     否则memcached无法运行。</span></span><br><span class="line">memcached-<span class="number">1.2</span>.<span class="number">2</span> 安装，</span><br><span class="line"><span class="comment"># tar –zxvf memcached-1.2.2.tar.gz</span></span><br><span class="line"> <span class="comment"># cd memcached-1.2.2</span></span><br><span class="line"> <span class="comment"># ./configure --prefix=/usr/local/memcached</span></span><br><span class="line"> <span class="comment"># make</span></span><br><span class="line"> <span class="comment"># make install</span></span><br><span class="line"> <span class="comment"># make clean</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> 第三步 安装Memcache的PHP扩展</strong></p>
+<p>1.在<a href="http://pecl.php.net/package/memcache" target="_blank" rel="external">http://pecl.php.net/package/memcache</a> 选择相应想要下载的memcache版本。</p>
+<p>2.安装PHP的memcache扩展<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar vxzf memcache-<span class="number">2.2</span>.<span class="number">1</span>.tgz</span><br><span class="line"> <span class="built_in">cd</span> memcache-<span class="number">2.2</span>.<span class="number">1</span></span><br><span class="line"> /usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line"> ./configure –<span class="built_in">enable</span>-memcache –with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config –with-zlib-dir</span><br><span class="line"> make</span><br><span class="line"> make install</span><br></pre></td></tr></table></figure></p>
+<p> 3.上述安装完后会有类似这样的提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Installing shared extensions: /usr/<span class="built_in">local</span>/php/lib/php/extensions/no-debug-zts-<span class="number">20041030</span>/</span><br></pre></td></tr></table></figure></p>
+<p> 4.把php.ini中的extension_dir = “./”修改为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension_dir = “/usr/<span class="built_in">local</span>/php/lib/php/extensions/no-debug-zts-<span class="number">20041030</span>/”</span><br></pre></td></tr></table></figure>
+<p>5.添加一行来载入memcache扩展：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=memcache.so</span><br></pre></td></tr></table></figure></p>
+<p>memcached的基本设置：</p>
+<p>启动Memcache的服务器端：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/bin/memcached -d -m 10 -u root -l 192.168.1.55 -p 12000 -c 256 -P /tmp/memcached.pid</span></span><br></pre></td></tr></table></figure>
+<p>-d选项是启动一个守护进程，<br>-m是分配给Memcache使用的内存数量，单位是MB；<br>-u是运行Memcache的用户；<br>-l是监听的服务器IP地址；<br>-p是设置Memcache监听的端口，最好是1024以上的端口；<br>-c选项是最大运行的并发连接数，默认是1024；<br>-P是设置保存Memcache的pid文件，这里是保存在 /tmp/memcached.pid；</p>
+<p>2.如果要结束Memcache进程，执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kill 'cat /tmp/memcached.pid'</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以启动多个守护进程，不过端口不能重复。</p>
+<ol>
+<li><p>然后重启apache服务器，进行如下操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/usr/local/apache/bin/apachectl –k stop</span></span><br><span class="line"> <span class="comment">#/usr/local/apache/bin/apachectl –k start</span></span><br></pre></td></tr></table></figure>
+<p>Memcache环境测试：<br>建立一个文件为pptest.php内容如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"> <span class="variable">$mem</span> = <span class="keyword">new</span> Memcache;</span><br><span class="line"> <span class="variable">$mem</span>-&gt;connect(<span class="string">"127.0.0.1"</span>,<span class="number">11211</span>);</span><br><span class="line"> <span class="variable">$mem</span>-&gt;set(<span class="string">'key'</span>,<span class="string">'this is a test!'</span>,<span class="number">0</span>,<span class="number">60</span>);</span><br><span class="line"> <span class="variable">$val</span> = <span class="variable">$mem</span>-&gt;get(<span class="string">'key'</span>);</span><br><span class="line"> <span class="keyword">echo</span> <span class="variable">$val</span>;</span><br><span class="line"> <span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后在地址栏里面输入：本机IP/pptest.php 如果可以看到this is a test!就说明已经安装成功了</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Aurthur-2015/some-Domestic-Mirrors.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Some Domestic Mirrors
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">配置监控宝SNMP定时监控VPS主机性能</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'aurthur'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

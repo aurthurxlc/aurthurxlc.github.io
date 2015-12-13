@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP填坑记之FastCGI与mod_php详解 | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="网上对于FastCGI与mod_php的知识比较杂乱而不全面，故在此整理一下，以便入门学习者查阅方便
+背景PHP最常用的方式是以模块的方式(mod_php)运行在Apache中，也是Apache运行PHP的默认方式；但在Nginx中，Nginx又使用的是PHP-FPM，但是PHP-FPM到底是个什么东东？跟php有什么关系？今天我们一起来探究一番
+PHP处理器(PHP handlers)首先需要记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP填坑记之FastCGI与mod_php详解">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="网上对于FastCGI与mod_php的知识比较杂乱而不全面，故在此整理一下，以便入门学习者查阅方便
+背景PHP最常用的方式是以模块的方式(mod_php)运行在Apache中，也是Apache运行PHP的默认方式；但在Nginx中，Nginx又使用的是PHP-FPM，但是PHP-FPM到底是个什么东东？跟php有什么关系？今天我们一起来探究一番
+PHP处理器(PHP handlers)首先需要记">
+<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP填坑记之FastCGI与mod_php详解">
+<meta name="twitter:description" content="网上对于FastCGI与mod_php的知识比较杂乱而不全面，故在此整理一下，以便入门学习者查阅方便
+背景PHP最常用的方式是以模块的方式(mod_php)运行在Apache中，也是Apache运行PHP的默认方式；但在Nginx中，Nginx又使用的是PHP-FPM，但是PHP-FPM到底是个什么东东？跟php有什么关系？今天我们一起来探究一番
+PHP处理器(PHP handlers)首先需要记">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">心动不如行动</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-PHP-Mod-PHP-And-Fast-CGI-Explain" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP填坑记之FastCGI与mod_php详解
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/PHP/">PHP</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上对于FastCGI与mod_php的知识比较杂乱而不全面，故在此整理一下，以便入门学习者查阅方便</p>
+<h2 id="背景">背景</h2><p>PHP最常用的方式是以模块的方式(mod_php)运行在Apache中，也是Apache运行PHP的默认方式；但在Nginx中，Nginx又使用的是PHP-FPM，但是PHP-FPM到底是个什么东东？跟php有什么关系？今天我们一起来探究一番</p>
+<h2 id="PHP处理器(PHP_handlers)">PHP处理器(PHP handlers)</h2><p>首先需要记住的是，任何一种Web服务器(Apache、Nginx等)都是被设计成向用户发送html、图片等静态资源的，Web服务器自身并不能解释任何动态脚本(PHP、Python等)</p>
+<p>PHP处理器就是用来解释Web应用中的PHP代码，并将它解释为HTML或其他静态资源，然后将解析的结果传给Web服务器，最后再由Web服务器发送给用户</p>
+<p>大多数的Web服务器都不能解析PHP代码，因此它需要一个能解析PHP代码的程序，这就是PHP处理器<br><a id="more"></a></p>
+<blockquote>
+<p>现在我们知道了，Apache与Nginx都需要PHP处理器来处理php代码，那么怎么连接上服务器与php处理器呢？也就是说服务器与php处理器如何通信？</p>
+<p>答案是通过SAPI（Server Application Programming Interface 服务器端应用编程端口），简单来说，SAPI指的是PHP具体应用的编程接口， 就像PC一样，无论安装哪些操作系统，只要满足了PC的接口规范都可以在PC上正常运行， PHP脚本要执行有很多种方式，通过Web服务器，或者直接在命令行下，也可以嵌入在其他程序中，有兴趣大家可以研究PHP内核</p>
+<p>我们这里继续讨论PHP最常用的SAPI提供的2种连接方法：mod_php和mod_fastcgi</p>
+</blockquote>
+<h2 id="mod_php模式">mod_php模式</h2><p>咱们回顾一下，Apache是怎么能够识别php代码的？是不是Apache的配置文件httpd.conf中加上或者修改这样几句：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//添加</span><br><span class="line">LoadModule php5_module modules/libphp5.so</span><br><span class="line">AddType application/x-httpd-php .php</span><br><span class="line">//修改</span><br><span class="line"><span class="tag">&lt;<span class="title">IfModule</span> <span class="attribute">dir_module</span>&gt;</span></span><br><span class="line">    DirectoryIndex index.php index.html index.htm  index.html</span><br><span class="line"><span class="tag">&lt;/<span class="title">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>也即php作为Apache的一个子模块来运行，当通过web访问php文件时，Apache就会调用php5_module来解析php代码</p>
+<p>配置加载mod_php模块后，php便是Apahce进程本身一部分，每个新的Apache子进程都会加载此模块</p>
+<h2 id="mod_fastcgi模式">mod_fastcgi模式</h2><p>我们先看PHP-FPM官网的说明</p>
+<blockquote>
+<p>PHP-FPM - A simple and robust FastCGI Process Manager for PHP<br>PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites.</p>
+</blockquote>
+<p>PHP-FPM是一个PHP的FastCGI进程管理器，解释的非常简单。这说明PHP-FPM是辅助mod_fastcgi模式进行工作的，然而FastCGI又是个什么东西？管理着什么进程？</p>
+<h3 id="什么是CGI？">什么是CGI？</h3><p>CGI(Common Gateway Interface) 是WWW技术中最重要的技术之一，有着不可替代的重要地位</p>
+<p>CGI是外部应用程序（CGI程序）与Web服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的规程</p>
+<p>CGI规范允许Web服务器执行外部程序，并将它们的输出发送给Web浏览器，CGI将Web的一组简单的静态超媒体文档变成一个完整的新的交互式媒体</p>
+<blockquote>
+<p>说白了，CGI是一种外部应用程序（CGI程序）与Web服务器的协议，CGI是为了保证Server传递过来的数据是标准格式</p>
+</blockquote>
+<h3 id="什么是FastCGI？">什么是FastCGI？</h3><p>FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只要激活后，不会每次都要花费时间去fork一次(这是CGI最为人诟病的fork-and-execute 模式)。它还支持分布式的运算, 即 FastCGI 程序可以在网站服务器以外的主机上执行并且接受来自其它网站服务器来的请求</p>
+<p>FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。众所周知，CGI解释器的反复加载是CGI性能低下的主要原因，如果CGI解释器保持在内存中并接受FastCGI进程管理器调度，则可以提供良好的性能、伸缩性、Fail- Over特性等等</p>
+<p>一般情况下，FastCGI的整个工作流程是这样的：</p>
+<ol>
+<li><p>Web Server启动时载入FastCGI进程管理器（IIS ISAPI或Apache Module)</p>
+</li>
+<li><p>FastCGI进程管理器自身初始化，启动多个CGI解释器进程(可见多个php-cgi)并等待WebServer的连接</p>
+</li>
+<li><p>当客户端请求到达Web Server时，FastCGI进程管理器选择并连接到一个CGI解释器。 Web server将CGI环境变量和标准输入发送到FastCGI子进程php-cgi</p>
+</li>
+<li><p>FastCGI子进程完成处理后将标准输出和错误信息从同一连接返回Web Server。当FastCGI子进程关闭连接时，请求便告处理完成，FastCGI子进程接着等待并处理来自FastCGI进程管理器(运行在Web Server中)的下一个连接，在CGI模式中，php-cgi在此便已经退出</p>
+</li>
+</ol>
+<blockquote>
+<p>也就是说FastCGI是CGI的升级版，一种语言无关的协议，用来沟通程序(如PHP, Python, Java)和Web服务器(Apache2, Nginx), 理论上任何语言编写的程序都可以通过FastCGI来提供Web服务</p>
+<p>FastCGI的特点是会在一个进程中依次完成多个请求，以达到提高效率的目的，大多数FastCGI实现都会维护一个进程池</p>
+<p>通俗解释：FastCGI事先就需要启动，而且可以启动多个CGI模块，在那里一直运行等着web发请求，然后再给php解析运算，完成后生成html返回给web后，但是完成后它不会退出，而是继续等着下一个web请求</p>
+</blockquote>
+<h3 id="PHP-FPM">PHP-FPM</h3><p>PHP-FPM就是针对于PHP的FastCGI的一种实现，他负责管理一个进程池，来处理来自Web服务器的请求</p>
+<p>但是PHP-FPM仅仅是个“PHP FastCGI 进程管理器”, 它仍会调用PHP解释器本身来处理请求，PHP解释器(在Windows下)就是php-cgi.exe</p>
+<h2 id="结束语">结束语</h2><p>说了这么多，也不知道是否表达清楚，如果有不正确的地方请指正，谢谢</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Aurthur-2015/Windows-Java-Env.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Windows下Java开发和运行环境的搭建
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Aurthur-2015/Iterm2-config.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Iterm2配置</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'aurthur'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

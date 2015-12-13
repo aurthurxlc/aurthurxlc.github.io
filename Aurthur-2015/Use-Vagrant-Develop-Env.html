@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 Vagrant 配置开发环境 | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习使用 Vagrant 配置开发环境
+我使用的是苹果笔记本，跑 Mac 系统，但是我的 rails 程序要跑在 ubuntu 系统上。那最简单的解决方案就是安装 virtualbox 虚拟机，载装上 vagrant 。 这样就很容易的把 ubuntu 装上了。当然如果你已经习惯了用其他的方式安装 ubuntu 也是可以的
+这里演示如何在本机配置Ubuntu系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Vagrant 配置开发环境">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Use-Vagrant-Develop-Env.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="学习使用 Vagrant 配置开发环境
+我使用的是苹果笔记本，跑 Mac 系统，但是我的 rails 程序要跑在 ubuntu 系统上。那最简单的解决方案就是安装 virtualbox 虚拟机，载装上 vagrant 。 这样就很容易的把 ubuntu 装上了。当然如果你已经习惯了用其他的方式安装 ubuntu 也是可以的
+这里演示如何在本机配置Ubuntu系统">
+<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 Vagrant 配置开发环境">
+<meta name="twitter:description" content="学习使用 Vagrant 配置开发环境
+我使用的是苹果笔记本，跑 Mac 系统，但是我的 rails 程序要跑在 ubuntu 系统上。那最简单的解决方案就是安装 virtualbox 虚拟机，载装上 vagrant 。 这样就很容易的把 ubuntu 装上了。当然如果你已经习惯了用其他的方式安装 ubuntu 也是可以的
+这里演示如何在本机配置Ubuntu系统">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">心动不如行动</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Use-Vagrant-Develop-Env" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/Use-Vagrant-Develop-Env.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 Vagrant 配置开发环境
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vagrant/">Vagrant</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Vagrant/">Vagrant</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习使用 Vagrant 配置开发环境</p>
+<p>我使用的是苹果笔记本，跑 Mac 系统，但是我的 rails 程序要跑在 ubuntu 系统上。那最简单的解决方案就是安装 virtualbox 虚拟机，载装上 vagrant 。 这样就很容易的把 ubuntu 装上了。当然如果你已经习惯了用其他的方式安装 ubuntu 也是可以的</p>
+<p>这里演示如何在本机配置Ubuntu系统</p>
+<hr>
+<a id="more"></a>
+<h2 id="下载vagrant和_VirtualBox">下载vagrant和 VirtualBox</h2><p>vagrant 下载地址： <a href="http://www.vagrantup.com/downloads.html" target="_blank" rel="external">http://www.vagrantup.com/downloads.html</a></p>
+<p>VirtualBox下载地址： <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">https://www.virtualbox.org/wiki/Downloads</a></p>
+<hr>
+<h2 id="安装_virtualbox_和_vagrant">安装 virtualbox 和 vagrant</h2><p>到相应的下载页面，找到适合自己的包来安装就好了，和安装别的软件没啥区别，我这里就不演示了。</p>
+<p>接下来你可以在 virtualbox 直接安装 ubuntu，以前的很多年里，我自己都是这么干的，所以没啥不可以的。但是还是用 vagrant 来装吧，不仅安装起来更方便快捷，而且后面真正开发中也会有很多好处</p>
+<hr>
+<h2 id="到_vagrantcloud_上找一个_box">到 vagrantcloud 上找一个 box</h2><p>就找一个干净的 ubuntu14.04 系统就行,使用 <a href="https://vagrantcloud.com/ubuntu/boxes/trusty64" target="_blank" rel="external">https://vagrantcloud.com/ubuntu/boxes/trusty64</a></p>
+<p>这个就是我要的64位 ubuntu14.04 系统,到终端里执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir ubuntu</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ubuntu</span><br><span class="line"></span><br><span class="line">vagrant init ubuntu/trusty64</span><br></pre></td></tr></table></figure>
+<p>此步骤在Ubuntu文件夹中配置一个名为Vagrantfile的文件</p>
+<p>接下来执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vagrant up</span><br></pre></td></tr></table></figure></p>
+<p>安装过程就开始了，一般首次运行需要十几分钟时间</p>
+<hr>
+<h2 id="基本操作">基本操作</h2><p>vagrant up 之后，系统就装好并启动起来了，可以运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">vagrant ssh</span><br></pre></td></tr></table></figure></p>
+<p>登陆到虚拟机里面，默认的用户叫做 vagrant，可以用 whoami 查看一下。再查看一下内存，用 free -m 命令，发现默认内存大小还不到500M，所以敲 Ctrl-D 退出来。添加下面几行到 Vagrantfile 文件<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">config.vm.provider <span class="string">"virtualbox"</span> <span class="keyword">do</span> |v|</span><br><span class="line">  v.memory = <span class="number">2048</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>然后执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vagrant reload</span><br></pre></td></tr></table></figure></p>
+<p>来加载设置就可以了</p>
+<hr>
+<h2 id="为此Ubuntu系统配置ip指向地址">为此Ubuntu系统配置ip指向地址</h2><p>添加下面一行到 Vagrantfile 文件<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.vm.network <span class="symbol">:private_network</span>, <span class="symbol">ip:</span><span class="string">"192.168.10.10"</span></span><br></pre></td></tr></table></figure></p>
+<p>然后执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vagrant reload</span><br></pre></td></tr></table></figure></p>
+<p>来加载设置</p>
+<p>最后还可以在自己电脑hosts文件中添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">10.10</span>   lk.dev</span><br></pre></td></tr></table></figure>
+<p>然后通过lk.dev来访问此Ubuntu的服务器</p>
+<h2 id="Vagrant_使用教程">Vagrant 使用教程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vagrant init  初始化</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># vagrant status  查看虚拟机运行状态</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># vagrant up 启动虚拟机</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># vagrant halt  关闭虚拟化开发环境</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># vagrant reload 修改配置文件后，重启虚拟化开发环境</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># vagrant box list 查看当前可用的虚拟化开发环境</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># vagrant box remove boxname 删除指定的box环境</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># vagrant destroy 销毁虚拟机</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># vagrant package 当前正在运行的VirtualBox虚拟环境打包成一个可重复使用的box</span></span><br><span class="line"></span><br><span class="line">打包创建虚机</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、打包虚拟机</span><br><span class="line">vagrant package</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、当前目录就会生成package.box，之后新建虚拟机则可使用这个box。</span><br><span class="line"></span><br><span class="line">vagrant box add my_box ~/package.box</span><br><span class="line">vagrant init my_box</span><br><span class="line">vagrant up</span><br></pre></td></tr></table></figure>
+<h2 id="错误解决">错误解决</h2><p>出现如下错误：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Failed to mount folders <span class="keyword">in</span> Linux guest. This is usually because</span><br><span class="line">    the <span class="string">"vboxsf"</span> file system is not available. Please verify that</span><br><span class="line">    the guest additions are properly installed <span class="keyword">in</span> the guest and</span><br><span class="line">    can work properly. The <span class="built_in">command</span> attempted was:</span><br><span class="line"></span><br><span class="line">    mount -t vboxsf -o uid=`id -u vagrant`,gid=`getent group vagrant | cut <span class="operator">-d</span>: <span class="operator">-f</span>3` vagrant /vagrant  </span><br><span class="line">    mount -t vboxsf -o uid=`id -u vagrant`,gid=`id -g vagrant` vagrant /vagrant</span><br><span class="line"></span><br><span class="line">    The error output from the last <span class="built_in">command</span> was:</span><br><span class="line">    /sbin/mount.vboxsf: mounting failed with the error: No such device</span><br></pre></td></tr></table></figure></p>
+<p>解决办法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">在本机输入</span><br><span class="line">vagrant plugin install vagrant-vbguest</span><br><span class="line"></span><br><span class="line">进入虚拟机</span><br><span class="line">vagrant ssh</span><br><span class="line"></span><br><span class="line">输入</span><br><span class="line">sudo ln <span class="operator">-s</span> /opt/VBoxGuestAdditions-<span class="number">4.3</span>.<span class="number">18</span>/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions（VBoxGuestAdditions-<span class="number">4.3</span>.<span class="number">18</span>为版本号）</span><br><span class="line"></span><br><span class="line">更新内核</span><br><span class="line">yum update kernel</span><br><span class="line">sudo yum install  gcc dkms kernel-devel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">安装</span><br><span class="line">sudo /etc/init.d/vboxadd  setup</span><br><span class="line"></span><br><span class="line">退出</span><br><span class="line">control+d</span><br><span class="line"></span><br><span class="line">重启</span><br><span class="line">vagrant reload</span><br><span class="line"></span><br><span class="line">..............[ok]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Aurthur-2015/Nginx-Chkconfig-Script.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          CentOS下Nginx启动脚本和Chkconfig管理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Aurthur-2015/Windows-Java-Env.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Windows下Java开发和运行环境的搭建</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'aurthur'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

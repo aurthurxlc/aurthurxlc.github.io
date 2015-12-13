@@ -510,10 +510,10 @@
 
 
   
-    <article id="post-PHP-Mod-PHP-And-Fast-CGI-Explain" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-SourceCode-Install-LAMP" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html" class="article-date">
+      <a href="/Aurthur-2015/SourceCode-Install-LAMP.html" class="article-date">
   	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
 </a>
     </div>
@@ -527,7 +527,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html">PHP填坑记之FastCGI与mod_php详解</a>
+      <a class="article-title" href="/Aurthur-2015/SourceCode-Install-LAMP.html">源码安装Apache+PHP+Mysql实战</a>
     </h1>
   
 
@@ -536,11 +536,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>网上对于FastCGI与mod_php的知识比较杂乱而不全面，故在此整理一下，以便入门学习者查阅方便</p>
-<h2 id="背景">背景</h2><p>PHP最常用的方式是以模块的方式(mod_php)运行在Apache中，也是Apache运行PHP的默认方式；但在Nginx中，Nginx又使用的是PHP-FPM，但是PHP-FPM到底是个什么东东？跟php有什么关系？今天我们一起来探究一番</p>
-<h2 id="PHP处理器(PHP_handlers)">PHP处理器(PHP handlers)</h2><p>首先需要记住的是，任何一种Web服务器(Apache、Nginx等)都是被设计成向用户发送html、图片等静态资源的，Web服务器自身并不能解释任何动态脚本(PHP、Python等)</p>
-<p>PHP处理器就是用来解释Web应用中的PHP代码，并将它解释为HTML或其他静态资源，然后将解析的结果传给Web服务器，最后再由Web服务器发送给用户</p>
-<p>大多数的Web服务器都不能解析PHP代码，因此它需要一个能解析PHP代码的程序，这就是PHP处理器<br>
+        <p>安装的过程整体要分为三大过程：</p>
+<ul>
+<li>安装apache 和 mysql</li>
+<li>安装PHP</li>
+<li>安装 memcached  php-memcache</li>
+</ul>
+<h2 id="安装apache_和_mysql">安装apache 和 mysql</h2><p><strong> 第一步  下载apache mysql;并且为二者建立对应的安装目录</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mkdir –p /opt/soft</span></span><br><span class="line"><span class="comment">#cd /opt/soft</span></span><br><span class="line"><span class="comment">#wget http://download.chyangwa.com/linux/apache/httpd-2.2.4.tar.gz</span></span><br><span class="line"><span class="comment">#wget http://download.chyangwa.com/linux/MySQL/mysql-5.0.19.tar.gz</span></span><br><span class="line"><span class="comment">#mkdir –p /usr/local/apache</span></span><br><span class="line"><span class="comment">#mkdir –p /usr/local/mysql</span></span><br></pre></td></tr></table></figure></p>
       
     </div>
     
@@ -548,18 +550,18 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/PHP/">PHP</a>
+	<a class="article-category-link" href="/categories/Web/">Web</a>
 	</div>
 
 
       
         <p class="article-more-link">
-          <a  href="/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html#more">阅读全文 >></a>
+          <a  href="/Aurthur-2015/SourceCode-Install-LAMP.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

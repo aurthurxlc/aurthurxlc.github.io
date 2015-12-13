@@ -173,74 +173,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Centos-Kernel-Update" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/Aurthur-2015/Centos-Kernel-Update.html" class="article-date">
-  	<time datetime="2015-12-09T15:29:52.263Z" itemprop="datePublished">2015-12-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/Centos-Kernel-Update.html">CentOS 内核升级实例</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="CentOS_6-5_升级内核到_3-10-28">CentOS 6.5 升级内核到 3.10.28</h2><h3 id="1-_准备工作">1. 准备工作</h3><h4 id="1-1_下载源码包">1.1 下载源码包</h4><p>Linux内核版本有两种：稳定版和开发版 ，Linux内核版本号由3个数字组成：r.x.y</p>
-<ul>
-<li>r: 主版本号</li>
-<li>x: 次版本号，偶数表示稳定版本；奇数表示开发中版本。</li>
-<li>y: 修订版本号 ， 表示修改的次数</li>
-</ul>
-<p>去 <a href="http://www.kernel.org">http://www.kernel.org</a> 首页，可以看到有stable, longterm等版本，longterm是比stable更稳定的版本，会长时间更新，因此我选择 3.10.28，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget  https://www.kernel.org/pub/linux/kernel/v3.x/linux-<span class="number">3.10</span>.<span class="number">28</span>.tar.xz</span><br></pre></td></tr></table></figure></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Kernel/">Kernel</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/Aurthur-2015/Centos-Kernel-Update.html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-Mysql-Log-Cache" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -357,6 +289,70 @@
       
         <p class="article-more-link">
           <a  href="/Aurthur-2015/Change-Source-For-Ubuntu.html#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-Iterm2-config" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/Iterm2-config.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.263Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Aurthur-2015/Iterm2-config.html">Iterm2配置</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Iterm2是mac下非常好用的一款终端，但默认的配色实在不好用，经过一翻搜索终于找到了比较满意的，现将其分享一下</p>
+<h2 id="配色">配色</h2><p>1.先要修改~/.bash_profile.代码如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#enables colorin the terminal bash shell export</span></span><br><span class="line"><span class="built_in">export</span> CLICOLOR=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#sets up thecolor scheme for list export</span></span><br><span class="line"><span class="built_in">export</span> LSCOLORS=gxfxcxdxbxegedabagacad</span><br><span class="line"></span><br><span class="line"><span class="comment">#sets up theprompt color (currently a green similar to linux terminal)</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">'\033[01;32m\u@\h\033[00m: \033[01;36m\w\033[00m\ $ '</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#enables colorfor iTerm</span></span><br><span class="line"><span class="built_in">export</span> TERM=xterm-<span class="number">256</span>color</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iterm/">Iterm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Terminal/">Terminal</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Mac/">Mac</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/Aurthur-2015/Iterm2-config.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

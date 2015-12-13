@@ -173,6 +173,76 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Centos-Kernel-Update" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/Centos-Kernel-Update.html" class="article-date">
+  	<time datetime="2015-12-13T05:56:59.559Z" itemprop="datePublished">2015-12-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Aurthur-2015/Centos-Kernel-Update.html">CentOS 内核升级实例</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CentOS_6-5_升级内核到_3-10-28">CentOS 6.5 升级内核到 3.10.28</h2><h3 id="1-_准备工作">1. 准备工作</h3><h4 id="1-1_下载源码包">1.1 下载源码包</h4><p>Linux内核版本有两种：稳定版和开发版 ，Linux内核版本号由3个数字组成：r.x.y</p>
+<ul>
+<li>r: 主版本号</li>
+<li>x: 次版本号，偶数表示稳定版本；奇数表示开发中版本。</li>
+<li>y: 修订版本号 ， 表示修改的次数</li>
+</ul>
+<p>去 <a href="http://www.kernel.org">http://www.kernel.org</a> 首页，可以看到有stable, longterm等版本，longterm是比stable更稳定的版本，会长时间更新，因此我选择 3.10.28，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget  https://www.kernel.org/pub/linux/kernel/v3.x/linux-<span class="number">3.10</span>.<span class="number">28</span>.tar.xz</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-2_解压">1.2 解压</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xf linux-<span class="number">3.10</span>.<span class="number">28</span>.tar.xz</span><br></pre></td></tr></table></figure>
+<h4 id="1-3_更新当前系统">1.3 更新当前系统</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update</span><br><span class="line">sudo yum upgrade</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Kernel/">Kernel</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/Aurthur-2015/Centos-Kernel-Update.html#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-start-With-Electron" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -284,74 +354,6 @@
       
         <p class="article-more-link">
           <a  href="/Aurthur-2015/some-Domestic-Mirrors.html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-SourceCode-Install-LAMP" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/Aurthur-2015/SourceCode-Install-LAMP.html" class="article-date">
-  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/SourceCode-Install-LAMP.html">源码安装Apache+PHP+Mysql实战</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>安装的过程整体要分为三大过程：</p>
-<ul>
-<li>安装apache 和 mysql</li>
-<li>安装PHP</li>
-<li>安装 memcached  php-memcache</li>
-</ul>
-<h2 id="安装apache_和_mysql">安装apache 和 mysql</h2><p><strong> 第一步  下载apache mysql;并且为二者建立对应的安装目录</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mkdir –p /opt/soft</span></span><br><span class="line"><span class="comment">#cd /opt/soft</span></span><br><span class="line"><span class="comment">#wget http://download.chyangwa.com/linux/apache/httpd-2.2.4.tar.gz</span></span><br><span class="line"><span class="comment">#wget http://download.chyangwa.com/linux/MySQL/mysql-5.0.19.tar.gz</span></span><br><span class="line"><span class="comment">#mkdir –p /usr/local/apache</span></span><br><span class="line"><span class="comment">#mkdir –p /usr/local/mysql</span></span><br></pre></td></tr></table></figure></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Web/">Web</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/Aurthur-2015/SourceCode-Install-LAMP.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

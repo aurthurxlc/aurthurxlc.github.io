@@ -15,7 +15,7 @@
 <meta property="og:description" content="什么是跨平台交叉编译交叉编译通俗地讲就是在一种平台上编译出能运行在体系结构不同的另一种平台上的程序，比如在PC平台（X86 CPU）上编译出能运行在以ARM为内核的CPU平台上的程序，编译得到的程序在X86 CPU平台上是不能运行的，必须放到ARM CPU平台上才能运行，虽然两个平台用的都是Linux系统。
 交叉编译这种方法在异平台移植和嵌入式开发时非常有用。
 本地编译相对与交叉编译，平常做的编译">
-<meta property="og:updated_time" content="2015-12-14T09:00:37.785Z">
+<meta property="og:updated_time" content="2015-12-14T09:02:48.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于于Go的跨平台交叉编译浅析">
 <meta name="twitter:description" content="什么是跨平台交叉编译交叉编译通俗地讲就是在一种平台上编译出能运行在体系结构不同的另一种平台上的程序，比如在PC平台（X86 CPU）上编译出能运行在以ARM为内核的CPU平台上的程序，编译得到的程序在X86 CPU平台上是不能运行的，必须放到ARM CPU平台上才能运行，虽然两个平台用的都是Linux系统。
@@ -182,7 +182,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2015/Cross-platform-cross-compiler-with-go.html" class="article-date">
-  	<time datetime="2015-12-14T09:00:37.785Z" itemprop="datePublished">2015-12-14</time>
+  	<time datetime="2015-12-14T09:02:48.768Z" itemprop="datePublished">2015-12-14</time>
 </a>
     </div>
   
@@ -226,7 +226,8 @@
 <p>所以要生成在目标机上运行的程序，必须要用交叉编译工具链来完成。在裁减和定制Linux内核用于嵌入式系统之前，由于一般嵌入式开发系统存储大小有限，通常都要在性能优越的PC上建立一个用于目标机的交叉编译工具链，用该交叉编译工具链在PC上编译目标机上要运行的程序。</p>
 <p>交叉编译工具链是一个由编译器、连接器和解释器组成的综合开发环境，交叉编译工具链主要由binutils、gcc和glibc 3个部分组成。</p>
 <p>有时出于减小 libc 库大小的考虑，也可以用别的 c 库来代替 glibc，例如 uClibc、dietlibc 和 newlib。</p>
-<h2 id="Golang_的跨平台交叉编译">Golang 的跨平台交叉编译</h2><p>Go语言是编译型语言，可以将程序编译后在将其拿到其它操作系统中运行，此过程只需要在编译时增加对其它系统的支持。</p>
+<h2 id="Golang_的跨平台交叉编译">Golang 的跨平台交叉编译</h2><a id="more"></a>
+<p>Go语言是编译型语言，可以将程序编译后在将其拿到其它操作系统中运行，此过程只需要在编译时增加对其它系统的支持。</p>
 <h4 id="交叉编译依赖下面几个环境变量">交叉编译依赖下面几个环境变量</h4><ul>
 <li>$GOARCH    目标平台（编译后的目标平台）的处理器架构（386、amd64、arm）</li>
 <li>$GOOS    目标平台（编译后的目标平台）的操作系统（darwin、freebsd、linux、windows）</li>

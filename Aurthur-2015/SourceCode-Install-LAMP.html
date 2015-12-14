@@ -11,7 +11,8 @@
 安装PHP
 安装 memcached  php-memcache
 
-安装apache 和 mysql 第一步  下载apache mysql 并且为二者建立对应的安装目录123456mkdir –p /opt/softcd /opt/softwget http://download.chyangwa.com/linux/apach">
+安装apache 和 mysql 第一步  下载apache mysql 并且为二者建立对应的安装目录
+123456mkdir –p /opt/softcd /opt/softwget http://download.chyangwa.com/linux/apac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="源码安装Apache+PHP+Mysql实战">
 <meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/SourceCode-Install-LAMP.html">
@@ -22,8 +23,9 @@
 安装PHP
 安装 memcached  php-memcache
 
-安装apache 和 mysql 第一步  下载apache mysql 并且为二者建立对应的安装目录123456mkdir –p /opt/softcd /opt/softwget http://download.chyangwa.com/linux/apach">
-<meta property="og:updated_time" content="2015-12-14T09:20:42.724Z">
+安装apache 和 mysql 第一步  下载apache mysql 并且为二者建立对应的安装目录
+123456mkdir –p /opt/softcd /opt/softwget http://download.chyangwa.com/linux/apac">
+<meta property="og:updated_time" content="2015-12-14T09:25:40.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="源码安装Apache+PHP+Mysql实战">
 <meta name="twitter:description" content="安装的过程整体要分为三大过程：
@@ -32,7 +34,8 @@
 安装PHP
 安装 memcached  php-memcache
 
-安装apache 和 mysql 第一步  下载apache mysql 并且为二者建立对应的安装目录123456mkdir –p /opt/softcd /opt/softwget http://download.chyangwa.com/linux/apach">
+安装apache 和 mysql 第一步  下载apache mysql 并且为二者建立对应的安装目录
+123456mkdir –p /opt/softcd /opt/softwget http://download.chyangwa.com/linux/apac">
   
   
     <link rel="icon" href="/uploads/blog.ico">
@@ -194,7 +197,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2015/SourceCode-Install-LAMP.html" class="article-date">
-  	<time datetime="2015-12-14T09:20:42.724Z" itemprop="datePublished">2015-12-14</time>
+  	<time datetime="2015-12-14T09:25:40.933Z" itemprop="datePublished">2015-12-14</time>
 </a>
     </div>
   
@@ -237,9 +240,11 @@
 <li>安装PHP</li>
 <li>安装 memcached  php-memcache</li>
 </ul>
-<h2 id="安装apache_和_mysql">安装apache 和 mysql</h2><p><strong> 第一步  下载apache mysql 并且为二者建立对应的安装目录</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir –p /opt/soft</span><br><span class="line"><span class="built_in">cd</span> /opt/soft</span><br><span class="line">wget http://download.chyangwa.com/linux/apache/httpd-<span class="number">2.2</span>.<span class="number">4</span>.tar.gz</span><br><span class="line">wget http://download.chyangwa.com/linux/MySQL/mysql-<span class="number">5.0</span>.<span class="number">19</span>.tar.gz</span><br><span class="line">mkdir –p /usr/<span class="built_in">local</span>/apache</span><br><span class="line">mkdir –p /usr/<span class="built_in">local</span>/mysql</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装apache_和_mysql">安装apache 和 mysql</h2><p><strong> 第一步  下载apache mysql 并且为二者建立对应的安装目录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir –p /opt/soft</span><br><span class="line"><span class="built_in">cd</span> /opt/soft</span><br><span class="line">wget http://download.chyangwa.com/linux/apache/httpd-<span class="number">2.2</span>.<span class="number">4</span>.tar.gz</span><br><span class="line">wget http://download.chyangwa.com/linux/MySQL/mysql-<span class="number">5.0</span>.<span class="number">19</span>.tar.gz</span><br><span class="line">mkdir –p /usr/<span class="built_in">local</span>/apache</span><br><span class="line">mkdir –p /usr/<span class="built_in">local</span>/mysql</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p><strong> 第二步 解压以及安装apache</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tar –zxvf httpd-<span class="number">2.2</span>.<span class="number">4</span>.tar.gz</span><br><span class="line">tar –zxvf mysql-<span class="number">5.0</span>.<span class="number">19</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> httpd-<span class="number">2.2</span>.<span class="number">4</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/apache --enable-so --enable-rewrite --enable-deflate --with-mpm=worker</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">make clean</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> 第二步 解压以及安装apache</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tar –zxvf httpd-<span class="number">2.2</span>.<span class="number">4</span>.tar.gz</span><br><span class="line">tar –zxvf mysql-<span class="number">5.0</span>.<span class="number">19</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> httpd-<span class="number">2.2</span>.<span class="number">4</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/apache --enable-so --enable-rewrite --enable-deflate --with-mpm=worker</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">make clean</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure>
 <p>启动服务：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/apache/bin/apachectl –k start</span><br></pre></td></tr></table></figure></p>
 <p>然后在地址栏里面输入：本机IP/index.html 如果可以看到“It works!”</p>
 <p>就说明apache已经安装成功了</p>
@@ -276,27 +281,32 @@
 <p>然后在地址栏里面输入：本机IP/test.php 如果可以看到php的版本以及其他相关信息就说明PHP已经安装成功了</p>
 <h2 id="安装_memcached_php-memcache">安装 memcached  php-memcache</h2><p><strong> 第一步  下载相关组件</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#wget http://www.danga.com/memcached/dist/memcached-1.2.2.tar.gz</span></span><br><span class="line">wget http://pecl.php.net/package/memcache/memcache-<span class="number">1.2</span>.<span class="number">0</span>.tgz</span><br><span class="line">wget http://www.monkey.org/~provos/libevent-<span class="number">1.2</span>.tar.gz</span><br></pre></td></tr></table></figure></p>
 <p><strong> 第二步 安装组件</strong></p>
-<p>libevent-1.2 安装：<br> 默认安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar –zxvf libevent-1.2.tar.gz</span></span><br><span class="line"> <span class="built_in">cd</span> libevent-<span class="number">1.2</span></span><br><span class="line"> ./configure</span><br><span class="line"> make</span><br><span class="line"> make install</span><br><span class="line"> make clean</span><br></pre></td></tr></table></figure></p>
+<p>libevent-1.2 安装：<br>默认安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar –zxvf libevent-1.2.tar.gz</span></span><br><span class="line"> <span class="built_in">cd</span> libevent-<span class="number">1.2</span></span><br><span class="line"> ./configure</span><br><span class="line"> make</span><br><span class="line"> make install</span><br><span class="line"> make clean</span><br></pre></td></tr></table></figure></p>
 <p>建立一个符号连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls <span class="operator">-s</span> /usr/<span class="built_in">local</span>/lib/libevent-<span class="number">1.2</span>.so.<span class="number">1</span> /usr/lib</span><br></pre></td></tr></table></figure></p>
 <p>memcached-1.2.2 安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar –zxvf memcached-<span class="number">1.2</span>.<span class="number">2</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> memcached-<span class="number">1.2</span>.<span class="number">2</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/memcached</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">make clean</span><br></pre></td></tr></table></figure></p>
 <p><strong> 第三步 安装Memcache的PHP扩展</strong></p>
+<blockquote>
+<p>安装Memcache</p>
+</blockquote>
 <p>1.在<a href="http://pecl.php.net/package/memcache" target="_blank" rel="external">http://pecl.php.net/package/memcache</a> 选择相应想要下载的memcache版本。</p>
 <p>2.安装PHP的memcache扩展<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar vxzf memcache-<span class="number">2.2</span>.<span class="number">1</span>.tgz</span><br><span class="line"><span class="built_in">cd</span> memcache-<span class="number">2.2</span>.<span class="number">1</span></span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line">./configure –<span class="built_in">enable</span>-memcache –with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config –with-zlib-dir</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
 <p>3.上述安装完后会有类似这样的提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Installing shared extensions: /usr/<span class="built_in">local</span>/php/lib/php/extensions/no-debug-zts-<span class="number">20041030</span>/</span><br></pre></td></tr></table></figure></p>
 <p>4.把php.ini中的extension_dir = “./”修改为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension_dir = “/usr/<span class="built_in">local</span>/php/lib/php/extensions/no-debug-zts-<span class="number">20041030</span>/”</span><br></pre></td></tr></table></figure>
 <p>5.添加一行来载入memcache扩展：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=memcache.so</span><br></pre></td></tr></table></figure></p>
-<p>memcached的基本设置：</p>
-<p>启动Memcache的服务器端：</p>
+<blockquote>
+<p>Memcached的基本设置：</p>
+</blockquote>
+<p>1.启动Memcache的服务器端：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/bin/memcached <span class="operator">-d</span> -m <span class="number">10</span> -u root <span class="operator">-l</span> <span class="number">192.168</span>.<span class="number">1.55</span> -p <span class="number">12000</span> -c <span class="number">256</span> -P /tmp/memcached.pid</span><br></pre></td></tr></table></figure>
 <p>-d选项是启动一个守护进程，<br>-m是分配给Memcache使用的内存数量，单位是MB；<br>-u是运行Memcache的用户；<br>-l是监听的服务器IP地址；<br>-p是设置Memcache监听的端口，最好是1024以上的端口；<br>-c选项是最大运行的并发连接数，默认是1024；<br>-P是设置保存Memcache的pid文件，这里是保存在 /tmp/memcached.pid；</p>
-<p>2.如果要结束Memcache进程，执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> <span class="string">'cat /tmp/memcached.pid'</span></span><br></pre></td></tr></table></figure></p>
-<p>也可以启动多个守护进程，不过端口不能重复。</p>
-<ol>
-<li>然后重启apache服务器，进行如下操作<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/apache/bin/apachectl –k stop</span><br><span class="line">/usr/<span class="built_in">local</span>/apache/bin/apachectl –k start</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>Memcache环境测试：<br>建立一个文件为pptest.php内容如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"> <span class="variable">$mem</span> = <span class="keyword">new</span> Memcache;</span><br><span class="line"> <span class="variable">$mem</span>-&gt;connect(<span class="string">"127.0.0.1"</span>,<span class="number">11211</span>);</span><br><span class="line"> <span class="variable">$mem</span>-&gt;set(<span class="string">'key'</span>,<span class="string">'this is a test!'</span>,<span class="number">0</span>,<span class="number">60</span>);</span><br><span class="line"> <span class="variable">$val</span> = <span class="variable">$mem</span>-&gt;get(<span class="string">'key'</span>);</span><br><span class="line"> <span class="keyword">echo</span> <span class="variable">$val</span>;</span><br><span class="line"> <span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>2.如果要结束Memcache进程，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> <span class="string">'cat /tmp/memcached.pid'</span></span><br></pre></td></tr></table></figure>
+<p>也可以启动多个守护进程，不过端口不能重复</p>
+<p>3.然后重启apache服务器，进行如下操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/apache/bin/apachectl –k stop</span><br><span class="line">/usr/<span class="built_in">local</span>/apache/bin/apachectl –k start</span><br></pre></td></tr></table></figure>
+<p>4.Memcache环境测试：</p>
+<p>建立一个文件为pptest.php内容如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"> <span class="variable">$mem</span> = <span class="keyword">new</span> Memcache;</span><br><span class="line"> <span class="variable">$mem</span>-&gt;connect(<span class="string">"127.0.0.1"</span>,<span class="number">11211</span>);</span><br><span class="line"> <span class="variable">$mem</span>-&gt;set(<span class="string">'key'</span>,<span class="string">'this is a test!'</span>,<span class="number">0</span>,<span class="number">60</span>);</span><br><span class="line"> <span class="variable">$val</span> = <span class="variable">$mem</span>-&gt;get(<span class="string">'key'</span>);</span><br><span class="line"> <span class="keyword">echo</span> <span class="variable">$val</span>;</span><br><span class="line"> <span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>然后在地址栏里面输入：本机IP/pptest.php 如果可以看到this is a test!就说明已经安装成功了</p>
 
       

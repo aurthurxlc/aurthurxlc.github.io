@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Go实现WebHook功能 | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天使用go语言实现了一个WebHook的功能，具体代码如下，有时间再做解释">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Go实现WebHook功能">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Use-go-to-create-the-webhooks.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="今天使用go语言实现了一个WebHook的功能，具体代码如下，有时间再做解释">
+<meta property="og:updated_time" content="2015-12-14T05:56:22.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Go实现WebHook功能">
+<meta name="twitter:description" content="今天使用go语言实现了一个WebHook的功能，具体代码如下，有时间再做解释">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">心动不如行动</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="/aurthur@gmail.com" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Use-go-to-create-the-webhooks" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/Use-go-to-create-the-webhooks.html" class="article-date">
+  	<time datetime="2015-12-14T05:56:22.270Z" itemprop="datePublished">2015-12-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Go实现WebHook功能
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hook/">hook</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/go/">go</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天使用go语言实现了一个WebHook的功能，具体代码如下，有时间再做解释</p>
+<a id="more"></a>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"encoding/json"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"io/ioutil"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"os/exec"</span></span><br><span class="line">	<span class="string">"path/filepath"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Hook <span class="keyword">struct</span> &#123;</span><br><span class="line">	Password <span class="typename">string</span> <span class="string">`json:"password"`</span></span><br><span class="line">	HookName <span class="typename">string</span> <span class="string">`json:"hook_name"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">Config</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">type</span> Config <span class="keyword">struct</span> &#123;</span><br><span class="line">	Port <span class="typename">string</span> <span class="string">`json:"port"`</span></span><br><span class="line">	Info []Info <span class="string">`json:"info"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">Info</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">type</span> Info <span class="keyword">struct</span> &#123;</span><br><span class="line">	Author   <span class="typename">string</span> <span class="string">`json:"author"`</span></span><br><span class="line">	Password <span class="typename">string</span> <span class="string">`json:"password"`</span></span><br><span class="line">	Command  <span class="typename">string</span> <span class="string">`json:"command"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> config = Config&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> info = Info&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> current_path <span class="typename">string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetCurrPath() &#123;</span><br><span class="line">	file, _ := exec.LookPath(os.Args[<span class="number">0</span>])</span><br><span class="line">	path, _ := filepath.Abs(file)</span><br><span class="line">	index := strings.LastIndex(path, <span class="typename">string</span>(os.PathSeparator))</span><br><span class="line">	current_path = path[:index] + <span class="string">"/"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> write_log(log <span class="typename">string</span>, msg <span class="typename">string</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> !file_exist(current_path + log) &#123;</span><br><span class="line">		os.Create(current_path + log)</span><br><span class="line">	&#125;</span><br><span class="line">	f, err := os.OpenFile(current_path+log, os.O_APPEND|os.O_WRONLY, <span class="number">0644</span>)</span><br><span class="line">	check(err)</span><br><span class="line">	<span class="keyword">defer</span> f.Close()</span><br><span class="line">	timestamp := time.Now().Unix()</span><br><span class="line">	tm := time.Unix(timestamp, <span class="number">0</span>)</span><br><span class="line">	t := tm.Format(<span class="string">"2006-01-02 03:04:05 PM Monday"</span>)</span><br><span class="line">	f.WriteString(<span class="string">"\n===== Log start "</span> + t + <span class="string">" =====\n"</span>)</span><br><span class="line">	f.WriteString(msg)</span><br><span class="line">	f.WriteString(<span class="string">"\n===== Log end =====\n"</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> file_exist(filename <span class="typename">string</span>) <span class="typename">bool</span> &#123;</span><br><span class="line">	_, err := os.Stat(filename)</span><br><span class="line">	<span class="keyword">return</span> err == <span class="constant">nil</span> || os.IsExist(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> check(e error) &#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="keyword">func</span>() &#123;</span><br><span class="line">		<span class="keyword">if</span> err := <span class="built_in">recover</span>(); err != <span class="constant">nil</span> &#123;</span><br><span class="line">			msg, ok := err.(<span class="typename">string</span>)</span><br><span class="line">			<span class="keyword">if</span> ok &#123;</span><br><span class="line">				write_log(<span class="string">"deploy_error.log"</span>, msg)</span><br><span class="line">			&#125;</span><br><span class="line">			write_log(<span class="string">"deploy_error.log"</span>, e.Error())</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">if</span> e != <span class="constant">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(e)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> exec_deploy() &#123;</span><br><span class="line">	cmd := exec.Command(info.Command)</span><br><span class="line">	out, err := cmd.CombinedOutput()</span><br><span class="line">	check(err)</span><br><span class="line">	write_log(info.Author+<span class="string">"_deploy.log"</span>, <span class="typename">string</span>(out))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> deploy(w http.ResponseWriter, r *http.Request) &#123;</span><br><span class="line">	r.ParseForm()</span><br><span class="line">	fmt.Fprintf(w, <span class="string">"success!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> hooks(w http.ResponseWriter, r *http.Request) &#123;</span><br><span class="line">	r.ParseForm()</span><br><span class="line">	hook := Hook&#123;&#125;</span><br><span class="line">	fmt.Println(strings.Join(r.Form[<span class="string">"hook"</span>], <span class="string">""</span>))</span><br><span class="line">	err := json.Unmarshal([]<span class="typename">byte</span>(strings.Join(r.Form[<span class="string">"hook"</span>], <span class="string">""</span>)), &amp;hook)</span><br><span class="line">	check(err)</span><br><span class="line">	result := checkInfo(hook.Password)</span><br><span class="line">	<span class="keyword">if</span> result &#123;</span><br><span class="line">		<span class="keyword">go</span> exec_deploy()</span><br><span class="line">		fmt.Fprintf(w, <span class="string">"success!"</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Fprintf(w, <span class="string">"error, the pwd is not right!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> getConfig() &#123;</span><br><span class="line">	buff, err := ioutil.ReadFile(current_path + <span class="string">"config.json"</span>)</span><br><span class="line">	check(err)</span><br><span class="line">	err = json.Unmarshal(buff, &amp;config)</span><br><span class="line">	check(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> checkInfo(password <span class="typename">string</span>) <span class="typename">bool</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(config.Info); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> config.Info[i].Password == password &#123;</span><br><span class="line">			info = config.Info[i]</span><br><span class="line">			<span class="keyword">return</span> <span class="constant">true</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="constant">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() &#123;</span><br><span class="line">	GetCurrPath()</span><br><span class="line">	getConfig()</span><br><span class="line">	http.HandleFunc(<span class="string">"/deploy"</span>, deploy)</span><br><span class="line">	http.HandleFunc(<span class="string">"/hooks"</span>, hooks)</span><br><span class="line">	err := http.ListenAndServe(<span class="string">":"</span>+config.Port, <span class="constant">nil</span>)</span><br><span class="line">	check(err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Aurthur-2015/SourceCode-Install-LAMP.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">源码安装Apache+PHP+Mysql实战</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'aurthur'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

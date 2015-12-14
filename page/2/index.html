@@ -107,7 +107,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a>
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a>
 					</div>
 				</section>
 				
@@ -173,10 +173,10 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Use-DD-Install-Centos-USB-In-Mac" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Principles-of-RESTful-API-Design" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html" class="article-date">
+      <a href="/Aurthur-2015/Principles-of-RESTful-API-Design.html" class="article-date">
   	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
 </a>
     </div>
@@ -190,7 +190,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html">Mac下dd命令制作Centos USB启动盘</a>
+      <a class="article-title" href="/Aurthur-2015/Principles-of-RESTful-API-Design.html">RESTful API 设计原则</a>
     </h1>
   
 
@@ -199,8 +199,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近想用装一台Centos系统来使用，下载好系统后，发现了dd这个强大的命令，可用于将系统写入USB来实现从U盘启动，现将其使用步骤记录一下</p>
-<h2 id="查看_Mac_下所有的_disk">查看 Mac 下所有的 disk</h2>
+        <h2 id="协议">协议</h2><p>API与用户的通信协议，总是使用HTTPs协议</p>
+<h2 id="域名">域名</h2><p>应该尽量将API部署在专用域名之下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com</span><br></pre></td></tr></table></figure>
+<p>如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://example.org/api/</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -208,18 +211,84 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/">Centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dd/">dd</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RESTful/">RESTful</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Mac/">Mac</a>
+	<a class="article-category-link" href="/categories/API/">API</a>
 	</div>
 
 
       
         <p class="article-more-link">
-          <a  href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html#more">阅读全文 >></a>
+          <a  href="/Aurthur-2015/Principles-of-RESTful-API-Design.html#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-PHP-Mod-PHP-And-Fast-CGI-Explain" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html" class="article-date">
+  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html">PHP填坑记之FastCGI与mod_php详解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上对于FastCGI与mod_php的知识比较杂乱而不全面，故在此整理一下，以便入门学习者查阅方便</p>
+<h2 id="背景">背景</h2><p>PHP最常用的方式是以模块的方式(mod_php)运行在Apache中，也是Apache运行PHP的默认方式；但在Nginx中，Nginx又使用的是PHP-FPM，但是PHP-FPM到底是个什么东东？跟php有什么关系？今天我们一起来探究一番</p>
+<h2 id="PHP处理器(PHP_handlers)">PHP处理器(PHP handlers)</h2><p>首先需要记住的是，任何一种Web服务器(Apache、Nginx等)都是被设计成向用户发送html、图片等静态资源的，Web服务器自身并不能解释任何动态脚本(PHP、Python等)</p>
+<p>PHP处理器就是用来解释Web应用中的PHP代码，并将它解释为HTML或其他静态资源，然后将解析的结果传给Web服务器，最后再由Web服务器发送给用户</p>
+<p>大多数的Web服务器都不能解析PHP代码，因此它需要一个能解析PHP代码的程序，这就是PHP处理器<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/PHP/">PHP</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -373,10 +442,10 @@
 
 
   
-    <article id="post-Use-Vagrant-Develop-Env" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Use-DD-Install-Centos-USB-In-Mac" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/Aurthur-2015/Use-Vagrant-Develop-Env.html" class="article-date">
+      <a href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html" class="article-date">
   	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
 </a>
     </div>
@@ -390,7 +459,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/Use-Vagrant-Develop-Env.html">使用 Vagrant 配置开发环境</a>
+      <a class="article-title" href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html">Mac下dd命令制作Centos USB启动盘</a>
     </h1>
   
 
@@ -399,10 +468,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>学习使用 Vagrant 配置开发环境</p>
-<p>我使用的是苹果笔记本，跑 Mac 系统，但是我的 rails 程序要跑在 ubuntu 系统上。那最简单的解决方案就是安装 virtualbox 虚拟机，载装上 vagrant 。 这样就很容易的把 ubuntu 装上了。当然如果你已经习惯了用其他的方式安装 ubuntu 也是可以的</p>
-<p>这里演示如何在本机配置Ubuntu系统</p>
-<hr>
+        <p>最近想用装一台Centos系统来使用，下载好系统后，发现了dd这个强大的命令，可用于将系统写入USB来实现从U盘启动，现将其使用步骤记录一下</p>
+<h2 id="查看_Mac_下所有的_disk">查看 Mac 下所有的 disk</h2>
       
     </div>
     
@@ -410,18 +477,18 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vagrant/">Vagrant</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/">Centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dd/">dd</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Vagrant/">Vagrant</a>
+	<a class="article-category-link" href="/categories/Mac/">Mac</a>
 	</div>
 
 
       
         <p class="article-more-link">
-          <a  href="/Aurthur-2015/Use-Vagrant-Develop-Env.html#more">阅读全文 >></a>
+          <a  href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -494,72 +561,6 @@
       
         <p class="article-more-link">
           <a  href="/Aurthur-2015/Windows-Java-Env.html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-Snmp-Vps-Server-Monitor" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html" class="article-date">
-  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html">配置监控宝SNMP定时监控VPS主机性能</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。</p>
-<h2 id="部署安装Net-SNMP">部署安装Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install net-snmp net-snmp-devel net-snmp-utils</span><br></pre></td></tr></table></figure>
-<p>在这篇文章中是用CENTOS系统测试的。</p>
-<h2 id="配置_Net-SNMP">配置 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service snmpd stop <span class="comment">#先停止SNMP服务</span></span><br><span class="line">net-snmp-config --create-snmpv3-user -ro -A aurthur.tk <span class="operator">-a</span> MD5 aurthurlk</span><br></pre></td></tr></table></figure>
-<p>我们这里创建一个一个snmpv3用户，位只读，使用MD5加密传输，用户名为aurthurlk，密码为aurthur.tk， 这里要设置好，后面我们需要在监控宝网站填写。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPS/">VPS</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Server/">Server</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

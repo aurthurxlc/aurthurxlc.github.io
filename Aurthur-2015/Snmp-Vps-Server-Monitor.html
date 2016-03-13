@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Aurthur Article">
 <meta property="og:description" content="如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。
 部署安装Net-SNMP1yum install net-snmp net-snmp-devel net-snmp-u">
-<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置监控宝SNMP定时监控VPS主机性能">
 <meta name="twitter:description" content="如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。
@@ -22,7 +22,7 @@
   
     <link rel="icon" href="/uploads/blog.ico">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <div id="container">
@@ -94,11 +94,11 @@
 					<nav class="header-nav">
 						<div class="social">
 							
-								<a class="github" target="_blank" href="/#" title="github">github</a>
+								<a class="github" target="_blank" href="#" title="github">github</a>
 					        
-								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
 					        
-								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
 					        
 								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
 					        
@@ -122,7 +122,7 @@
 				
 				<section class="switch-part switch-part3">
 				
-					<div id="js-aboutme">心动不如行动</div>
+					<div id="js-aboutme">true</div>
 				</section>
 				
 			</div>
@@ -160,11 +160,11 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="/#" title="github">github</a>
+						<a class="github" target="_blank" href="#" title="github">github</a>
 			        
-						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
 			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
 			        
 						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
 			        
@@ -179,7 +179,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html" class="article-date">
-  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
 </a>
     </div>
   
@@ -219,12 +219,12 @@
         <p>如果我们的VPS比较多，也没有时间完全100%的在线监测是否稳定，我们是可以通过一些监控工具实现时时的监控监测的，如果VPS宕机那网站也会出现不能访问，这样通过发送提醒可以让我们做出提示。因为有些时候网站的提醒也不能代表是服务器的问题，所以如果有需要可以直接把VPS设置提醒监控。</p>
 <h2 id="部署安装Net-SNMP">部署安装Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install net-snmp net-snmp-devel net-snmp-utils</span><br></pre></td></tr></table></figure>
 <p>在这篇文章中是用CENTOS系统测试的。</p>
-<h2 id="配置_Net-SNMP">配置 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service snmpd stop <span class="comment">#先停止SNMP服务</span></span><br><span class="line">net-snmp-config --create-snmpv3-user -ro -A aurthur.tk <span class="operator">-a</span> MD5 aurthurlk</span><br></pre></td></tr></table></figure>
+<h2 id="配置_Net-SNMP">配置 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service snmpd stop <span class="comment">#先停止SNMP服务</span></span><br><span class="line">net-snmp-config --create-snmpv3-user -ro -A aurthur.tk <span class="_">-a</span> MD5 aurthurlk</span><br></pre></td></tr></table></figure>
 <p>我们这里创建一个一个snmpv3用户，位只读，使用MD5加密传输，用户名为aurthurlk，密码为aurthur.tk， 这里要设置好，后面我们需要在监控宝网站填写。<br><a id="more"></a></p>
 <h2 id="运行_Net-SNMP">运行 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service snmpd start <span class="comment">#启动</span></span><br><span class="line">chkconfig snmpd on <span class="comment">#设置开机检测</span></span><br></pre></td></tr></table></figure>
-<h2 id="检测_Net-SNMP">检测 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snmpwalk -v <span class="number">3</span> -u aurthurlk <span class="operator">-a</span> MD5 -A <span class="string">"aurthur.tk"</span> <span class="operator">-l</span> authNoPriv <span class="number">127.0</span>.<span class="number">0.1</span> sysDescr</span><br></pre></td></tr></table></figure>
+<h2 id="检测_Net-SNMP">检测 Net-SNMP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snmpwalk -v 3 -u aurthurlk <span class="_">-a</span> MD5 -A <span class="string">"aurthur.tk"</span> <span class="_">-l</span> authNoPriv 127.0.0.1 sysDescr</span><br></pre></td></tr></table></figure>
 <p>如果检测没有问题，就有一个正确的返回数据。</p>
-<h2 id="配置防火墙">配置防火墙</h2><p>如果我们的VPS服务器开启了iptables防火墙设置，那我们需要把2行添加入iptables设置中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p udp <span class="operator">-s</span> <span class="number">60.195</span>.<span class="number">252.107</span> --dport <span class="number">161</span> -j ACCEPT</span><br><span class="line">iptables -I INPUT -p udp <span class="operator">-s</span> <span class="number">60.195</span>.<span class="number">252.110</span> --dport <span class="number">161</span> -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置防火墙">配置防火墙</h2><p>如果我们的VPS服务器开启了iptables防火墙设置，那我们需要把2行添加入iptables设置中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p udp <span class="_">-s</span> 60.195.252.107 --dport 161 -j ACCEPT</span><br><span class="line">iptables -I INPUT -p udp <span class="_">-s</span> 60.195.252.110 --dport 161 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
 <h2 id="配置监控宝网站后台账户">配置监控宝网站后台账户</h2><p>我们需要拥有一个监控宝账户，如果没有就需要注册，免费账户可以添加2个服务器监控，5个网站监控。</p>
 <p>so easy!</p>
 
@@ -236,11 +236,11 @@
     
 <nav id="article-nav">
   
-    <a href="/Aurthur-2015/Use-Vagrant-Develop-Env.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Aurthur-2015/some-Domestic-Mirrors.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          使用 Vagrant 配置开发环境
+          Some Domestic Mirrors
         
       </div>
     </a>
@@ -297,7 +297,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015 Aurthur
+    		&copy; 2016 Aurthur
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -307,7 +307,7 @@
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
 
 <script>
@@ -323,8 +323,8 @@
 		open_in_new: false
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
 

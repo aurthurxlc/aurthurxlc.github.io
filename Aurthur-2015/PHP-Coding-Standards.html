@@ -21,7 +21,7 @@
 
 缩进应该能够反映出代码的逻辑结果，尽量使用四个空格，禁止使用制表符TAB，因为这样能够保证有跨客户端编程器软件的灵活性。例如：
 123456if (1 == $x) &amp;#123;    $indented_">
-<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP编码规范">
 <meta name="twitter:description" content="一、文件格式
@@ -34,7 +34,7 @@
   
     <link rel="icon" href="/uploads/blog.ico">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <div id="container">
@@ -106,11 +106,11 @@
 					<nav class="header-nav">
 						<div class="social">
 							
-								<a class="github" target="_blank" href="/#" title="github">github</a>
+								<a class="github" target="_blank" href="#" title="github">github</a>
 					        
-								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
 					        
-								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
 					        
 								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
 					        
@@ -134,7 +134,7 @@
 				
 				<section class="switch-part switch-part3">
 				
-					<div id="js-aboutme">心动不如行动</div>
+					<div id="js-aboutme">true</div>
 				</section>
 				
 			</div>
@@ -172,11 +172,11 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="/#" title="github">github</a>
+						<a class="github" target="_blank" href="#" title="github">github</a>
 			        
-						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
 			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
 			        
 						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
 			        
@@ -191,7 +191,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2015/PHP-Coding-Standards.html" class="article-date">
-  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
 </a>
     </div>
   
@@ -230,13 +230,13 @@
       
         <h2 id="一、文件格式">一、文件格式</h2><ol>
 <li><p>对于只含有 php 代码的文件，我们将在文件结尾处忽略掉 “?&gt;” 。这是为了防止多余的空格或者其它字符影响到代码。<br>例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$foo</span> = <span class="string">'foo'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$foo = <span class="string">'foo'</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>缩进应该能够反映出代码的逻辑结果，尽量使用四个空格，禁止使用制表符TAB，因为这样能够保证有跨客户端编程器软件的灵活性。<br>例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">1</span> == <span class="variable">$x</span>) &#123;</span><br><span class="line">    <span class="variable">$indented_code</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">1</span> == <span class="variable">$new_line</span>) &#123;</span><br><span class="line">        <span class="variable">$more_indented_code</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">1</span> == $x) &#123;</span><br><span class="line">    $indented_code = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">1</span> == $new_line) &#123;</span><br><span class="line">        $more_indented_code = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>变量赋值必须保持相等间距和排列。<br>例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$variable</span> = <span class="string">'demo'</span>;</span><br><span class="line"><span class="variable">$var</span>      = <span class="string">'demo2'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$variable = <span class="string">'demo'</span>;</span><br><span class="line">$var      = <span class="string">'demo2'</span>;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <a id="more"></a>
@@ -262,13 +262,13 @@
 <li><p>属性的命名只允许由字母组成，下划线是不允许的，首字母要小写，其后每个单词首字母要大写，即所谓的 “驼峰法命名” 规则，例如tablePrefix、tableName 。</p>
 </li>
 <li><p>对于对象成员的访问，我们必须始终使用 “get” 和 “set” 方法。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$_testObj</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTestObj</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;_testObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setTestObj</span><span class="params">(<span class="variable">$testObj</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;testObj = <span class="variable">$_testObj</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $_testObj;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTestObj</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> $this-&gt;_testObj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setTestObj</span><span class="params">($testObj)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        $this-&gt;testObj = $_testObj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>当类成员方法被声明为 private 时，必须分别以双下划线开头；被声明为 protected 时，必须分别以单下划线 “_” 为开头；一般情况下的方法不含下划线。例如 ：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__example</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">_example</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如果我们需要把一些经常使用的方法定义为全局函数，那么应该把它们以静态 (static) 的形式定义在类中。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Think</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">autoload</span><span class="params">(<span class="variable">$classname</span>)</span></span><br><span class="line"></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Think</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">autoload</span><span class="params">($classname)</span></span><br><span class="line"></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>被声明为 private的类成员属性必须由双下划线 “_<em>“ 作为开头；被声明为 protected 的类成员属性必须由下划线 “</em>“ 作为开头；而声明为 public 的成员属性则在任何时候都不允许含有下划线。</p>
 </li>
@@ -287,16 +287,16 @@
 <li><p>php 代码必须以完整的形式来定界（&lt;?php … ?&gt;），即不要使用php 短标签（&lt;? … ?&gt;），且保证在关闭标签后不要有任何空格。</p>
 </li>
 <li><p>当一个字符串是纯文本组成的时候（即不含有变量），则必须总是以单引号（’）作为定界符。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="string">'Example String'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$a = <span class="string">'Example String'</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>变量替换中的变量只允许用 $+变量名 的形式。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$greeting</span> = <span class="string">"Hello $name, welcome back!"</span>;   <span class="comment">// 允许</span></span><br><span class="line"><span class="variable">$greeting</span> = <span class="string">"Hello &#123;$name&#125;, welcome back!"</span>; <span class="comment">// 允许</span></span><br><span class="line"><span class="variable">$greeting</span> = <span class="string">"Hello $&#123;name&#125;, welcome back!"</span>; <span class="comment">// 不允许</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$greeting = <span class="string">"Hello $name, welcome back!"</span>;   <span class="comment">// 允许</span></span><br><span class="line">$greeting = <span class="string">"Hello &#123;$name&#125;, welcome back!"</span>; <span class="comment">// 允许</span></span><br><span class="line">$greeting = <span class="string">"Hello $&#123;name&#125;, welcome back!"</span>; <span class="comment">// 不允许</span></span><br></pre></td></tr></table></figure>
 <p>当用点号 “.” 连接各字符串的时候，字符串与点号间必须用一个空格隔开，且允许把它分割成多行以增强可读性。在这种情况下，点号 “.” 必须与等于号 “=” 对齐。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">"SELECT `id`, `name` "</span> . <span class="string">" FROM `people` "</span></span><br><span class="line">      . <span class="string">"WHERE `name` = 'Susan' "</span></span><br><span class="line">      . <span class="string">"ORDER BY `name` ASC "</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"SELECT `id`, `name` "</span> . <span class="string">" FROM `people` "</span></span><br><span class="line">      . <span class="string">"WHERE `name` = 'Susan' "</span></span><br><span class="line">      . <span class="string">"ORDER BY `name` ASC "</span>;</span><br></pre></td></tr></table></figure>
 <p>当用 array 类型符号来构造数组的时候，必须在每个逗号之后加上一个空格来增强可读性。例如：$sampleArray = array(1, 2, 3, ‘Think’, ‘SNS’);</p>
 </li>
 <li><p>当使用 array 类型符声明关联数组的时候，我们鼓励把它分成多个行，只是我们必须同时保证每行的键与值的对齐，以保持美观。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sampleArray</span> = <span class="keyword">array</span>(</span><br><span class="line">                   <span class="string">'firstKey'</span>  =&gt; <span class="string">'firstValue'</span>,</span><br><span class="line">                   <span class="string">'secondKey'</span> =&gt; <span class="string">'secondValue'</span></span><br><span class="line">               );</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$sampleArray = <span class="keyword">array</span>(</span><br><span class="line">                   <span class="string">'firstKey'</span>  =&gt; <span class="string">'firstValue'</span>,</span><br><span class="line">                   <span class="string">'secondKey'</span> =&gt; <span class="string">'secondValue'</span></span><br><span class="line">               );</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>大括号的开始必须在类名的下一行顶格。例如：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Think</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -320,36 +320,36 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_client_ip</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>引用只允许定义在函数参数中，实时传递引用是禁止的。例如：</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 引用定义在函数参数-允许的</span><br><span class="line"><span class="keyword">function</span> defineRefInMethod(&amp;<span class="variable">$a</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line">defineRefInMethod(<span class="variable">$b</span>);</span><br><span class="line">echo <span class="variable">$b</span>; // <span class="string">'a'</span></span><br><span class="line"></span><br><span class="line">// 实时传递引用-禁止的</span><br><span class="line"><span class="keyword">function</span> callTimePassRef(<span class="variable">$a</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line">callTimePassRef(&amp;<span class="variable">$c</span>);</span><br><span class="line">echo <span class="variable">$c</span>; // <span class="string">'a'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 引用定义在函数参数-允许的</span><br><span class="line"><span class="keyword">function</span> defineRefInMethod(&amp;$a)</span><br><span class="line">&#123;</span><br><span class="line">    $a = <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line">defineRefInMethod($b);</span><br><span class="line">echo $b; // <span class="string">'a'</span></span><br><span class="line"></span><br><span class="line">// 实时传递引用-禁止的</span><br><span class="line"><span class="keyword">function</span> callTimePassRef($a)</span><br><span class="line">&#123;</span><br><span class="line">    $a = <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line">callTimePassRef(&amp;$c);</span><br><span class="line">echo $c; // <span class="string">'a'</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>函数或方法返回值不可以用括号包住，不然会降低可读性，而且假如以后函数修改为返回引用的话，这将会抛出一个异常。</p>
 </li>
 <li><p>鼓励尽量使用类型提示，特别是在模块设计中。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">(SomeInterface <span class="variable">$object</span>)</span></span><br><span class="line">   </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">(array <span class="variable">$options</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">(SomeInterface $object)</span></span><br><span class="line">   </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">(array $options)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>函数和方法参数必须用逗号+空格来分隔。</p>
 </li>
 <li><p>对于参数为数组的函数，参数中的数组应该分成多行以增强可读性。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">threeArguments(<span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">threeArguments(<span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'Think'</span>,</span><br><span class="line">                    <span class="string">'SNS'</span>, <span class="variable">$a</span>, <span class="variable">$b</span>, <span class="variable">$c</span>,</span><br><span class="line">                    <span class="number">56.44</span>, <span class="variable">$d</span>, <span class="number">500</span>), <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">threeArguments(<span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">threeArguments(<span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'Think'</span>,</span><br><span class="line">                    <span class="string">'SNS'</span>, $a, $b, $c,</span><br><span class="line">                    <span class="number">56.44</span>, $d, <span class="number">500</span>), <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>基于”if”, “else”和”else if”的条件控制里，我们必须用空格间隔开语句和括号，大括号的开始 “{“ 必须与条件控制语句位于同一行，结束 “}” 必须总是独占一行且顶格，控制流程内容必须用四个空格进行缩进，且不使用”elseif”。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$condition</span>) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$_condition</span>) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($condition) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> ($_condition) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在条件控制语句的条件括号内，必须用空格将操作符与其它元素隔开。如果遇到很长的逻辑判断，则鼓励用内嵌括号来分割各个逻辑。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="variable">$a</span> != <span class="number">2</span>) <span class="keyword">and</span> (<span class="variable">$b</span> == <span class="number">1</span>)) &#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="variable">$b</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (($a != <span class="number">2</span>) <span class="keyword">and</span> ($b == <span class="number">1</span>)) &#123;</span><br><span class="line">    $a = $b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>“switch” 条件控制语句中，必须用空格将待测参数与其它元素分隔开。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (<span class="variable">$num</span>) &#123;</span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> ($num) &#123;</span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>“switch” 语句的内容必须以四个空格缩进，”case” 条件控制的内容必须再加四个空格进行缩进。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (<span class="variable">$indentedSpaces</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"错误"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"正确"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> ($indentedSpaces) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"错误"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"正确"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在 “switch” 语句中应该总是包括 “default” 控制。</p>
 </li>
 <li><p>有时候我们需要在 “case” 语境中省略掉 “break” 或 “return” ，这个时候我们必须为这些 “case” 语句加上 “此处无break” 注释。例如：</p>
 </li>
 </ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (<span class="variable">$numPeople</span>) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>: <span class="comment">// 此处无break</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> ($numPeople) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>: <span class="comment">// 此处无break</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -359,20 +359,15 @@
     
 <nav id="article-nav">
   
-    <a href="/Aurthur-2015/PHP-Mod-PHP-And-Fast-CGI-Explain.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Aurthur-2015/Centos-Mysql-Install.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          PHP填坑记之FastCGI与mod_php详解
+          CentOS6.4下Mysql数据库的安装与配置
         
       </div>
     </a>
   
-  
-    <a href="/Aurthur-2015/Nginx-Chkconfig-Script.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CentOS下Nginx启动脚本和Chkconfig管理</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
   
 </nav>
 
@@ -420,7 +415,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015 Aurthur
+    		&copy; 2016 Aurthur
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -430,7 +425,7 @@
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
 
 <script>
@@ -446,8 +441,8 @@
 		open_in_new: false
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
 

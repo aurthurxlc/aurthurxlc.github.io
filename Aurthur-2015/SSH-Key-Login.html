@@ -13,7 +13,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 <meta property="og:site_name" content="Aurthur Article">
 <meta property="og:description" content="前言本文基于实际Linux管理工作，实例讲解工作中使用ssh证书登录的实际流程，讲解ssh证书登录的配置原理，基于配置原理，解决实际工作中，windows下使用SecureCRT证书登录的各种问题，以及实现hadoop集群部署要求的无密码跳转问题。
 ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至是root账户登录，密码是123456。但是在实际工作中，尤其是互联网公司，基本都是证书登录的">
-<meta property="og:updated_time" content="2015-12-09T15:29:52.264Z">
+<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH配置私钥登陆服务器">
 <meta name="twitter:description" content="前言本文基于实际Linux管理工作，实例讲解工作中使用ssh证书登录的实际流程，讲解ssh证书登录的配置原理，基于配置原理，解决实际工作中，windows下使用SecureCRT证书登录的各种问题，以及实现hadoop集群部署要求的无密码跳转问题。
@@ -22,7 +22,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
   
     <link rel="icon" href="/uploads/blog.ico">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <div id="container">
@@ -94,11 +94,11 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 					<nav class="header-nav">
 						<div class="social">
 							
-								<a class="github" target="_blank" href="/#" title="github">github</a>
+								<a class="github" target="_blank" href="#" title="github">github</a>
 					        
-								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
 					        
-								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
 					        
 								<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
 					        
@@ -122,7 +122,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 				
 				<section class="switch-part switch-part3">
 				
-					<div id="js-aboutme">心动不如行动</div>
+					<div id="js-aboutme">true</div>
 				</section>
 				
 			</div>
@@ -160,11 +160,11 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="/#" title="github">github</a>
+						<a class="github" target="_blank" href="#" title="github">github</a>
 			        
-						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
 			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
 			        
 						<a class="mail" target="_blank" href="/aurthur@gmail.com" title="mail">mail</a>
 			        
@@ -179,7 +179,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
   
     <div class="article-meta">
       <a href="/Aurthur-2015/SSH-Key-Login.html" class="article-date">
-  	<time datetime="2015-12-09T15:29:52.264Z" itemprop="datePublished">2015-12-09</time>
+  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
 </a>
     </div>
   
@@ -229,8 +229,8 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 <p>另外就是私钥的密码了，如果不是测试，不是要求无密码ssh，那么对于passphrase，不能输入空(直接回车),要妥当想一个有特殊字符的密码。</p>
 <h2 id="ssh服务端配置">ssh服务端配置</h2><p>ssh服务器配置如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#禁用root账户登录，非必要，但为了安全性，请配置</span></span><br><span class="line">PermitRootLogin no</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否让 sshd 去检查用户家目录或相关档案的权限数据，</span></span><br><span class="line"><span class="comment"># 这是为了担心使用者将某些重要档案的权限设错，可能会导致一些问题所致。</span></span><br><span class="line"><span class="comment"># 例如使用者的 ~.ssh/ 权限设错时，某些特殊情况下会不许用户登入</span></span><br><span class="line">StrictModes no</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否允许用户自行使用成对的密钥系统进行登入行为，仅针对 version 2。</span></span><br><span class="line"><span class="comment"># 至于自制的公钥数据就放置于用户家目录下的 .ssh/authorized_keys 内</span></span><br><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile      ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment">#有了证书登录了，就禁用密码登录吧，安全要紧</span></span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure></p>
 <p>配置好ssh服务器的配置了，那么我们就要把客户端的公钥上传到服务器端，然后把客户端的公钥添加到authorized_keys</p>
-<p><strong> 在客户端执行命令</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scp 端口-P P需要大写</span></span><br><span class="line">scp -P <span class="number">28223</span> ~/.ssh/id_rsa.pub blue@&lt;ssh_server_ip&gt;:~</span><br></pre></td></tr></table></figure></p>
-<p><strong> 在服务端执行命令</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat  id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line"><span class="comment">#并修改权限</span></span><br><span class="line">chmod <span class="number">600</span> ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p><strong> 在客户端执行命令</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scp 端口-P P需要大写</span></span><br><span class="line">scp -P 28223 ~/.ssh/id_rsa.pub blue@&lt;ssh_server_ip&gt;:~</span><br></pre></td></tr></table></figure></p>
+<p><strong> 在服务端执行命令</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat  id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line"><span class="comment">#并修改权限</span></span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
 <p>如果有修改配置/etc/ssh/sshd_config，需要重启ssh服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/ssh restart</span><br></pre></td></tr></table></figure></p>
 <h2 id="客户端通过私钥登录ssh服务器">客户端通过私钥登录ssh服务器</h2><p>ssh命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i /blue/.ssh/id_rsa blue@&lt;ssh_server_ip&gt;</span><br></pre></td></tr></table></figure></p>
 <p>scp命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -i /blue/.ssh/id_rsa filename blue@&lt;ssh_server_ip&gt;:/blue</span><br></pre></td></tr></table></figure></p>
@@ -255,8 +255,8 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
     </a>
   
   
-    <a href="/Aurthur-2015/Ftp-Linux-Comand.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">FTP常用命令详解</div>
+    <a href="/Aurthur-2015/Principles-of-RESTful-API-Design.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RESTful API 设计原则</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -306,7 +306,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015 Aurthur
+    		&copy; 2016 Aurthur
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -316,7 +316,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
 
 <script>
@@ -332,8 +332,8 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 		open_in_new: false
 	}
 </script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
 

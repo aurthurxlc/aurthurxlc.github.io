@@ -19,7 +19,7 @@
 1gem install sass
 如果你使用的是Windows ，你可能首先需要安装Ruby
 如果要在命令行">
-<meta property="og:updated_time" content="2016-04-05T07:01:15.000Z">
+<meta property="og:updated_time" content="2016-04-05T07:07:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sass使用指南">
 <meta name="twitter:description" content="使用 Sass (Using Sass)Sass 有三种使用方式：作为命令行工具，作为独立的 Ruby 模块 (Ruby module)，或者作为 Rack-enabled 框架的插件，包括 Ruby on Rails 与 Merb。
@@ -188,7 +188,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2016/sass-tutorial.html" class="article-date">
-  	<time datetime="2016-04-05T07:01:15.000Z" itemprop="datePublished">2016-04-05</time>
+  	<time datetime="2016-04-05T07:07:17.000Z" itemprop="datePublished">2016-04-05</time>
 </a>
     </div>
   
@@ -289,38 +289,38 @@
 <p>class2要继承class1，就要使用@extend命令：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　.class2 &#123;</span><br><span class="line">　　　　@extend .class1;</span><br><span class="line">　　　　font-size:120%;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="2_Mixin">2 Mixin</h4><p>Mixin有点像C语言的宏（macro），是可以重用的代码块。</p>
-<ul>
-<li>使用@mixin命令，定义一个代码块。</li>
-</ul>
+<blockquote>
+<p>使用@mixin命令，定义一个代码块。</p>
+</blockquote>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　@<span class="keyword">mixin</span> left &#123;</span><br><span class="line">　　　　<span class="selector-tag">float</span>: <span class="selector-tag">left</span>;</span><br><span class="line">　　　　<span class="selector-tag">margin-left</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用@include命令，调用这个mixin。</li>
-</ul>
+<blockquote>
+<p>使用@include命令，调用这个mixin。</p>
+</blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　  div &#123;</span><br><span class="line">　　　　@include left;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>mixin的强大之处，在于可以指定参数和缺省值。</li>
-</ul>
+<blockquote>
+<p>mixin的强大之处，在于可以指定参数和缺省值。</p>
+</blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　@mixin left($value: 10px) &#123;</span><br><span class="line">　　　　float: left;</span><br><span class="line">　　　　margin-right: $value;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
 <p>使用的时候，根据需要加入参数：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　div &#123;</span><br><span class="line">　　　　@include left(20px);</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下面是一个mixin的实例，用来生成浏览器前缀。</li>
-</ul>
+<blockquote>
+<p>下面是一个mixin的实例，用来生成浏览器前缀。</p>
+</blockquote>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">　　@mixin rounded($vert, $horz, $radius: 10px) &#123;</span><br><span class="line">　　　　border-#&#123;$vert&#125;-#&#123;$horz&#125;-radius: $radius;</span><br><span class="line">　　　　-moz-border-radius-#&#123;$vert&#125;#&#123;$horz&#125;: $radius;</span><br><span class="line">　　　　-webkit-border-#&#123;$vert&#125;-#&#123;$horz&#125;-radius: $radius;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
 <p>使用的时候，可以像下面这样调用：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　#navbar li &#123; @include rounded(top, left); &#125;</span><br><span class="line">　　#footer &#123; @include rounded(top, left, 5px); &#125;</span><br></pre></td></tr></table></figure>
 <h4 id="3_颜色函数">3 颜色函数</h4><p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　lighten(#cc3, 10%) // #d6d65c</span><br><span class="line">　　darken(#cc3, 10%) // #a3a329</span><br><span class="line">　　grayscale(#cc3) // #808080</span><br><span class="line">　　complement(#cc3) // #33c</span><br></pre></td></tr></table></figure>
-<h4 id="4_插入文件">4 插入文件</h4><ul>
-<li>@import命令，用来插入外部文件。</li>
-</ul>
+<h4 id="4_插入文件">4 插入文件</h4><blockquote>
+<p>@import命令，用来插入外部文件。</p>
+</blockquote>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　@<span class="keyword">import</span> <span class="string">"path/filename.scss"</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果插入的是.css文件，则等同于css的import命令。</li>
-</ul>
+<blockquote>
+<p>如果插入的是.css文件，则等同于css的import命令。</p>
+</blockquote>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　@<span class="keyword">import</span> <span class="string">"foo.css"</span>;</span><br></pre></td></tr></table></figure>
 <h2 id="高级用法">高级用法</h2><h4 id="1_条件语句">1 条件语句</h4><p>@if可以用来判断：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">　　p &#123;</span><br><span class="line">　　　　@if 1 + 1 == 2 &#123; border: 1px solid; &#125;</span><br><span class="line">　　　　@if 5 &lt; 3 &#123; border: 2px dotted; &#125;</span><br><span class="line">　　&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　p &#123;</span><br><span class="line">　　　　@if 1 + 1 == 2 &#123; border: 1px solid; &#125;</span><br><span class="line">　　　　@if 5 &lt; 3 &#123; border: 2px dotted; &#125;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
 <p>配套的还有@else命令：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">　　@<span class="keyword">if</span> lightness($color) &gt; <span class="number">30%</span> &#123;</span><br><span class="line">　　　　<span class="selector-tag">background-color</span>: <span class="selector-id">#000</span>;</span><br><span class="line">　　&#125; @<span class="keyword">else</span> &#123;</span><br><span class="line">　　　　<span class="selector-tag">background-color</span>: <span class="selector-id">#fff</span>;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="2_循环语句">2 循环语句</h4><blockquote>

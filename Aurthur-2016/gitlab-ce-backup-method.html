@@ -3,33 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>解决WEB环境Mysql-bin数据库日志文件占用硬盘资源 | Aurthur Article</title>
+  <title>Gitlab CE 备份方法 | Aurthur Article</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="解决WEB环境mysql-bin数据库日志文件占用硬盘资源
-日志文件地址
-1/usr/local/mysql/var/
-AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会导致MYSQL启动不了的问题，还是通过下面的方法，登录SSH之后，输入：1mysql -u root -p
-然后输入数据库密码，然后再输入：1reset master;
-这样我们缓存MYSQL-BIN就会全部">
+  <meta name="description" content="Gitlab 创建备份使用Gitlab CE安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:
+1gitlab-rake gitlab:backup:create
+使用以上命令会在/var/opt/gitlab/backups目录下创建一个名称类似为1469066724_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决WEB环境Mysql-bin数据库日志文件占用硬盘资源">
-<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Mysql-Log-Cache.html">
+<meta property="og:title" content="Gitlab CE 备份方法">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2016/gitlab-ce-backup-method.html">
 <meta property="og:site_name" content="Aurthur Article">
-<meta property="og:description" content="解决WEB环境mysql-bin数据库日志文件占用硬盘资源
-日志文件地址
-1/usr/local/mysql/var/
-AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会导致MYSQL启动不了的问题，还是通过下面的方法，登录SSH之后，输入：1mysql -u root -p
-然后输入数据库密码，然后再输入：1reset master;
-这样我们缓存MYSQL-BIN就会全部">
-<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
+<meta property="og:description" content="Gitlab 创建备份使用Gitlab CE安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:
+1gitlab-rake gitlab:backup:create
+使用以上命令会在/var/opt/gitlab/backups目录下创建一个名称类似为1469066724_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab">
+<meta property="og:updated_time" content="2016-07-21T02:17:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决WEB环境Mysql-bin数据库日志文件占用硬盘资源">
-<meta name="twitter:description" content="解决WEB环境mysql-bin数据库日志文件占用硬盘资源
-日志文件地址
-1/usr/local/mysql/var/
-AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会导致MYSQL启动不了的问题，还是通过下面的方法，登录SSH之后，输入：1mysql -u root -p
-然后输入数据库密码，然后再输入：1reset master;
-这样我们缓存MYSQL-BIN就会全部">
+<meta name="twitter:title" content="Gitlab CE 备份方法">
+<meta name="twitter:description" content="Gitlab 创建备份使用Gitlab CE安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:
+1gitlab-rake gitlab:backup:create
+使用以上命令会在/var/opt/gitlab/backups目录下创建一个名称类似为1469066724_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab">
   
   
     <link rel="icon" href="/uploads/blog.ico">
@@ -187,11 +178,11 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Mysql-Log-Cache" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-gitlab-ce-backup-method" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/Aurthur-2015/Mysql-Log-Cache.html" class="article-date">
-  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
+      <a href="/Aurthur-2016/gitlab-ce-backup-method.html" class="article-date">
+  	<time datetime="2016-07-21T02:17:52.000Z" itemprop="datePublished">2016-07-21</time>
 </a>
     </div>
   
@@ -204,7 +195,7 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
         
   
     <h1 class="article-title" itemprop="name">
-      解决WEB环境Mysql-bin数据库日志文件占用硬盘资源
+      Gitlab CE 备份方法
     </h1>
   
 
@@ -213,12 +204,12 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/">gitlab</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+	<a class="article-category-link" href="/categories/Technical/">Technical</a>
 	</div>
 
 
@@ -228,15 +219,23 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>解决WEB环境mysql-bin数据库日志文件占用硬盘资源</p>
-<p>日志文件地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/var/</span><br></pre></td></tr></table></figure>
-<h2 id="AMH面板环境">AMH面板环境</h2><h3 id="1-清理现有MYSQL-BIN文件">1.清理现有MYSQL-BIN文件</h3><p>最好不要直接删除，可能会导致MYSQL启动不了的问题，还是通过下面的方法，登录SSH之后，输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></p>
-<p>然后输入数据库密码，然后再输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reset master;</span><br></pre></td></tr></table></figure></p>
-<p>这样我们缓存MYSQL-BIN就会全部清除。<br><a id="more"></a></p>
-<h3 id="2-限制MYSQL-BIN的生成">2.限制MYSQL-BIN的生成</h3><p>缓存文件还是有用的，可以用于万一MYSQL出现问题可以用于恢复数据使用，我们只要做好定期维护就可以，但是如果你一定需要禁止他生成，那我们可以下面这样操作。<br>在/etc/my.cnf找到文件，然后把20行log-bin = mysql-bin用#注释，更新服务器文件</p>
-<h3 id="3-重启AMH面板MYSQL">3.重启AMH面板MYSQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">amh mysql restart</span><br></pre></td></tr></table></figure>
-<p>输入上述命令，重启MYSQL就可以搞定我们需要的问题</p>
+        <h3 id="Gitlab_创建备份">Gitlab 创建备份</h3><p>使用Gitlab CE安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
+<p>使用以上命令会在/var/opt/gitlab/backups目录下创建一个名称类似为1469066724_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的1469066724是备份创建的日期.</p>
+<h3 id="Gitlab_修改备份文件默认目录">Gitlab 修改备份文件默认目录</h3><p>你也可以通过修改/etc/gitlab/gitlab.rb来修改默认存放备份文件的目录:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">'backup_path'</span>] = <span class="string">'/mnt/backups'</span></span><br></pre></td></tr></table></figure>
+<p>/mnt/backups修改为你想存放备份的目录即可, 修改完成之后使用gitlab-ctl reconfigure命令重载配置文件即可</p>
+<h3 id="Gitlab_自动备份">Gitlab 自动备份</h3><p>可以通过crontab使用备份命令实现自动备份:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo crontab <span class="_">-e</span></span><br><span class="line"><span class="comment"># 在文件中加入以下命令</span></span><br><span class="line">0 3 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure></p>
+<h3 id="Gitlab_恢复">Gitlab 恢复</h3><blockquote>
+<p>停止相关数据连接服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl stop unicorn</span><br><span class="line">gitlab-ctl stop sidekiq</span><br></pre></td></tr></table></figure></p>
+<p>从1469066724编号备份中恢复</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rake gitlab:backup:restore BACKUP=1469066724</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>启动Gitlab<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl start</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="Gitlab迁移">Gitlab迁移</h3><p>迁移如同备份与恢复的步骤一样, 只需要将老服务器/var/opt/gitlab/backups目录下的备份文件拷贝到新服务器上的/var/opt/gitlab/backups即可(如果你没修改过默认备份目录的话)</p>
+<p>但是需要注意的是新服务器上的Gitlab的版本必须与创建备份时的Gitlab版本号相同. 比如新服务器安装的是最新的8.90版本的Gitlab, 那么迁移之前, 最好将老服务器的Gitlab 升级为8.90在进行备份</p>
 
       
     </div>
@@ -246,15 +245,11 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
     
 <nav id="article-nav">
   
-    <a href="/Aurthur-2015/Use-DD-Install-Centos-USB-In-Mac.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Mac下dd命令制作Centos USB启动盘
-        
-      </div>
-    </a>
   
+    <a href="/Aurthur-2016/free-for-dev.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">开发者免费资源集合</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 

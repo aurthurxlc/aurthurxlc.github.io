@@ -107,7 +107,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 12px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 14px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 12px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/compile/" style="font-size: 10px;">compile</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/go/" style="font-size: 12px;">go</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Apache/" style="font-size: 14px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 18px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 12px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/compile/" style="font-size: 10px;">compile</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/develop-tools/" style="font-size: 10px;">develop-tools</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/go/" style="font-size: 12px;">go</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
 					</div>
 				</section>
 				
@@ -173,11 +173,169 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-gitlab-ce-backup-method" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2016/gitlab-ce-backup-method.html" class="article-date">
+  	<time datetime="2016-07-21T02:17:52.000Z" itemprop="datePublished">2016-07-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Aurthur-2016/gitlab-ce-backup-method.html">Gitlab CE 备份方法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Gitlab_创建备份">Gitlab 创建备份</h3><p>使用Gitlab CE安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
+<p>使用以上命令会在/var/opt/gitlab/backups目录下创建一个名称类似为1469066724_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的1469066724是备份创建的日期.</p>
+<h3 id="Gitlab_修改备份文件默认目录">Gitlab 修改备份文件默认目录</h3><p>你也可以通过修改/etc/gitlab/gitlab.rb来修改默认存放备份文件的目录:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">'backup_path'</span>] = <span class="string">'/mnt/backups'</span></span><br></pre></td></tr></table></figure>
+<p>/mnt/backups修改为你想存放备份的目录即可, 修改完成之后使用gitlab-ctl reconfigure命令重载配置文件即可</p>
+<h3 id="Gitlab_自动备份">Gitlab 自动备份</h3><p>可以通过crontab使用备份命令实现自动备份:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo crontab <span class="_">-e</span></span><br><span class="line"><span class="comment"># 在文件中加入以下命令</span></span><br><span class="line">0 3 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure></p>
+<h3 id="Gitlab_恢复">Gitlab 恢复</h3><blockquote>
+<p>停止相关数据连接服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl stop unicorn</span><br><span class="line">gitlab-ctl stop sidekiq</span><br></pre></td></tr></table></figure></p>
+<p>从1469066724编号备份中恢复</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rake gitlab:backup:restore BACKUP=1469066724</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>启动Gitlab<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl start</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="Gitlab迁移">Gitlab迁移</h3><p>迁移如同备份与恢复的步骤一样, 只需要将老服务器/var/opt/gitlab/backups目录下的备份文件拷贝到新服务器上的/var/opt/gitlab/backups即可(如果你没修改过默认备份目录的话)</p>
+<p>但是需要注意的是新服务器上的Gitlab的版本必须与创建备份时的Gitlab版本号相同. 比如新服务器安装的是最新的8.90版本的Gitlab, 那么迁移之前, 最好将老服务器的Gitlab 升级为8.90在进行备份</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/">gitlab</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Technical/">Technical</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-free-for-dev" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2016/free-for-dev.html" class="article-date">
+  	<time datetime="2016-07-21T02:17:52.000Z" itemprop="datePublished">2016-07-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Aurthur-2016/free-for-dev.html">开发者免费资源集合</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>整个互联网有许多为个人开发者提供的免费开发工具和平台，大家可以借助这些免费平台提高自己的技能(本文从Github翻译和整合)</p>
+<h3 id="第一部分：代码管理">第一部分：代码管理</h3><ul>
+<li><a href="https://about.gitlab.com/" target="_blank" rel="external">Gitlab</a> </li>
+</ul>
+<blockquote>
+<p>可以部署在自己内网服务器，完全免费</p>
+</blockquote>
+<ul>
+<li><a href="https://bitbucket.org/" target="_blank" rel="external">Bitbucket</a> </li>
+</ul>
+<blockquote>
+<p>public代码库无限制，private代码库小团队免费(最多5人)</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/" target="_blank" rel="external">Github</a> </li>
+</ul>
+<blockquote>
+<p>public代码库无限制，private 代码库收费</p>
+</blockquote>
+<h3 id="第二部分：团队协作工具">第二部分：团队协作工具</h3><ul>
+<li><a href="https://bitbucket.org/" target="_blank" rel="external">bitbucket.org</a> </li>
+</ul>
+<blockquote>
+<p>Free unlimited public and private repos (Git and Mercurial) for up to 5 users</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/develop-tools/">develop-tools</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Mac/">Mac</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-sass-tutorial" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/Aurthur-2016/sass-tutorial.html" class="article-date">
-  	<time datetime="2016-04-05T07:07:17.000Z" itemprop="datePublished">2016-04-05</time>
+  	<time datetime="2016-07-21T02:17:52.000Z" itemprop="datePublished">2016-07-21</time>
 </a>
     </div>
   
@@ -226,70 +384,6 @@
       
         <p class="article-more-link">
           <a  href="/Aurthur-2016/sass-tutorial.html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-free-for-dev" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/Aurthur-2015/free-for-dev.html" class="article-date">
-  	<time datetime="2016-04-05T06:21:43.000Z" itemprop="datePublished">2016-04-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/free-for-dev.html">Iterm2配置</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Iterm2是mac下非常好用的一款终端，但默认的配色实在不好用，经过一翻搜索终于找到了比较满意的，现将其分享一下</p>
-<h2 id="配色">配色</h2><p>1.先要修改~/.bash_profile.代码如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#enables colorin the terminal bash shell export</span></span><br><span class="line"><span class="built_in">export</span> CLICOLOR=1</span><br><span class="line"></span><br><span class="line"><span class="comment">#sets up thecolor scheme for list export</span></span><br><span class="line"><span class="built_in">export</span> LSCOLORS=gxfxcxdxbxegedabagacad</span><br><span class="line"></span><br><span class="line"><span class="comment">#sets up theprompt color (currently a green similar to linux terminal)</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">'\033[01;32m\u@\h\033[00m: \033[01;36m\w\033[00m\ $ '</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#enables colorfor iTerm</span></span><br><span class="line"><span class="built_in">export</span> TERM=xterm-256color</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iterm/">Iterm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Terminal/">Terminal</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Mac/">Mac</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/Aurthur-2015/free-for-dev.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -490,76 +584,6 @@
       
         <p class="article-more-link">
           <a  href="/Aurthur-2015/Use-go-to-create-the-webhooks.html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-Centos-Kernel-Update" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/Aurthur-2015/Centos-Kernel-Update.html" class="article-date">
-  	<time datetime="2015-12-13T05:56:59.000Z" itemprop="datePublished">2015-12-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2015/Centos-Kernel-Update.html">CentOS 内核升级实例</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="CentOS_6-5_升级内核到_3-10-28">CentOS 6.5 升级内核到 3.10.28</h2><h3 id="1-_准备工作">1. 准备工作</h3><h4 id="1-1_下载源码包">1.1 下载源码包</h4><p>Linux内核版本有两种：稳定版和开发版 ，Linux内核版本号由3个数字组成：r.x.y</p>
-<ul>
-<li>r: 主版本号</li>
-<li>x: 次版本号，偶数表示稳定版本；奇数表示开发中版本。</li>
-<li>y: 修订版本号 ， 表示修改的次数</li>
-</ul>
-<p>去 <a href="http://www.kernel.org">http://www.kernel.org</a> 首页，可以看到有stable, longterm等版本，longterm是比stable更稳定的版本，会长时间更新，因此我选择 3.10.28，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget  https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.10.28.tar.xz</span><br></pre></td></tr></table></figure></p>
-<h4 id="1-2_解压">1.2 解压</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xf linux-3.10.28.tar.xz</span><br></pre></td></tr></table></figure>
-<h4 id="1-3_更新当前系统">1.3 更新当前系统</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update</span><br><span class="line">sudo yum upgrade</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Kernel/">Kernel</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/Aurthur-2015/Centos-Kernel-Update.html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

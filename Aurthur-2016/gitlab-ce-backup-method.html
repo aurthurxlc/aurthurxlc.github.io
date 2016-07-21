@@ -15,7 +15,7 @@
 <meta property="og:description" content="Gitlab 创建备份使用Gitlab CE安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:
 1gitlab-rake gitlab:backup:create
 使用以上命令会在/var/opt/gitlab/backups目录下创建一个名称类似为1469066724_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab">
-<meta property="og:updated_time" content="2016-07-21T02:17:52.000Z">
+<meta property="og:updated_time" content="2016-07-21T02:23:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gitlab CE 备份方法">
 <meta name="twitter:description" content="Gitlab 创建备份使用Gitlab CE安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:
@@ -182,7 +182,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2016/gitlab-ce-backup-method.html" class="article-date">
-  	<time datetime="2016-07-21T02:17:52.000Z" itemprop="datePublished">2016-07-21</time>
+  	<time datetime="2016-07-21T02:23:23.000Z" itemprop="datePublished">2016-07-21</time>
 </a>
     </div>
   
@@ -222,6 +222,7 @@
         <h3 id="Gitlab_创建备份">Gitlab 创建备份</h3><p>使用Gitlab CE安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
 <p>使用以上命令会在/var/opt/gitlab/backups目录下创建一个名称类似为1469066724_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的1469066724是备份创建的日期.</p>
+<a id="more"></a>
 <h3 id="Gitlab_修改备份文件默认目录">Gitlab 修改备份文件默认目录</h3><p>你也可以通过修改/etc/gitlab/gitlab.rb来修改默认存放备份文件的目录:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">'backup_path'</span>] = <span class="string">'/mnt/backups'</span></span><br></pre></td></tr></table></figure>
 <p>/mnt/backups修改为你想存放备份的目录即可, 修改完成之后使用gitlab-ctl reconfigure命令重载配置文件即可</p>

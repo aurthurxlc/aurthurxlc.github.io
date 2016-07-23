@@ -3,24 +3,42 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Iterm2配置 | Aurthur Article</title>
+  <title>常用正则表达式集合 | Aurthur Article</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Iterm2是mac下非常好用的一款终端，但默认的配色实在不好用，经过一翻搜索终于找到了比较满意的，现将其分享一下
-配色1.先要修改~/.bash_profile.代码如下
-1234567891011#enables colorin the terminal bash shell exportexport CLICOLOR=1#sets up thecolor scheme for list ex">
+  <meta name="description" content="校验数字的表达式
+数字：^[0-9]*$
+n位的数字：^\d{n}$
+至少n位的数字：^\d{n,}$
+m-n位的数字：^\d{m,n}$
+零和非零开头的数字：^(0|[1-9][0-9]*)$
+非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$
+带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$
+正数、负数、和小数：^(-|+)?\d+">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Iterm2配置">
-<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Iterm2-config.html">
+<meta property="og:title" content="常用正则表达式集合">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2016/common-regular-expression .html">
 <meta property="og:site_name" content="Aurthur Article">
-<meta property="og:description" content="Iterm2是mac下非常好用的一款终端，但默认的配色实在不好用，经过一翻搜索终于找到了比较满意的，现将其分享一下
-配色1.先要修改~/.bash_profile.代码如下
-1234567891011#enables colorin the terminal bash shell exportexport CLICOLOR=1#sets up thecolor scheme for list ex">
-<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
+<meta property="og:description" content="校验数字的表达式
+数字：^[0-9]*$
+n位的数字：^\d{n}$
+至少n位的数字：^\d{n,}$
+m-n位的数字：^\d{m,n}$
+零和非零开头的数字：^(0|[1-9][0-9]*)$
+非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$
+带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$
+正数、负数、和小数：^(-|+)?\d+">
+<meta property="og:updated_time" content="2016-07-23T08:21:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Iterm2配置">
-<meta name="twitter:description" content="Iterm2是mac下非常好用的一款终端，但默认的配色实在不好用，经过一翻搜索终于找到了比较满意的，现将其分享一下
-配色1.先要修改~/.bash_profile.代码如下
-1234567891011#enables colorin the terminal bash shell exportexport CLICOLOR=1#sets up thecolor scheme for list ex">
+<meta name="twitter:title" content="常用正则表达式集合">
+<meta name="twitter:description" content="校验数字的表达式
+数字：^[0-9]*$
+n位的数字：^\d{n}$
+至少n位的数字：^\d{n,}$
+m-n位的数字：^\d{m,n}$
+零和非零开头的数字：^(0|[1-9][0-9]*)$
+非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$
+带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$
+正数、负数、和小数：^(-|+)?\d+">
   
   
     <link rel="icon" href="/uploads/blog.ico">
@@ -178,11 +196,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Iterm2-config" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-common-regular-expression " class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/Aurthur-2015/Iterm2-config.html" class="article-date">
-  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
+      <a href="/Aurthur-2016/common-regular-expression .html" class="article-date">
+  	<time datetime="2016-07-23T08:21:02.000Z" itemprop="datePublished">2016-07-23</time>
 </a>
     </div>
   
@@ -195,7 +213,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Iterm2配置
+      常用正则表达式集合
     </h1>
   
 
@@ -204,12 +222,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iterm/">Iterm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Terminal/">Terminal</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Regular-Expression/">Regular Expression</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Mac/">Mac</a>
+	<a class="article-category-link" href="/categories/Technical/">Technical</a>
 	</div>
 
 
@@ -219,17 +237,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Iterm2是mac下非常好用的一款终端，但默认的配色实在不好用，经过一翻搜索终于找到了比较满意的，现将其分享一下</p>
-<h2 id="配色">配色</h2><p>1.先要修改~/.bash_profile.代码如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#enables colorin the terminal bash shell export</span></span><br><span class="line"><span class="built_in">export</span> CLICOLOR=1</span><br><span class="line"></span><br><span class="line"><span class="comment">#sets up thecolor scheme for list export</span></span><br><span class="line"><span class="built_in">export</span> LSCOLORS=gxfxcxdxbxegedabagacad</span><br><span class="line"></span><br><span class="line"><span class="comment">#sets up theprompt color (currently a green similar to linux terminal)</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">'\033[01;32m\u@\h\033[00m: \033[01;36m\w\033[00m\ $ '</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#enables colorfor iTerm</span></span><br><span class="line"><span class="built_in">export</span> TERM=xterm-256color</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>每个代码都有注释，第二三行设置终端名，也就是当前用户名、目录，并且变色处理，方便认别</p>
-<p>2.选择喜欢的配色方案</p>
-<p>在Preferences-&gt;Profiles-&gt;Colors的load presets可以选择某个配色方案。也可以自己下载。</p>
-<p>在网站<a href="http://iterm2colorschemes.com/" target="_blank" rel="external">http://iterm2colorschemes.com/</a> 几乎可以找到所有可用的配色方案</p>
-<p>再推荐一个托管在github上的配色方案：<a href="https://github.com/baskerville/iTerm-2-Color-Themes" target="_blank" rel="external">https://github.com/baskerville/iTerm-2-Color-Themes</a></p>
-<h2 id="大小写敏感">大小写敏感</h2><p>对于目录中经常有大写字母的情况，使用tab变得很麻烦。google之后找到了解决办法，取消大小写敏感。代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"set completion-ignore-case On"</span> &gt;&gt; ~/.inputrc</span><br></pre></td></tr></table></figure>
+        <h3 id="校验数字的表达式">校验数字的表达式</h3><blockquote>
+<p>数字：^[0-9]*$</p>
+<p>n位的数字：^\d{n}$</p>
+<p>至少n位的数字：^\d{n,}$</p>
+<p>m-n位的数字：^\d{m,n}$</p>
+<p>零和非零开头的数字：^(0|[1-9][0-9]*)$</p>
+<p>非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$</p>
+<p>带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$</p>
+<p>正数、负数、和小数：^(-|+)?\d+(.\d+)?$</p>
+<p>有两位小数的正实数：^[0-9]+(.[0-9]{2})?$</p>
+<p>有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$</p>
+<p>非零的正整数：^[1-9]\d<em>$ 或 ^([1-9][0-9]</em>){1,3}$ 或 ^+?[1-9][0-9]*$</p>
+<p>非零的负整数：^-[1-9][]0-9”<em>$ 或 ^-[1-9]\d</em>$</p>
+<p>非负整数：^\d+$ 或 ^[1-9]\d*|0$</p>
+<p>非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$</p>
+<p>非负浮点数：^\d+(.\d+)?$ 或 ^[1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>|0?.0+|0$</p>
+<p>非正浮点数：^((-\d+(.\d+)?)|(0+(.0+)?))$ 或 ^(-([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>))|0?.0+|0$</p>
+<p>正浮点数：^[1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>$ 或 ^(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]</em>.[0-9]+)|([0-9]<em>[1-9][0-9]</em>))$</p>
+<p>负浮点数：^-([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>)$ 或 ^(-(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]</em>.[0-9]+)|([0-9]<em>[1-9][0-9]</em>)))$</p>
+<p>浮点数：^(-?\d+)(.\d+)?$ 或 ^-?([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>|0?.0+|0)$</p>
+</blockquote>
+<h3 id="校验字符的表达式">校验字符的表达式</h3><blockquote>
+<p>汉字：^[\u4e00-\u9fa5]{0,}$</p>
+<p>英文和数字：^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$</p>
+<p>长度为3-20的所有字符：^.{3,20}$</p>
+<p>由26个英文字母组成的字符串：^[A-Za-z]+$</p>
+<p>由26个大写英文字母组成的字符串：^[A-Z]+$</p>
+<p>由26个小写英文字母组成的字符串：^[a-z]+$</p>
+<p>由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$</p>
+<p>由数字、26个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w{3,20}$</p>
+<p>中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$</p>
+<p>中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$</p>
+<p>可以输入含有^%&amp;’,;=?$\”等字符：[^%&amp;’,;=?$\x22]+</p>
+<p>禁止输入含有~的字符：[^~\x22]+</p>
+</blockquote>
+<h3 id="固定格式表达式">固定格式表达式</h3><blockquote>
+<p>Email地址：^\w+([-+.]\w+)<em>@\w+([-.]\w+)</em>.\w+([-.]\w+)*$</p>
+<p>域名：[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(/.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+/.?</p>
+<p>InternetURL：[a-zA-z]+://[^\s]<em> 或 ^<a href="http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=" target="_blank" rel="external">http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=</a>]</em>)?$</p>
+<p>手机号码：^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$</p>
+<p>电话号码(“XXX-XXXXXXX”、”XXXX-XXXXXXXX”、”XXX-XXXXXXX”、”XXX-XXXXXXXX”、”XXXXXXX”和”XXXXXXXX)：^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$</p>
+<p>国内电话号码(0511-4405222、021-87888822)：\d{3}-\d{8}|\d{4}-\d{7}</p>
+<p>身份证号(15位、18位数字)：^\d{15}|\d{18}$</p>
+<p>短身份证号码(数字、字母x结尾)：^([0-9]){7,18}(x|X)?$ 或 ^\d{8,18}|[0-9x]{8,18}|[0-9X]{8,18}?$</p>
+<p>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$</p>
+<p>密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：^[a-zA-Z]\w{5,17}$</p>
+<p>强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间)：^(?=.<em>\d)(?=.</em>[a-z])(?=.*[A-Z]).{8,10}$</p>
+<p>日期格式：^\d{4}-\d{1,2}-\d{1,2}</p>
+<p>一年的12个月(01～09和1～12)：^(0?[1-9]|1[0-2])$</p>
+<p>一个月的31天(01～09和1～31)：^((0?[1-9])|((1|2)[0-9])|30|31)$</p>
+<p>xml文件：^([a-zA-Z]+-?)+[a-zA-Z0-9]+\.[x|X][m|M][l|L]$</p>
+<p>中文字符的正则表达式：[\u4e00-\u9fa5]</p>
+<p>双字节字符：[^\x00-\xff]</p>
+<p>腾讯QQ号：[1-9][0-9]{4,}</p>
+<p>中国邮政编码：[1-9]\d{5}(?!\d)</p>
+<p>IP地址：((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d))</p>
+</blockquote>
 
       
     </div>
@@ -239,18 +303,9 @@
     
 <nav id="article-nav">
   
-    <a href="/Aurthur-2015/Linux-Apache-Config.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Apache配置站点的方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/Aurthur-2015/Install-SSL-Certificate-In-Server.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">服务器安全之配置SSL访问实战</div>
+    <a href="/Aurthur-2016/free-for-dev.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">开发者免费资源集合</div>
       <strong class="article-nav-caption">></strong>
     </a>
   

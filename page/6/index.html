@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>about | Aurthur Article</title>
+  <title>Aurthur Article</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Aurthur Blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://aurthur.gitos.cn/about/index.html">
+<meta property="og:title" content="Aurthur Article">
+<meta property="og:url" content="http://aurthur.gitos.cn/page/6/index.html">
 <meta property="og:site_name" content="Aurthur Article">
 <meta property="og:description" content="Aurthur Blog">
-<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="Aurthur Article">
 <meta name="twitter:description" content="Aurthur Blog">
   
   
@@ -168,11 +167,13 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap">
+  
+    <article id="post-Linux-Apache-Config" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/about/index.html" class="article-date">
-  	<time datetime="2015-08-20T04:59:35.000Z" itemprop="datePublished">2015-08-20</time>
+      <a href="/Aurthur-2015/Linux-Apache-Config.html" class="article-date">
+  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
 </a>
     </div>
   
@@ -184,30 +185,46 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      about
+    <h1 itemprop="name">
+      <a class="article-title" href="/Aurthur-2015/Linux-Apache-Config.html">Apache配置站点的方法</a>
     </h1>
   
 
       </header>
       
-      <div class="article-info article-info-post">
-        
-        
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="Apache配置方法">Apache配置方法</h2><p>警告：所有的配置文件不能有注释（本文所有注释即为参考之用），配置完成后必须重启Apache才会生效</p>
+<h3 id="基本配置">基本配置</h3><ul>
+<li>修改服务器端Apache的配置文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/<span class="built_in">local</span>/apache/conf/httpd.conf</span><br><span class="line"></span><br><span class="line">//centos /etc/httpd</span><br><span class="line"></span><br><span class="line">//配置文件路径</span><br><span class="line">NameVirtualHost *:80</span><br><span class="line">Include conf/vhosts</span><br></pre></td></tr></table></figure>
       
     </div>
     
-  </div>
-  
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Web/">Web</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/Aurthur-2015/Linux-Apache-Config.html#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
     
+  </div>
   
 </article>
 
@@ -216,6 +233,13 @@
 
 
 
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    </nav>
+  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -239,7 +263,7 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,

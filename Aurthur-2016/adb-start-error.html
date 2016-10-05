@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ADB 启动报错 | Aurthur Article</title>
+  <title>ADB 启动错误解决方案 | Aurthur Article</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="错误使用Genymotion模拟器启动项目，报以下错误：123456789adb server version (32) doesn&apos;t match this client (35); killing...error: could not install *smartsocket* listener: Address already in useADB server didn&apos;t ACK* fai">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ADB 启动报错">
+<meta property="og:title" content="ADB 启动错误解决方案">
 <meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2016/adb-start-error.html">
 <meta property="og:site_name" content="Aurthur Article">
 <meta property="og:description" content="错误使用Genymotion模拟器启动项目，报以下错误：123456789adb server version (32) doesn&apos;t match this client (35); killing...error: could not install *smartsocket* listener: Address already in useADB server didn&apos;t ACK* fai">
-<meta property="og:updated_time" content="2016-10-05T03:59:37.000Z">
+<meta property="og:updated_time" content="2016-10-05T04:07:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ADB 启动报错">
+<meta name="twitter:title" content="ADB 启动错误解决方案">
 <meta name="twitter:description" content="错误使用Genymotion模拟器启动项目，报以下错误：123456789adb server version (32) doesn&apos;t match this client (35); killing...error: could not install *smartsocket* listener: Address already in useADB server didn&apos;t ACK* fai">
   
   
@@ -172,7 +172,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2016/adb-start-error.html" class="article-date">
-  	<time datetime="2016-10-05T03:59:37.000Z" itemprop="datePublished">2016-10-05</time>
+  	<time datetime="2016-10-05T04:07:45.000Z" itemprop="datePublished">2016-10-05</time>
 </a>
     </div>
   
@@ -185,7 +185,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ADB 启动报错
+      ADB 启动错误解决方案
     </h1>
   
 
@@ -212,7 +212,7 @@
         <h2 id="错误">错误</h2><p>使用Genymotion模拟器启动项目，报以下错误：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">adb server version (32) doesn<span class="string">'t match this client (35); killing...</span><br><span class="line"></span><br><span class="line">error: could not install *smartsocket* listener: Address already in use</span><br><span class="line"></span><br><span class="line">ADB server didn'</span>t ACK</span><br><span class="line"></span><br><span class="line">* failed to start daemon *</span><br><span class="line"></span><br><span class="line">error: cannot connect to daemon</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>提示端口被占用，重启了很多气模拟器，都是一样的错误</p>
-<p>突然想起我的命令行的 adb 是用 Android SDK 自带的，Genymotion 根本不知道我的 sdk 的位置，那肯定是用的它自己的，这说明 Genymotion 的 adb 和我的 sdk 的 adb 冲突了，于是修改 Genymotion 里的 adb 为 Android SDK 的，就好啦</p>
+<h2 id="解决方法">解决方法</h2><p>突然想起我的命令行的 adb 是用 Android SDK 自带的，Genymotion 根本不知道我的 sdk 的位置，那肯定是用的它自己的，这说明 Genymotion 的 adb 和我的 sdk 的 adb 冲突了，于是修改 Genymotion 里的 adb 为 Android SDK 的，就好啦</p>
 
       
     </div>

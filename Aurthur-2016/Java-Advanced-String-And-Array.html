@@ -6,19 +6,13 @@
   <title>Java 基础进阶系列之一【字符串和数组】 | Aurthur Article</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. Java 字符串的不变性首先我们声明一个 String 变量 test11String test1 = &quot;test&quot;;
-test1 储存着 String 对象的引用，下图的箭头应该解释为”内存的引用”
-
-将 test1 的值赋给另一个 String 变量 test21String test2 = test1;
-tset2 将会使用同一个内存区域存储的值">
+test1 储存着 String 对象的引用，下图的箭头应该解释为”内存的引用”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 基础进阶系列之一【字符串和数组】">
 <meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2016/Java-Advanced-String-And-Array.html">
 <meta property="og:site_name" content="Aurthur Article">
 <meta property="og:description" content="1. Java 字符串的不变性首先我们声明一个 String 变量 test11String test1 = &quot;test&quot;;
-test1 储存着 String 对象的引用，下图的箭头应该解释为”内存的引用”
-
-将 test1 的值赋给另一个 String 变量 test21String test2 = test1;
-tset2 将会使用同一个内存区域存储的值">
+test1 储存着 String 对象的引用，下图的箭头应该解释为”内存的引用”">
 <meta property="og:image" content="http://public.gitos.cn/blog/java/Java-String-1.png">
 <meta property="og:image" content="http://public.gitos.cn/blog/java/Java-String-2.png">
 <meta property="og:image" content="http://public.gitos.cn/blog/java/Java-String-3.png">
@@ -26,14 +20,11 @@ tset2 将会使用同一个内存区域存储的值">
 <meta property="og:image" content="http://public.gitos.cn/blog/java/Java-substring-1.png">
 <meta property="og:image" content="http://public.gitos.cn/blog/java/Java-substring-2.png">
 <meta property="og:image" content="http://public.gitos.cn/blog/java/Java-substring-3.png">
-<meta property="og:updated_time" content="2016-10-13T08:08:12.000Z">
+<meta property="og:updated_time" content="2016-10-13T09:21:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 基础进阶系列之一【字符串和数组】">
 <meta name="twitter:description" content="1. Java 字符串的不变性首先我们声明一个 String 变量 test11String test1 = &quot;test&quot;;
-test1 储存着 String 对象的引用，下图的箭头应该解释为”内存的引用”
-
-将 test1 的值赋给另一个 String 变量 test21String test2 = test1;
-tset2 将会使用同一个内存区域存储的值">
+test1 储存着 String 对象的引用，下图的箭头应该解释为”内存的引用”">
 <meta name="twitter:image" content="http://public.gitos.cn/blog/java/Java-String-1.png">
   
   
@@ -192,7 +183,7 @@ tset2 将会使用同一个内存区域存储的值">
   
     <div class="article-meta">
       <a href="/Aurthur-2016/Java-Advanced-String-And-Array.html" class="article-date">
-  	<time datetime="2016-10-13T08:08:12.000Z" itemprop="datePublished">2016-10-13</time>
+  	<time datetime="2016-10-13T09:21:31.000Z" itemprop="datePublished">2016-10-13</time>
 </a>
     </div>
   
@@ -231,11 +222,11 @@ tset2 将会使用同一个内存区域存储的值">
       
         <h2 id="1-_Java_字符串的不变性">1. Java 字符串的不变性</h2><h4 id="首先我们声明一个_String_变量_test1">首先我们声明一个 String 变量 test1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String test1 = <span class="string">"test"</span>;</span><br></pre></td></tr></table></figure>
 <p>test1 储存着 String 对象的引用，下图的箭头应该解释为”内存的引用”</p>
+<a id="more"></a>
 <p><img src="http://public.gitos.cn/blog/java/Java-String-1.png" alt="Java-String-1"></p>
 <h4 id="将_test1_的值赋给另一个_String_变量_test2">将 test1 的值赋给另一个 String 变量 test2</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String test2 = test1;</span><br></pre></td></tr></table></figure>
 <p>tset2 将会使用同一个内存区域存储的值</p>
 <p><img src="http://public.gitos.cn/blog/java/Java-String-2.png" alt="Java-String-2"></p>
-<a id="more"></a>
 <h4 id="字符串连接">字符串连接</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test1 = test1.contact(<span class="string">"aurthur"</span>);</span><br></pre></td></tr></table></figure>
 <p>test1 之后存储的是重新被创造出来的新的对象引用</p>
 <p><img src="http://public.gitos.cn/blog/java/Java-String-3.png" alt="Java-String-3"></p>

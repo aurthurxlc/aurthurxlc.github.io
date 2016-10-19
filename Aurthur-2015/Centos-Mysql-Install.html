@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Centos-Mysql-Install.html">
 <meta property="og:site_name" content="Aurthur Article">
 <meta property="og:description" content="mysql简介说到数据库，我们大多想到的是关系型数据库，比如mysql、oracle、sqlserver等等，这些数据库软件在windows上安装都非常的方便，在Linux上如果要安装数据库，咱不得不首先推荐的是mysql数据库了，而且Mysql数据库的第一个版本就是发行在Linux系统上的。MySQL是一个关系型数据库管理系统，由瑞典MySQLAB公司开发，目前属于Oracle公司。MySQL是">
-<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
+<meta property="og:updated_time" content="2016-10-19T01:46:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS6.4下Mysql数据库的安装与配置">
 <meta name="twitter:description" content="mysql简介说到数据库，我们大多想到的是关系型数据库，比如mysql、oracle、sqlserver等等，这些数据库软件在windows上安装都非常的方便，在Linux上如果要安装数据库，咱不得不首先推荐的是mysql数据库了，而且Mysql数据库的第一个版本就是发行在Linux系统上的。MySQL是一个关系型数据库管理系统，由瑞典MySQLAB公司开发，目前属于Oracle公司。MySQL是">
@@ -172,7 +172,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2015/Centos-Mysql-Install.html" class="article-date">
-  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
+  	<time datetime="2016-10-19T01:46:54.000Z" itemprop="datePublished">2016-10-19</time>
 </a>
     </div>
   
@@ -237,7 +237,7 @@
 <p>其中mysqld.log 这个文件就是我们存放我们跟mysql数据库进行操作而产生的一些日志信息，通过查看该日志文件，我们可以从中获得很多信息</p>
 <p>因为我们的mysql数据库是可以通过网络访问的，并不是一个单机版数据库，其中使用的协议是 tcp/ip 协议，我们都知道mysql数据库绑定的端口号是 3306 ，所以我们可以通过 netstat -anp 命令来查看一下，Linux系统是否在监听 3306 这个端口号。</p>
 <h2 id="mysql_编码设置">mysql 编码设置</h2><p>Linux下一般是 /etc/my.cnf</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">default-character-set = utf8</span><br><span class="line">character_<span class="built_in">set</span>_server = utf8</span><br><span class="line">lower_<span class="keyword">case</span>_table_names = 1</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[mysql.server]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[mysqld_safe]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[client]</span><br><span class="line">default-character-set = utf8</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character_<span class="built_in">set</span>_server = utf8</span><br><span class="line">lower_<span class="keyword">case</span>_table_names = 1</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[mysql.server]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[mysqld_safe]</span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[client]</span><br><span class="line">default-character-set = utf8</span><br></pre></td></tr></table></figure>
 <p>查看修改结果,进入mysql后 执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like <span class="string">"%char%"</span>;</span><br></pre></td></tr></table></figure>
 
@@ -249,18 +249,9 @@
     
 <nav id="article-nav">
   
-    <a href="/Aurthur-2015/Centos-Vpn-Config.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Centos 6.x搭建VPN实战
-        
-      </div>
-    </a>
   
-  
-    <a href="/Aurthur-2015/Become-an-Outstanding-Java-Developer.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Become an Outstanding Java Developer</div>
+    <a href="/Aurthur-2016/zimg-php-curl.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PHP 上传图片到 zimg 服务器</div>
       <strong class="article-nav-caption">></strong>
     </a>
   

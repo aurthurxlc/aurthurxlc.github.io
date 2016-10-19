@@ -169,6 +169,70 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Centos-Mysql-Install" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2015/Centos-Mysql-Install.html" class="article-date">
+  	<time datetime="2016-10-19T01:46:54.000Z" itemprop="datePublished">2016-10-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Aurthur-2015/Centos-Mysql-Install.html">CentOS6.4下Mysql数据库的安装与配置</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="mysql简介">mysql简介</h2><p>说到数据库，我们大多想到的是关系型数据库，比如mysql、oracle、sqlserver等等，这些数据库软件在windows上安装都非常的方便，在Linux上如果要安装数据库，咱不得不首先推荐的是mysql数据库了，而且Mysql数据库的第一个版本就是发行在Linux系统上的。<br>MySQL是一个关系型数据库管理系统，由瑞典MySQLAB公司开发，目前属于Oracle公司。MySQL是一种关联数据库管理系统，关联数据库将数据保存在不同的表中，而不是将所有数据放在一个大仓库内，这样就增加了速度并提高了灵活性。MySQL的SQL语言是用于访问数据库的最常用标准化语言。MySQL软件采用了双授权政策（本词条“授权政策”），它分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发都选择MySQL作为网站数据库。由于其社<br>区版的性能卓越，搭配PHP和Apache可组成良好的开发环境。<br>在Linux上安装mysql数据库，我们可以去其官网上下载mysql数据库的rpm包，大家可以根据自己的操作系统去下载对应的数据库文件 <a href="http://dev.mysql.com/downloads/mysql/5.6.html#downloads">下载地址</a></p>
+<p>在这里我是通过yum来进行mysql数据库的安装的，通过这种方式进行安装，可以将跟mysql相关的一些服务、jar包都给我们安装好，所以省去了很多不必要的麻烦！！！</p>
+<h2 id="<!-_more_->">
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/Aurthur-2015/Centos-Mysql-Install.html#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-zimg-php-curl" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -465,117 +529,6 @@
       
         <p class="article-more-link">
           <a  href="/Aurthur-2016/cross-origin-resource-sharing.html#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-common-regular-expression " class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/Aurthur-2016/common-regular-expression .html" class="article-date">
-  	<time datetime="2016-07-23T08:48:18.000Z" itemprop="datePublished">2016-07-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Aurthur-2016/common-regular-expression .html">正则表达式小记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="常用元字符汇总">常用元字符汇总</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">代码</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td style="text-align:center">匹配除换行符以外的任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:center">匹配*前面的内容重复任意次,可能是0次</td>
-</tr>
-<tr>
-<td style="text-align:center">.*</td>
-<td style="text-align:center">匹配任意数量的不包含换行的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\s</td>
-<td style="text-align:center">匹配任意的空白符</td>
-</tr>
-<tr>
-<td style="text-align:center">\d</td>
-<td style="text-align:center">匹配数字</td>
-</tr>
-<tr>
-<td style="text-align:center">\b</td>
-<td style="text-align:center">匹配单词的开始或结束</td>
-</tr>
-<tr>
-<td style="text-align:center">^</td>
-<td style="text-align:center">匹配字符串的开始</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:center">匹配字符串的结束</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td style="text-align:center">匹配字母或数字或下划线或汉字等</td>
-</tr>
-<tr>
-<td style="text-align:center">-</td>
-<td style="text-align:center">匹配它本身</td>
-</tr>
-</tbody>
-</table>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Regular-Expression/">Regular Expression</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Technical/">Technical</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/Aurthur-2016/common-regular-expression .html#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

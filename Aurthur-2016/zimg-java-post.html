@@ -3,33 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>解决WEB环境Mysql-bin数据库日志文件占用硬盘资源 | Aurthur Article</title>
+  <title>PHP 上传图片到 zimg 服务器 | Aurthur Article</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="解决WEB环境mysql-bin数据库日志文件占用硬盘资源
-日志文件地址
-1/usr/local/mysql/var/
-AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会导致MYSQL启动不了的问题，还是通过下面的方法，登录SSH之后，输入：1mysql -u root -p
-然后输入数据库密码，然后再输入：1reset master;
-这样我们缓存MYSQL-BIN就会全部">
+  <meta name="description" content="絮叨最近我们项目需要一台图片服务器存储用户头像，我们使用 zimg 处理和存储图片，下面简单介绍一下如何使用 Java 上传图片到 zimg，并获取相应图片的返回信息
+使用 Java 实现上传根据 zimg 使用文档，我们需要让 zimg 返回 json 信息，不能使用表单形式上传图片，下面是演示代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决WEB环境Mysql-bin数据库日志文件占用硬盘资源">
-<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2015/Mysql-Log-Cache.html">
+<meta property="og:title" content="PHP 上传图片到 zimg 服务器">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2016/zimg-java-post.html">
 <meta property="og:site_name" content="Aurthur Article">
-<meta property="og:description" content="解决WEB环境mysql-bin数据库日志文件占用硬盘资源
-日志文件地址
-1/usr/local/mysql/var/
-AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会导致MYSQL启动不了的问题，还是通过下面的方法，登录SSH之后，输入：1mysql -u root -p
-然后输入数据库密码，然后再输入：1reset master;
-这样我们缓存MYSQL-BIN就会全部">
-<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
+<meta property="og:description" content="絮叨最近我们项目需要一台图片服务器存储用户头像，我们使用 zimg 处理和存储图片，下面简单介绍一下如何使用 Java 上传图片到 zimg，并获取相应图片的返回信息
+使用 Java 实现上传根据 zimg 使用文档，我们需要让 zimg 返回 json 信息，不能使用表单形式上传图片，下面是演示代码">
+<meta property="og:updated_time" content="2016-10-19T06:32:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决WEB环境Mysql-bin数据库日志文件占用硬盘资源">
-<meta name="twitter:description" content="解决WEB环境mysql-bin数据库日志文件占用硬盘资源
-日志文件地址
-1/usr/local/mysql/var/
-AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会导致MYSQL启动不了的问题，还是通过下面的方法，登录SSH之后，输入：1mysql -u root -p
-然后输入数据库密码，然后再输入：1reset master;
-这样我们缓存MYSQL-BIN就会全部">
+<meta name="twitter:title" content="PHP 上传图片到 zimg 服务器">
+<meta name="twitter:description" content="絮叨最近我们项目需要一台图片服务器存储用户头像，我们使用 zimg 处理和存储图片，下面简单介绍一下如何使用 Java 上传图片到 zimg，并获取相应图片的返回信息
+使用 Java 实现上传根据 zimg 使用文档，我们需要让 zimg 返回 json 信息，不能使用表单形式上传图片，下面是演示代码">
   
   
     <link rel="icon" href="/uploads/blog.ico">
@@ -183,11 +171,11 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Mysql-Log-Cache" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-zimg-java-post" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/Aurthur-2015/Mysql-Log-Cache.html" class="article-date">
-  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
+      <a href="/Aurthur-2016/zimg-java-post.html" class="article-date">
+  	<time datetime="2016-10-19T06:32:57.000Z" itemprop="datePublished">2016-10-19</time>
 </a>
     </div>
   
@@ -200,7 +188,7 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
         
   
     <h1 class="article-title" itemprop="name">
-      解决WEB环境Mysql-bin数据库日志文件占用硬盘资源
+      PHP 上传图片到 zimg 服务器
     </h1>
   
 
@@ -209,12 +197,12 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zimg/">zimg</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Mysql/">Mysql</a>
+	<a class="article-category-link" href="/categories/Technical/">Technical</a>
 	</div>
 
 
@@ -224,15 +212,87 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>解决WEB环境mysql-bin数据库日志文件占用硬盘资源</p>
-<p>日志文件地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/var/</span><br></pre></td></tr></table></figure>
-<h2 id="AMH面板环境">AMH面板环境</h2><h3 id="1-清理现有MYSQL-BIN文件">1.清理现有MYSQL-BIN文件</h3><p>最好不要直接删除，可能会导致MYSQL启动不了的问题，还是通过下面的方法，登录SSH之后，输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></p>
-<p>然后输入数据库密码，然后再输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reset master;</span><br></pre></td></tr></table></figure></p>
-<p>这样我们缓存MYSQL-BIN就会全部清除。<br><a id="more"></a></p>
-<h3 id="2-限制MYSQL-BIN的生成">2.限制MYSQL-BIN的生成</h3><p>缓存文件还是有用的，可以用于万一MYSQL出现问题可以用于恢复数据使用，我们只要做好定期维护就可以，但是如果你一定需要禁止他生成，那我们可以下面这样操作。<br>在/etc/my.cnf找到文件，然后把20行log-bin = mysql-bin用#注释，更新服务器文件</p>
-<h3 id="3-重启AMH面板MYSQL">3.重启AMH面板MYSQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">amh mysql restart</span><br></pre></td></tr></table></figure>
-<p>输入上述命令，重启MYSQL就可以搞定我们需要的问题</p>
+        <h2 id="絮叨">絮叨</h2><p>最近我们项目需要一台图片服务器存储用户头像，我们使用 zimg 处理和存储图片，下面简单介绍一下如何使用 Java 上传图片到 zimg，并获取相应图片的返回信息</p>
+<h2 id="使用_Java_实现上传">使用 Java 实现上传</h2><p>根据 zimg 使用文档，我们需要让 zimg 返回 json 信息，不能使用表单形式上传图片，下面是演示代码</p>
+<a id="more"></a>
+<p>```java<br>package cn.gitos.aurthur.zimg;</p>
+<p>import javax.imageio.ImageIO;<br>import java.awt.image.BufferedImage;<br>import java.io.*;<br>import java.net.URL;<br>import java.net.URLConnection;</p>
+<p>/**</p>
+<ul>
+<li><p>Created by Aurthur on 2016/10/19.<br>*/<br>public class TestZimg {<br> public static void main(String[] args) {</p>
+<pre><code><span class="keyword">String</span> upload_url = <span class="string">"http://192.168.0.99:5000/upload"</span>;
+<span class="keyword">String</span> image_file = <span class="string">"/tmp/test.jpg"</span>;
+<span class="keyword">String</span> ext = getExtensionName(image_file);
+System.out.<span class="built_in">println</span>(sendPost(upload_url, imageBinary(image_file, ext), ext));
+</code></pre><p> }</p>
+<p> private static byte[] imageBinary(String file_path, String fileType) {</p>
+<pre><code><span class="keyword">File</span> f = <span class="keyword">new</span> <span class="keyword">File</span>(file_path);
+BufferedImage bi;
+<span class="keyword">try</span> {
+    bi = ImageIO.<span class="keyword">read</span>(f);
+    ByteArrayOutputStream bos = <span class="keyword">new</span> ByteArrayOutputStream();
+    ImageIO.<span class="keyword">write</span>(bi, fileType, bos);
+    <span class="keyword">return</span> bos.toByteArray();
+} <span class="keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}
+<span class="keyword">return</span> <span class="keyword">null</span>;
+</code></pre><p> }</p>
+<p> /**</p>
+<ul>
+<li>向指定 URL 发送POST方法的请求<br>*</li>
+<li>@param url      发送请求的 URL</li>
+<li>@param PostData 请求参数，请求参数应该是 byte[] 的形式。</li>
+<li><p>@return 所代表远程资源的响应结果<br>*/<br>private static String sendPost(String url, byte[] PostData, String fileType) {<br> OutputStream outStream = null;<br> BufferedReader in = null;<br> String result = “”;<br> try {</p>
+<pre><code>URL realUrl = <span class="keyword">new</span> URL(url);
+<span class="comment">// 打开和URL之间的连接</span>
+URLConnection conn = realUrl.openConnection();
+<span class="comment">// 设置通用的请求属性</span>
+conn.setRequestProperty(<span class="string">"accept"</span>, <span class="string">"*/*"</span>);
+conn.setRequestProperty(<span class="string">"connection"</span>, <span class="string">"Keep-Alive"</span>);
+conn.setRequestProperty(<span class="string">"Content-Type"</span>, fileType);
+<span class="comment">// 发送POST请求必须设置如下两行</span>
+conn.setDoOutput(<span class="keyword">true</span>);
+conn.setDoInput(<span class="keyword">true</span>);
+<span class="comment">//二进制</span>
+outStream = conn.getOutputStream();
+outStream.write(PostData);
+outStream.flush();
+
+<span class="comment">// 定义BufferedReader输入流来读取URL的响应</span>
+in = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(conn.getInputStream()));
+<span class="keyword">String</span> <span class="built_in">line</span>;
+<span class="keyword">while</span> ((<span class="built_in">line</span> = in.readLine()) != <span class="keyword">null</span>) {
+    result += <span class="built_in">line</span>;
+}
+</code></pre><p> } catch (Exception e) {</p>
+<pre><code>System.<span class="keyword">out</span>.println(<span class="string">"发送 POST 请求出现异常！"</span> + <span class="keyword">e</span>);
+<span class="keyword">e</span>.printStackTrace();
+</code></pre><p> }<br> //使用finally块来关闭输出流、输入流<br> finally {</p>
+<pre><code><span class="keyword">try</span> {
+    <span class="keyword">if</span> (outStream != <span class="literal">null</span>) {
+        outStream.close();
+    }
+    <span class="keyword">if</span> (<span class="keyword">in</span> != <span class="literal">null</span>) {
+        <span class="keyword">in</span>.close();
+    }
+} <span class="keyword">catch</span> (IOException ex) {
+    ex.printStackTrace();
+}
+</code></pre><p> }<br> return result;<br>}</p>
+<p>/**</p>
+</li>
+<li>Java文件操作 获取文件扩展名<br>*/<br>private static String getExtensionName(String filename) {<br> if ((filename != null) &amp;&amp; (filename.length() &gt; 0)) {<pre><code><span class="keyword">int</span> <span class="keyword">dot</span> = filename.lastIndexOf(<span class="string">'.'</span>);
+<span class="keyword">if</span> ((<span class="keyword">dot</span> &gt; -<span class="number">1</span>) &amp;&amp; (<span class="keyword">dot</span> &lt; (filename.length() - <span class="number">1</span>))) {
+    <span class="keyword">return</span> filename.<span class="keyword">substring</span>(<span class="keyword">dot</span> + <span class="number">1</span>);
+}
+</code></pre> }<br> return filename;<br>}<br>}</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如果想测试代码的话，请把上面的 upload_url 改成你自己的 zimg 服务器地址，并把 image_file 改成你需要上传的图片的路径</p>
+</blockquote>
 
       
     </div>
@@ -242,18 +302,18 @@ AMH面板环境1.清理现有MYSQL-BIN文件最好不要直接删除，可能会
     
 <nav id="article-nav">
   
-    <a href="/Aurthur-2015/Nginx-Chkconfig-Script.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Aurthur-2016/zimg-php-post.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          CentOS下Nginx启动脚本和Chkconfig管理
+          PHP 上传图片到 zimg 服务器
         
       </div>
     </a>
   
   
-    <a href="/Aurthur-2015/Install-SSL-Certificate-In-Server.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">服务器安全之配置SSL访问实战</div>
+    <a href="/Aurthur-2015/Centos-Mysql-Install.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CentOS6.4下Mysql数据库的安装与配置</div>
       <strong class="article-nav-caption">></strong>
     </a>
   

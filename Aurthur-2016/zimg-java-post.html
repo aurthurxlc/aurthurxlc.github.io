@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Aurthur Article">
 <meta property="og:description" content="絮叨昨天实现了 PHP 上传图片到 zimg 服务器，下面简单介绍一下如何使用 Java 上传图片到 zimg，并获取相应图片的返回信息
 使用 Java 实现上传根据 zimg 使用文档，我们需要让 zimg 返回 json 信息，不能使用表单形式上传图片，下面是 Java 演示代码">
-<meta property="og:updated_time" content="2016-10-19T06:41:59.000Z">
+<meta property="og:updated_time" content="2016-10-19T06:44:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 上传图片到 zimg 服务器">
 <meta name="twitter:description" content="絮叨昨天实现了 PHP 上传图片到 zimg 服务器，下面简单介绍一下如何使用 Java 上传图片到 zimg，并获取相应图片的返回信息
@@ -175,7 +175,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2016/zimg-java-post.html" class="article-date">
-  	<time datetime="2016-10-19T06:41:59.000Z" itemprop="datePublished">2016-10-19</time>
+  	<time datetime="2016-10-19T06:44:22.000Z" itemprop="datePublished">2016-10-19</time>
 </a>
     </div>
   
@@ -215,85 +215,7 @@
         <h2 id="絮叨">絮叨</h2><p>昨天实现了 PHP 上传图片到 zimg 服务器，下面简单介绍一下如何使用 Java 上传图片到 zimg，并获取相应图片的返回信息</p>
 <h2 id="使用_Java_实现上传">使用 Java 实现上传</h2><p>根据 zimg 使用文档，我们需要让 zimg 返回 json 信息，不能使用表单形式上传图片，下面是 Java 演示代码</p>
 <a id="more"></a>
-<p>```java<br>package cn.gitos.aurthur.zimg;</p>
-<p>import javax.imageio.ImageIO;<br>import java.awt.image.BufferedImage;<br>import java.io.*;<br>import java.net.URL;<br>import java.net.URLConnection;</p>
-<p>// Created by Aurthur on 2016/10/19.</p>
-<p>public class TestZimg {<br>    public static void main(String[] args) {<br>        String upload_url = “<a href="http://192.168.0.99:5000/upload" target="_blank" rel="external">http://192.168.0.99:5000/upload</a>“;<br>        String image_file = “/tmp/test.jpg”;<br>        String ext = getExtensionName(image_file);<br>        System.out.println(sendPost(upload_url, imageBinary(image_file, ext), ext));</p>
-<pre><code>}
-
-<span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">byte</span>[] imageBinary(<span class="keyword">String</span> file_path, <span class="keyword">String</span> fileType) {
-    File f = <span class="keyword">new</span> File(file_path);
-    BufferedImage bi;
-    <span class="keyword">try</span> {
-        bi = ImageIO.read(f);
-        ByteArrayOutputStream bos = <span class="keyword">new</span> ByteArrayOutputStream();
-        ImageIO.write(bi, fileType, bos);
-        <span class="keyword">return</span> bos.toByteArray();
-    } <span class="keyword">catch</span> (IOException e) {
-        e.printStackTrace();
-    }
-    <span class="keyword">return</span> <span class="keyword">null</span>;
-}
-
-
-<span class="comment">// 向指定 URL 发送POST方法的请求</span>
-<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> sendPost(<span class="keyword">String</span> url, <span class="built_in">byte</span>[] PostData, <span class="keyword">String</span> fileType) {
-    OutputStream outStream = <span class="keyword">null</span>;
-    <span class="keyword">BufferedReader</span> in = <span class="keyword">null</span>;
-    <span class="keyword">String</span> result = <span class="string">""</span>;
-    <span class="keyword">try</span> {
-        URL realUrl = <span class="keyword">new</span> URL(url);
-        <span class="comment">// 打开和URL之间的连接</span>
-        URLConnection conn = realUrl.openConnection();
-        <span class="comment">// 设置通用的请求属性</span>
-        conn.setRequestProperty(<span class="string">"accept"</span>, <span class="string">"*/*"</span>);
-        conn.setRequestProperty(<span class="string">"connection"</span>, <span class="string">"Keep-Alive"</span>);
-        conn.setRequestProperty(<span class="string">"Content-Type"</span>, fileType);
-        <span class="comment">// 发送POST请求必须设置如下两行</span>
-        conn.setDoOutput(<span class="keyword">true</span>);
-        conn.setDoInput(<span class="keyword">true</span>);
-        <span class="comment">//二进制</span>
-        outStream = conn.getOutputStream();
-        outStream.write(PostData);
-        outStream.flush();
-
-        <span class="comment">// 定义BufferedReader输入流来读取URL的响应</span>
-        in = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(conn.getInputStream()));
-        <span class="keyword">String</span> <span class="built_in">line</span>;
-        <span class="keyword">while</span> ((<span class="built_in">line</span> = in.readLine()) != <span class="keyword">null</span>) {
-            result += <span class="built_in">line</span>;
-        }
-    } <span class="keyword">catch</span> (Exception e) {
-        System.out.<span class="built_in">println</span>(<span class="string">"发送 POST 请求出现异常！"</span> + e);
-        e.printStackTrace();
-    }
-    <span class="comment">//使用finally块来关闭输出流、输入流</span>
-    <span class="keyword">finally</span> {
-        <span class="keyword">try</span> {
-            <span class="keyword">if</span> (outStream != <span class="keyword">null</span>) {
-                outStream.close();
-            }
-            <span class="keyword">if</span> (in != <span class="keyword">null</span>) {
-                in.close();
-            }
-        } <span class="keyword">catch</span> (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-    <span class="keyword">return</span> result;
-}
-
-<span class="comment">//Java文件操作 获取文件扩展名</span>
-<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> getExtensionName(<span class="keyword">String</span> filename) {
-    <span class="keyword">if</span> ((filename != <span class="keyword">null</span>) &amp;&amp; (filename.length() &gt; <span class="number">0</span>)) {
-        <span class="built_in">int</span> dot = filename.lastIndexOf(<span class="string">'.'</span>);
-        <span class="keyword">if</span> ((dot &gt; -<span class="number">1</span>) &amp;&amp; (dot &lt; (filename.length() - <span class="number">1</span>))) {
-            <span class="keyword">return</span> filename.substring(dot + <span class="number">1</span>);
-        }
-    }
-    <span class="keyword">return</span> filename;
-}
-</code></pre><p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> cn.gitos.aurthur.zimg;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.imageio.ImageIO;</span><br><span class="line"><span class="keyword">import</span> java.awt.image.BufferedImage;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.net.URLConnection;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Created by Aurthur on 2016/10/19.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestZimg</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String upload_url = <span class="string">"http://192.168.0.99:5000/upload"</span>;</span><br><span class="line">        String image_file = <span class="string">"/tmp/test.jpg"</span>;</span><br><span class="line">        String ext = getExtensionName(image_file);</span><br><span class="line">        System.out.println(sendPost(upload_url, imageBinary(image_file, ext), ext));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] imageBinary(String file_path, String fileType) &#123;</span><br><span class="line">        File f = <span class="keyword">new</span> File(file_path);</span><br><span class="line">        BufferedImage bi;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            bi = ImageIO.read(f);</span><br><span class="line">            ByteArrayOutputStream bos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">            ImageIO.write(bi, fileType, bos);</span><br><span class="line">            <span class="keyword">return</span> bos.toByteArray();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向指定 URL 发送POST方法的请求</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">sendPost</span><span class="params">(String url, <span class="keyword">byte</span>[] PostData, String fileType)</span> </span>&#123;</span><br><span class="line">        OutputStream outStream = <span class="keyword">null</span>;</span><br><span class="line">        BufferedReader in = <span class="keyword">null</span>;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            URL realUrl = <span class="keyword">new</span> URL(url);</span><br><span class="line">            <span class="comment">// 打开和URL之间的连接</span></span><br><span class="line">            URLConnection conn = realUrl.openConnection();</span><br><span class="line">            <span class="comment">// 设置通用的请求属性</span></span><br><span class="line">            conn.setRequestProperty(<span class="string">"accept"</span>, <span class="string">"*/*"</span>);</span><br><span class="line">            conn.setRequestProperty(<span class="string">"connection"</span>, <span class="string">"Keep-Alive"</span>);</span><br><span class="line">            conn.setRequestProperty(<span class="string">"Content-Type"</span>, fileType);</span><br><span class="line">            <span class="comment">// 发送POST请求必须设置如下两行</span></span><br><span class="line">            conn.setDoOutput(<span class="keyword">true</span>);</span><br><span class="line">            conn.setDoInput(<span class="keyword">true</span>);</span><br><span class="line">            <span class="comment">//二进制</span></span><br><span class="line">            outStream = conn.getOutputStream();</span><br><span class="line">            outStream.write(PostData);</span><br><span class="line">            outStream.flush();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 定义BufferedReader输入流来读取URL的响应</span></span><br><span class="line">            in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(conn.getInputStream()));</span><br><span class="line">            String line;</span><br><span class="line">            <span class="keyword">while</span> ((line = in.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                result += line;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"发送 POST 请求出现异常！"</span> + e);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//使用finally块来关闭输出流、输入流</span></span><br><span class="line">        <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (outStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    outStream.close();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (in != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Java文件操作 获取文件扩展名</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getExtensionName</span><span class="params">(String filename)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((filename != <span class="keyword">null</span>) &amp;&amp; (filename.length() &gt; <span class="number">0</span>)) &#123;</span><br><span class="line">            <span class="keyword">int</span> dot = filename.lastIndexOf(<span class="string">'.'</span>);</span><br><span class="line">            <span class="keyword">if</span> ((dot &gt; -<span class="number">1</span>) &amp;&amp; (dot &lt; (filename.length() - <span class="number">1</span>))) &#123;</span><br><span class="line">                <span class="keyword">return</span> filename.substring(dot + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> filename;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>如果想测试代码的话，请把上面的 upload_url 改成你自己的 zimg 服务器地址，并把 image_file 改成你需要上传的图片的路径</p>
 </blockquote>

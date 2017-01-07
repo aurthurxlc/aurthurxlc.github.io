@@ -11,9 +11,11 @@
 1echo &quot;- - -&quot; &amp;gt;  /sys/class/scsi_host/host0/scan
 
 
-查看系统日志 /var/log/messages ，发现对 SCSI 设备进行了一次重新扫描
 
-然后再运行 fdisk -l 就能发现新添加的硬盘已经被系统识别了如下图：">
+查看系统日志 /var/log/messages ，发现对 SCSI 设备进行了一次重新扫描
+然后再运行 fdisk -l 就能发现新添加的硬盘已经被系统识别了
+
+如下图：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 不重启识别新磁盘">
 <meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2017/Linux-add-new-volume.html">
@@ -24,11 +26,13 @@
 1echo &quot;- - -&quot; &amp;gt;  /sys/class/scsi_host/host0/scan
 
 
-查看系统日志 /var/log/messages ，发现对 SCSI 设备进行了一次重新扫描
 
-然后再运行 fdisk -l 就能发现新添加的硬盘已经被系统识别了如下图：">
+查看系统日志 /var/log/messages ，发现对 SCSI 设备进行了一次重新扫描
+然后再运行 fdisk -l 就能发现新添加的硬盘已经被系统识别了
+
+如下图：">
 <meta property="og:image" content="http://public.gitos.cn//blog/linux/new-volume.png">
-<meta property="og:updated_time" content="2017-01-07T12:49:36.000Z">
+<meta property="og:updated_time" content="2017-01-07T12:50:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 不重启识别新磁盘">
 <meta name="twitter:description" content="在开机状态下新增磁盘（SCSI类型）
@@ -37,9 +41,11 @@
 1echo &quot;- - -&quot; &amp;gt;  /sys/class/scsi_host/host0/scan
 
 
-查看系统日志 /var/log/messages ，发现对 SCSI 设备进行了一次重新扫描
 
-然后再运行 fdisk -l 就能发现新添加的硬盘已经被系统识别了如下图：">
+查看系统日志 /var/log/messages ，发现对 SCSI 设备进行了一次重新扫描
+然后再运行 fdisk -l 就能发现新添加的硬盘已经被系统识别了
+
+如下图：">
 <meta name="twitter:image" content="http://public.gitos.cn//blog/linux/new-volume.png">
   
   
@@ -198,7 +204,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2017/Linux-add-new-volume.html" class="article-date">
-  	<time datetime="2017-01-07T12:49:36.000Z" itemprop="datePublished">2017-01-07</time>
+  	<time datetime="2017-01-07T12:50:19.000Z" itemprop="datePublished">2017-01-07</time>
 </a>
     </div>
   
@@ -242,11 +248,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"- - -"</span> &gt;  /sys/class/scsi_host/host0/scan</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<blockquote>
 <p>查看系统日志 /var/log/messages ，发现对 SCSI 设备进行了一次重新扫描</p>
-<ol>
-<li>然后再运行 fdisk -l 就能发现新添加的硬盘已经被系统识别了<br>如下图：<a id="more"></a>
-</li>
-</ol>
+<p>然后再运行 fdisk -l 就能发现新添加的硬盘已经被系统识别了</p>
+</blockquote>
+<p>如下图：<br><a id="more"></a></p>
 <p><img src="http://public.gitos.cn//blog/linux/new-volume.png" alt="new-volume"></p>
 
       

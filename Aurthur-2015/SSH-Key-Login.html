@@ -13,7 +13,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 <meta property="og:site_name" content="Aurthur Article">
 <meta property="og:description" content="前言本文基于实际Linux管理工作，实例讲解工作中使用ssh证书登录的实际流程，讲解ssh证书登录的配置原理，基于配置原理，解决实际工作中，windows下使用SecureCRT证书登录的各种问题，以及实现hadoop集群部署要求的无密码跳转问题。
 ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至是root账户登录，密码是123456。但是在实际工作中，尤其是互联网公司，基本都是证书登录的">
-<meta property="og:updated_time" content="2015-12-13T05:43:12.000Z">
+<meta property="og:updated_time" content="2017-01-07T12:46:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH配置私钥登陆服务器">
 <meta name="twitter:description" content="前言本文基于实际Linux管理工作，实例讲解工作中使用ssh证书登录的实际流程，讲解ssh证书登录的配置原理，基于配置原理，解决实际工作中，windows下使用SecureCRT证书登录的各种问题，以及实现hadoop集群部署要求的无密码跳转问题。
@@ -109,7 +109,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ADB/" style="font-size: 10px;">ADB</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Apache/" style="font-size: 13.33px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 16.67px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac/" style="font-size: 11.67px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 18.33px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Regular-Expression/" style="font-size: 10px;">Regular Expression</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Server/" style="font-size: 11.67px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Web/" style="font-size: 11.67px;">Web</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/compile/" style="font-size: 10px;">compile</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/develop-tools/" style="font-size: 10px;">develop-tools</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/go/" style="font-size: 11.67px;">go</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/ntp/" style="font-size: 10px;">ntp</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/zimg/" style="font-size: 11.67px;">zimg</a>
+						<a href="/tags/ADB/" style="font-size: 10px;">ADB</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Apache/" style="font-size: 12.5px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastCGI/" style="font-size: 10px;">FastCGI</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12.5px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 12.5px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 12.5px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Regular-Expression/" style="font-size: 10px;">Regular Expression</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Server/" style="font-size: 10px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Web/" style="font-size: 12.5px;">Web</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/compile/" style="font-size: 10px;">compile</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/develop-tools/" style="font-size: 10px;">develop tools</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/go/" style="font-size: 12.5px;">go</a> <a href="/tags/gzip/" style="font-size: 10px;">gzip</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mod-php/" style="font-size: 10px;">mod_php</a> <a href="/tags/ntp/" style="font-size: 10px;">ntp</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/zimg/" style="font-size: 12.5px;">zimg</a>
 					</div>
 				</section>
 				
@@ -175,7 +175,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
   
     <div class="article-meta">
       <a href="/Aurthur-2015/SSH-Key-Login.html" class="article-date">
-  	<time datetime="2015-12-13T05:43:12.000Z" itemprop="datePublished">2015-12-13</time>
+  	<time datetime="2017-01-07T12:46:31.000Z" itemprop="datePublished">2017-01-07</time>
 </a>
     </div>
   
@@ -202,7 +202,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/服务器/">服务器</a>
+	<a class="article-category-link" href="/categories/Technical/">Technical</a>
 	</div>
 
 
@@ -220,10 +220,10 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
 <p><strong> 真实的工作中:</strong> 员工生成好私钥和公钥(千万要记得设置私钥密码)，然后把公钥发给运维人员，运维人员会登记你的公钥，为你开通一台或者多台服务器的权限，然后员工就可以通过一个私钥，登录他有权限的服务器做系统维护等工作，所以，员工是有责任保护他的私钥的，如果被别人恶意拷贝，你又没有设置私钥密码，那么，服务器就全完了，员工也可以放长假了。</p>
 <a id="more"></a>
 <h2 id="客户端建立私钥和公钥">客户端建立私钥和公钥</h2><p>在客户端终端运行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
-<p>rsa是一种密码算法，还有一种是dsa，证书登录常用的是rsa。</p>
-<p>假设用户是blue,执行 ssh-keygen 时，才会在我的home目录底下的 .ssh/ 这个目录里面产生所需要的两把 Keys ，分别是私钥 (id_rsa) 与公钥 (id_rsa.pub)。</p>
-<p>另外就是私钥的密码了，如果不是测试，不是要求无密码ssh，那么对于passphrase，不能输入空(直接回车),要妥当想一个有特殊字符的密码。</p>
-<h2 id="ssh服务端配置">ssh服务端配置</h2><p>ssh服务器配置如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#禁用root账户登录，非必要，但为了安全性，请配置</span></span><br><span class="line">PermitRootLogin no</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否让 sshd 去检查用户家目录或相关档案的权限数据，</span></span><br><span class="line"><span class="comment"># 这是为了担心使用者将某些重要档案的权限设错，可能会导致一些问题所致。</span></span><br><span class="line"><span class="comment"># 例如使用者的 ~.ssh/ 权限设错时，某些特殊情况下会不许用户登入</span></span><br><span class="line">StrictModes no</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否允许用户自行使用成对的密钥系统进行登入行为，仅针对 version 2。</span></span><br><span class="line"><span class="comment"># 至于自制的公钥数据就放置于用户家目录下的 .ssh/authorized_keys 内</span></span><br><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile      ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment">#有了证书登录了，就禁用密码登录吧，安全要紧</span></span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure></p>
+<p>rsa是一种密码算法，还有一种是 dsa，证书登录常用的是 rsa。</p>
+<p>假设用户是blue,执行 ssh-keygen 时，才会在我的 home 目录底下的 .ssh/ 这个目录里面产生所需要的两把 Keys ，分别是私钥 (id_rsa) 与公钥 (id_rsa.pub)。</p>
+<p>另外就是私钥的密码了，如果不是测试，不是要求无密码 ssh，那么对于 passphrase，不能输入空(直接回车),要妥当想一个有特殊字符的密码。</p>
+<h2 id="ssh服务端配置">ssh服务端配置</h2><p>ssh服务器配置如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#禁用 root 账户登录，非必要，但为了安全性，请配置</span></span><br><span class="line">PermitRootLogin no</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否让 sshd 去检查用户家目录或相关档案的权限数据，</span></span><br><span class="line"><span class="comment"># 这是为了担心使用者将某些重要档案的权限设错，可能会导致一些问题所致。</span></span><br><span class="line"><span class="comment"># 例如使用者的 ~.ssh/ 权限设错时，某些特殊情况下会不许用户登入</span></span><br><span class="line">StrictModes no</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否允许用户自行使用成对的密钥系统进行登入行为，仅针对 version 2。</span></span><br><span class="line"><span class="comment"># 至于自制的公钥数据就放置于用户家目录下的 .ssh/authorized_keys 内</span></span><br><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile      ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment">#有了证书登录了，就禁用密码登录吧，安全要紧</span></span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure></p>
 <p>配置好ssh服务器的配置了，那么我们就要把客户端的公钥上传到服务器端，然后把客户端的公钥添加到authorized_keys</p>
 <p><strong> 在客户端执行命令</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scp 端口-P P需要大写</span></span><br><span class="line">scp -P 28223 ~/.ssh/id_rsa.pub blue@&lt;ssh_server_ip&gt;:~</span><br></pre></td></tr></table></figure></p>
 <p><strong> 在服务端执行命令</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat  id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line"><span class="comment">#并修改权限</span></span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
@@ -241,11 +241,11 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
     
 <nav id="article-nav">
   
-    <a href="/Aurthur-2015/Snmp-Vps-Server-Monitor.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Aurthur-2015/SourceCode-Install-LAMP.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          配置监控宝SNMP定时监控VPS主机性能
+          源码安装Apache+PHP+Mysql实战
         
       </div>
     </a>
@@ -271,7 +271,7 @@ ssh有密码登录和证书登录，初学者都喜欢用密码登录，甚至�
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Aurthur
+    		&copy; 2017 Aurthur
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

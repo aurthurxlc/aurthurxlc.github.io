@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>手把手教你给 CentOS 7 添加硬盘及扩容(LVM) | Aurthur Article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。 通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间， without getting caught up in the problems of fdi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手把手教你给 CentOS 7 添加硬盘及扩容(LVM)">
+<meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2017/Centos-7-extend-lvm-volume.html">
+<meta property="og:site_name" content="Aurthur Article">
+<meta property="og:description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。 通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间， without getting caught up in the problems of fdi">
+<meta property="og:image" content="http://public.gitos.cn//blog/linux/lvm-volume.png">
+<meta property="og:updated_time" content="2017-01-07T13:45:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手把手教你给 CentOS 7 添加硬盘及扩容(LVM)">
+<meta name="twitter:description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。 通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间， without getting caught up in the problems of fdi">
+<meta name="twitter:image" content="http://public.gitos.cn//blog/linux/lvm-volume.png">
+  
+  
+    <link rel="icon" href="/uploads/blog.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/blog.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aurthur</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Aurthur Blog</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/aurthurxlc" title="github">github</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/aurthur" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/aurthurxlc@gmail.com" title="mail">mail</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/u/0/110645540964195673210" title="google">google</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ADB/" style="font-size: 10px;">ADB</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Apache/" style="font-size: 12.5px;">Apache</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/Centos/" style="font-size: 12.5px;">Centos</a> <a href="/tags/Chkconfig/" style="font-size: 10px;">Chkconfig</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastCGI/" style="font-size: 10px;">FastCGI</a> <a href="/tags/Iterm/" style="font-size: 10px;">Iterm</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Kernel/" style="font-size: 10px;">Kernel</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12.5px;">Mac</a> <a href="/tags/Mirror/" style="font-size: 10px;">Mirror</a> <a href="/tags/Mysql/" style="font-size: 12.5px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 12.5px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Regular-Expression/" style="font-size: 10px;">Regular Expression</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/Sass/" style="font-size: 10px;">Sass</a> <a href="/tags/Server/" style="font-size: 10px;">Server</a> <a href="/tags/Terminal/" style="font-size: 10px;">Terminal</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Volume/" style="font-size: 12.5px;">Volume</a> <a href="/tags/Web/" style="font-size: 12.5px;">Web</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/compile/" style="font-size: 10px;">compile</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/develop-tools/" style="font-size: 10px;">develop tools</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/go/" style="font-size: 12.5px;">go</a> <a href="/tags/gzip/" style="font-size: 10px;">gzip</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mod-php/" style="font-size: 10px;">mod_php</a> <a href="/tags/ntp/" style="font-size: 10px;">ntp</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/zimg/" style="font-size: 12.5px;">zimg</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">true</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aurthur</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/blog.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aurthur</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Aurthur Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/aurthurxlc" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/aurthur" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/aurthurxlc@gmail.com" title="mail">mail</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/u/0/110645540964195673210" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Centos-7-extend-lvm-volume" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/Aurthur-2017/Centos-7-extend-lvm-volume.html" class="article-date">
+  	<time datetime="2017-01-07T13:45:09.000Z" itemprop="datePublished">2017-01-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      手把手教你给 CentOS 7 添加硬盘及扩容(LVM)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/">Centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Volume/">Volume</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Technical/">Technical</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言">前言</h2><h3 id="LVM基本组成">LVM基本组成</h3><p>LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。 通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间， without getting caught up in the problems of fdisking a disk that is in use (and wondering whether the kernel is using the old or new partition table) and without having to move other partition out of the way. LVM是用来方便管理的，不会提供额外的安全保证。 However, it sits nicely with the other two technologies we are using.</p>
+<p>LVM的基本组成块（building blocks）如下：</p>
+<ol>
+<li><p>物理卷 Physical volume (PV) ：可以在上面建立卷组的媒介，可以是硬盘分区，也可以是硬盘本身或者回环文件（loopback file）。物理卷包括一个特殊的header，其余部分被切割为一块块物理区域（physical extents）。 Think of physical volumes as big building blocks which can be used to build your hard drive.</p>
+</li>
+<li><p>卷组 Volume group (VG) ：将一组物理卷收集为一个管理单元。Group of physical volumes that are used as storage volume (as one disk). They contain logical volumes. Think of volume groups as hard drives.</p>
+</li>
+<li><p>逻辑卷 Logical volume (LV) ：虚拟分区，由物理区域（physical extents）组成。A “virtual/logical partition” that resides in a volume group and is composed of physical extents. Think of logical volumes as normal partitions.</p>
+</li>
+<li><p>物理区域 Physical extent (PE) ：硬盘可供指派给逻辑卷的最小单位（通常为4MB）。A small part of a disk (usually 4MB) that can be assigned to a logical Volume. Think of physical extents as parts of disks that can be allocated to any partition.</p>
+</li>
+</ol>
+<a id="more"></a>
+<p><img src="http://public.gitos.cn//blog/linux/lvm-volume.png" alt="lvm-volume"></p>
+<h3 id="LVM_优点">LVM 优点</h3><p>比起正常的硬盘分区管理，LVM更富于弹性：</p>
+<ol>
+<li><p>使用卷组(VG)，使众多硬盘空间看起来像一个大硬盘</p>
+</li>
+<li><p>使用逻辑卷（LV），可以创建跨越众多硬盘空间的分区</p>
+</li>
+<li><p>可以创建小的逻辑卷（LV），在空间不足时再动态调整它的大小</p>
+</li>
+<li><p>在调整逻辑卷（LV）大小时可以不用考虑逻辑卷在硬盘上的位置，不用担心没有可用的连续空间</p>
+</li>
+<li><p>可以在线（online）对逻辑卷（LV）和卷组（VG）进行创建、删除、调整大小等操作，LVM上的文件系统也需要重新调整大小，某些文件系统也支持这样的在线操作。</p>
+</li>
+<li><p>无需重新启动服务，就可以将服务中用到的逻辑卷（LV）在线（online）/动态（live）迁移至别的硬盘上。</p>
+</li>
+<li><p>允许创建快照，可以保存文件系统的备份，同时使服务的下线时间（downtime）降低到最小。</p>
+</li>
+</ol>
+<h2 id="添加一块物理硬盘">添加一块物理硬盘</h2><p>添加一块硬盘（60GB）到系统中，并让系统识别它，具体步骤参考 <a href="/Aurthur-2017/Linux-add-new-volume.html">不重启添加硬盘</a></p>
+<p>使用 fdisk -l 命令查看到这块新盘为 /dev/sdb<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment"># fdisk -l #查看硬盘</span></span><br><span class="line">磁盘 /dev/sda：21.5 GB, 21474836480 字节，41943040 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x000dda69</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sda1   *        2048     1026047      512000   83  Linux</span><br><span class="line">/dev/sda2         1026048    41943039    20458496   8e  Linux LVM</span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/centos-root：18.8 GB, 18756927488 字节，36634624 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/centos-swap：2147 MB, 2147483648 字节，4194304 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line">磁盘 /dev/sdb：64.4 GB, 64424509440 字节，125829120 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br></pre></td></tr></table></figure></p>
+<h2 id="对新盘分区">对新盘分区</h2><p>使用 fdisk 命令对新盘进行分区，这里建立了一个主分区 /dev/sdb1 ，大小 8GB，最后使用 partprobe 命令重新读取分区表，命令记录如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment"># fdisk /dev/sdb #对 /dev/sdb 执行分区操作</span></span><br><span class="line">欢迎使用 fdisk (util-linux 2.23.2)。</span><br><span class="line"></span><br><span class="line">更改将停留在内存中，直到您决定将更改写入磁盘。</span><br><span class="line">使用写入命令前请三思。</span><br><span class="line"></span><br><span class="line">Device does not contain a recognized partition table</span><br><span class="line">使用磁盘标识符 0x0096d9c0 创建新的 DOS 磁盘标签。</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：m <span class="comment"># 输入 m 获取帮助</span></span><br><span class="line">命令操作</span><br><span class="line">   a   toggle a bootable flag</span><br><span class="line">   b   edit bsd disklabel</span><br><span class="line">   c   toggle the dos compatibility flag</span><br><span class="line">   d   delete a partition</span><br><span class="line">   g   create a new empty GPT partition table</span><br><span class="line">   G   create an IRIX (SGI) partition table</span><br><span class="line">   l   list known partition types</span><br><span class="line">   m   <span class="built_in">print</span> this menu</span><br><span class="line">   n   add a new partition</span><br><span class="line">   o   create a new empty DOS partition table</span><br><span class="line">   p   <span class="built_in">print</span> the partition table</span><br><span class="line">   q   quit without saving changes</span><br><span class="line">   s   create a new empty Sun disklabel</span><br><span class="line">   t   change a partition<span class="string">'s system id</span><br><span class="line">   u   change display/entry units</span><br><span class="line">   v   verify the partition table</span><br><span class="line">   w   write table to disk and exit</span><br><span class="line">   x   extra functionality (experts only)</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：n # 输入 n 添加新的物理分区</span><br><span class="line">Partition type:</span><br><span class="line">  p   primary (0 primary, 0 extended, 4 free)</span><br><span class="line">  e   extended</span><br><span class="line">Select (default p): p # 输入 p 选择主分区类型</span><br><span class="line">分区号 (1-4，默认 1)： # 默认</span><br><span class="line">起始 扇区 (2048-125829119，默认为 2048)： # 默认</span><br><span class="line">将使用默认值 2048</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (2048-125829119，默认为 125829119)： # 默认</span><br><span class="line">将使用默认值 125829119</span><br><span class="line">分区 1 已设置为 Linux 类型，大小设为 60 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：t # 输入 t 修改分区 id</span><br><span class="line">已选择分区 1</span><br><span class="line">Hex 代码(输入 L 列出所有代码)：L # 输入 L 查看所有 ID</span><br><span class="line"></span><br><span class="line"> 0  空              24  NEC DOS         81  Minix / 旧 Linu bf  Solaris</span><br><span class="line"> 1  FAT12           27  隐藏的 NTFS Win 82  Linux 交换 / So c1  DRDOS/sec (FAT-</span><br><span class="line"> 2  XENIX root      39  Plan 9          83  Linux           c4  DRDOS/sec (FAT-</span><br><span class="line"> 3  XENIX usr       3c  PartitionMagic  84  OS/2 隐藏的 C:  c6  DRDOS/sec (FAT-</span><br><span class="line"> 4  FAT16 &lt;32M      40  Venix 80286     85  Linux 扩展      c7  Syrinx</span><br><span class="line"> 5  扩展            41  PPC PReP Boot   86  NTFS 卷集       da  非文件系统数据</span><br><span class="line"> 6  FAT16           42  SFS             87  NTFS 卷集       db  CP/M / CTOS / .</span><br><span class="line"> 7  HPFS/NTFS/exFAT 4d  QNX4.x          88  Linux 纯文本    de  Dell 工具</span><br><span class="line"> 8  AIX             4e  QNX4.x 第2部分  8e  Linux LVM       df  BootIt</span><br><span class="line"> 9  AIX 可启动      4f  QNX4.x 第3部分  93  Amoeba          e1  DOS 访问</span><br><span class="line"> a  OS/2 启动管理器 50  OnTrack DM      94  Amoeba BBT      e3  DOS R/O</span><br><span class="line"> b  W95 FAT32       51  OnTrack DM6 Aux 9f  BSD/OS          e4  SpeedStor</span><br><span class="line"> c  W95 FAT32 (LBA) 52  CP/M            a0  IBM Thinkpad 休 eb  BeOS fs</span><br><span class="line"> e  W95 FAT16 (LBA) 53  OnTrack DM6 Aux a5  FreeBSD         ee  GPT</span><br><span class="line"> f  W95 扩展 (LBA)  54  OnTrackDM6      a6  OpenBSD         ef  EFI (FAT-12/16/</span><br><span class="line">10  OPUS            55  EZ-Drive        a7  NeXTSTEP        f0  Linux/PA-RISC</span><br><span class="line">11  隐藏的 FAT12    56  Golden Bow      a8  Darwin UFS      f1  SpeedStor</span><br><span class="line">12  Compaq 诊断     5c  Priam Edisk     a9  NetBSD          f4  SpeedStor</span><br><span class="line">14  隐藏的 FAT16 &lt;3 61  SpeedStor       ab  Darwin 启动     f2  DOS 次要</span><br><span class="line">16  隐藏的 FAT16    63  GNU HURD or Sys af  HFS / HFS+      fb  VMware VMFS</span><br><span class="line">17  隐藏的 HPFS/NTF 64  Novell Netware  b7  BSDI fs         fc  VMware VMKCORE</span><br><span class="line">18  AST 智能睡眠    65  Novell Netware  b8  BSDI swap       fd  Linux raid 自动</span><br><span class="line">1b  隐藏的 W95 FAT3 70  DiskSecure 多启 bb  Boot Wizard 隐  fe  LANstep</span><br><span class="line">1c  隐藏的 W95 FAT3 75  PC/IX           be  Solaris 启动    ff  BBT</span><br><span class="line">1e  隐藏的 W95 FAT1 80  旧 Minix</span><br><span class="line">Hex 代码(输入 L 列出所有代码)：8e # 输入 8e 修改分区为 Linux LVM 类型</span><br><span class="line">已将分区“Linux”的类型更改为“Linux LVM”</span><br><span class="line">命令(输入 m 获取帮助)：w # 输入 w 将修改写入磁盘</span><br><span class="line">The partition table has been altered!</span><br><span class="line"></span><br><span class="line">Calling ioctl() to re-read partition table.</span><br><span class="line">正在同步磁盘。</span><br><span class="line"># 分区结束</span><br><span class="line">[root@node2 ~]# partprobe # 使用 partprobe 命令重新读取分区表</span><br><span class="line">[root@node2 ~]# fdisk -l # 查看修改后的结果</span><br><span class="line"></span><br><span class="line">磁盘 /dev/sda：21.5 GB, 21474836480 字节，41943040 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x000dda69</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sda1   *        2048     1026047      512000   83  Linux</span><br><span class="line">/dev/sda2         1026048    41943039    20458496   8e  Linux LVM</span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/centos-root：18.8 GB, 18756927488 字节，36634624 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">磁盘 /dev/mapper/centos-swap：2147 MB, 2147483648 字节，4194304 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">磁盘 /dev/sdb：64.4 GB, 64424509440 字节，125829120 个扇区</span><br><span class="line">Units = 扇区 of 1 * 512 = 512 bytes</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x0096d9c0</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sdb1            2048   125829119    62913536   8e  Linux LVM</span><br><span class="line">[root@node2 ~]#</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="创建物理卷（PV）">创建物理卷（PV）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment"># pvdisplay # 创建新物理卷前查看 PV</span></span><br><span class="line">  --- Physical volume ---</span><br><span class="line">  PV Name               /dev/sda2</span><br><span class="line">  VG Name               centos</span><br><span class="line">  PV Size               19.51 GiB / not usable 3.00 MiB</span><br><span class="line">  Allocatable           yes</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              4994</span><br><span class="line">  Free PE               10</span><br><span class="line">  Allocated PE          4984</span><br><span class="line">  PV UUID               ypckOI-BXmZ-J6Cp-jIbY-Gn2m-D7yr-2s1o68</span><br><span class="line"></span><br><span class="line">[root@node2 ~]<span class="comment"># pvcreate /dev/sdb1 # 创建 PV</span></span><br><span class="line">  Physical volume <span class="string">"/dev/sdb1"</span> successfully created.</span><br><span class="line">[root@node2 ~]<span class="comment"># pvdisplay # 再次查看，可看到新的 PV</span></span><br><span class="line">  --- Physical volume ---</span><br><span class="line">  PV Name               /dev/sda2</span><br><span class="line">  VG Name               centos</span><br><span class="line">  PV Size               19.51 GiB / not usable 3.00 MiB</span><br><span class="line">  Allocatable           yes</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              4994</span><br><span class="line">  Free PE               10</span><br><span class="line">  Allocated PE          4984</span><br><span class="line">  PV UUID               ypckOI-BXmZ-J6Cp-jIbY-Gn2m-D7yr-2s1o68</span><br><span class="line"></span><br><span class="line">  <span class="string">"/dev/sdb1"</span> is a new physical volume of <span class="string">"60.00 GiB"</span></span><br><span class="line">  --- NEW Physical volume ---</span><br><span class="line">  PV Name               /dev/sdb1</span><br><span class="line">  VG Name</span><br><span class="line">  PV Size               60.00 GiB</span><br><span class="line">  Allocatable           NO</span><br><span class="line">  PE Size               0</span><br><span class="line">  Total PE              0</span><br><span class="line">  Free PE               0</span><br><span class="line">  Allocated PE          0</span><br><span class="line">  PV UUID               NE729N-o2N6-dc8o-dryH-drZx-ql8c-A9MGlH</span><br><span class="line"></span><br><span class="line">[root@node2 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h2 id="将PV加入卷组（VG）">将PV加入卷组（VG）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment"># vgdisplay # 查看卷组，可用 PE 为 10 个</span></span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               centos</span><br><span class="line">  System ID</span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        1</span><br><span class="line">  Metadata Sequence No  3</span><br><span class="line">  VG Access             <span class="built_in">read</span>/write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                2</span><br><span class="line">  Open LV               2</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                1</span><br><span class="line">  Act PV                1</span><br><span class="line">  VG Size               19.51 GiB</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              4994</span><br><span class="line">  Alloc PE / Size       4984 / 19.47 GiB</span><br><span class="line">  Free  PE / Size       10 / 40.00 MiB</span><br><span class="line">  VG UUID               pQd8HL-4SpW-36rY-oQoF-wIcL-8vXl-BTjQTz</span><br><span class="line"></span><br><span class="line">[root@node2 ~]<span class="comment"># vgextend centos /dev/sdb1 # 将新的 PV 加入 centos 组卷</span></span><br><span class="line">  Volume group <span class="string">"centos"</span> successfully extended</span><br><span class="line">[root@node2 ~]<span class="comment"># vgdisplay # 查看 VG 信息，可用 PE 为 15369 个</span></span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               centos</span><br><span class="line">  System ID</span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        2</span><br><span class="line">  Metadata Sequence No  5</span><br><span class="line">  VG Access             <span class="built_in">read</span>/write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                2</span><br><span class="line">  Open LV               2</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                2</span><br><span class="line">  Act PV                2</span><br><span class="line">  VG Size               79.50 GiB</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              20353</span><br><span class="line">  Alloc PE / Size       4984 / 19.47 GiB</span><br><span class="line">  Free  PE / Size       15369 / 60.04 GiB</span><br><span class="line">  VG UUID               pQd8HL-4SpW-36rY-oQoF-wIcL-8vXl-BTjQTz</span><br></pre></td></tr></table></figure>
+<h2 id="创建逻辑卷（LV）">创建逻辑卷（LV）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment"># lvdisplay # 先查看 LV 信息</span></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/swap</span><br><span class="line">  LV Name                swap</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                2Dhfs3-Vl5T-wJft-5KCe-Rhwv-3rmv-olue6A</span><br><span class="line">  LV Write Access        <span class="built_in">read</span>/write</span><br><span class="line">  LV Creation host, time node1, 2017-01-05 16:22:47 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  <span class="comment"># open                 2</span></span><br><span class="line">  LV Size                2.00 GiB</span><br><span class="line">  Current LE             512</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently <span class="built_in">set</span> to     8192</span><br><span class="line">  Block device           253:1</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/root</span><br><span class="line">  LV Name                root</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                kzgrfG-vO3b-ehtS-Ydxx-92jK-ol2T<span class="_">-l</span>7NJw7</span><br><span class="line">  LV Write Access        <span class="built_in">read</span>/write</span><br><span class="line">  LV Creation host, time node1, 2017-01-05 16:22:47 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  <span class="comment"># open                 1</span></span><br><span class="line">  LV Size                17.47 GiB</span><br><span class="line">  Current LE             4472</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently <span class="built_in">set</span> to     8192</span><br><span class="line">  Block device           253:0</span><br><span class="line"></span><br><span class="line">[root@node2 ~]<span class="comment"># lvcreate -L 40G -n aurthur centos # 创建了一个新的 LV，并起名 aurthur</span></span><br><span class="line">  Logical volume <span class="string">"aurthur"</span> created.</span><br><span class="line">[root@node2 ~]<span class="comment"># lvdisplay # 查看创建新 LV 后的相关信息，多了 /dev/centos/aurthur LV</span></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/swap</span><br><span class="line">  LV Name                swap</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                2Dhfs3-Vl5T-wJft-5KCe-Rhwv-3rmv-olue6A</span><br><span class="line">  LV Write Access        <span class="built_in">read</span>/write</span><br><span class="line">  LV Creation host, time node1, 2017-01-05 16:22:47 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  <span class="comment"># open                 2</span></span><br><span class="line">  LV Size                2.00 GiB</span><br><span class="line">  Current LE             512</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently <span class="built_in">set</span> to     8192</span><br><span class="line">  Block device           253:1</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/root</span><br><span class="line">  LV Name                root</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                kzgrfG-vO3b-ehtS-Ydxx-92jK-ol2T<span class="_">-l</span>7NJw7</span><br><span class="line">  LV Write Access        <span class="built_in">read</span>/write</span><br><span class="line">  LV Creation host, time node1, 2017-01-05 16:22:47 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  <span class="comment"># open                 1</span></span><br><span class="line">  LV Size                17.47 GiB</span><br><span class="line">  Current LE             4472</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently <span class="built_in">set</span> to     8192</span><br><span class="line">  Block device           253:0</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/aurthur</span><br><span class="line">  LV Name                aurthur</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                GemtcP-9beI-Cao9-oJ3a-p1oD-ee3e-THh5Bd</span><br><span class="line">  LV Write Access        <span class="built_in">read</span>/write</span><br><span class="line">  LV Creation host, time node2, 2017-01-07 21:20:13 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  <span class="comment"># open                 0</span></span><br><span class="line">  LV Size                40.00 GiB</span><br><span class="line">  Current LE             10240</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently <span class="built_in">set</span> to     8192</span><br><span class="line">  Block device           253:2</span><br><span class="line"></span><br><span class="line">[root@node2 ~]<span class="comment"># vgdisplay # 查看一下 VG ，可用 PE 仅剩 5129 个</span></span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               centos</span><br><span class="line">  System ID</span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        2</span><br><span class="line">  Metadata Sequence No  6</span><br><span class="line">  VG Access             <span class="built_in">read</span>/write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                3</span><br><span class="line">  Open LV               2</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                2</span><br><span class="line">  Act PV                2</span><br><span class="line">  VG Size               79.50 GiB</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              20353</span><br><span class="line">  Alloc PE / Size       15224 / 59.47 GiB</span><br><span class="line">  Free  PE / Size       5129 / 20.04 GiB</span><br><span class="line">  VG UUID               pQd8HL-4SpW-36rY-oQoF-wIcL-8vXl-BTjQTz</span><br></pre></td></tr></table></figure>
+<h2 id="格式化逻辑卷（LV）并挂载">格式化逻辑卷（LV）并挂载</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment"># mkfs.xfs /dev/centos/aurthur # 格式化新 LV</span></span><br><span class="line">meta-data=/dev/centos/aurthur    isize=512    agcount=4, agsize=2621440 blks</span><br><span class="line">         =                       sectsz=512   attr=2, projid32bit=1</span><br><span class="line">         =                       crc=1        finobt=0, sparse=0</span><br><span class="line">data     =                       bsize=4096   blocks=10485760, imaxpct=25</span><br><span class="line">         =                       sunit=0      swidth=0 blks</span><br><span class="line">naming   =version 2              bsize=4096   ascii-ci=0 ftype=1</span><br><span class="line"><span class="built_in">log</span>      =internal <span class="built_in">log</span>           bsize=4096   blocks=5120, version=2</span><br><span class="line">         =                       sectsz=512   sunit=0 blks, lazy-count=1</span><br><span class="line">realtime =none                   extsz=4096   blocks=0, rtextents=0</span><br><span class="line"></span><br><span class="line">[root@node2 ~]<span class="comment"># mkdir /data # 新建挂载点</span></span><br><span class="line">[root@node2 ~]<span class="comment"># mount -t xfs /dev/centos/aurthur /data # 将已格式化的 LV 挂在到 /data 上</span></span><br><span class="line">[root@node2 ~]<span class="comment"># df -Th # 查看挂载后的信息</span></span><br><span class="line">文件系统                   类型      容量  已用  可用 已用% 挂载点</span><br><span class="line">/dev/mapper/centos-root    xfs        18G  1.5G   17G    9% /</span><br><span class="line">devtmpfs                   devtmpfs  3.9G     0  3.9G    0% /dev</span><br><span class="line">tmpfs                      tmpfs     3.9G     0  3.9G    0% /dev/shm</span><br><span class="line">tmpfs                      tmpfs     3.9G  8.5M  3.9G    1% /run</span><br><span class="line">tmpfs                      tmpfs     3.9G     0  3.9G    0% /sys/fs/cgroup</span><br><span class="line">/dev/sda1                  xfs       497M  169M  329M   34% /boot</span><br><span class="line">tmpfs                      tmpfs     783M     0  783M    0% /run/user/0</span><br><span class="line">/dev/mapper/centos-aurthur xfs        40G   33M   40G    1% /data</span><br></pre></td></tr></table></figure>
+<h2 id="设置开机自动挂载">设置开机自动挂载</h2><p>编辑 /etc/fstab 文件，加入一行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/centos/aurthur       /data                    xfs     defaults        1 2</span><br></pre></td></tr></table></figure></p>
+<p>用命令查看是否有错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment"># mount -fav</span></span><br><span class="line">/                        ：已忽略</span><br><span class="line">/boot                    ：已经挂载</span><br><span class="line">swap                     ：已忽略</span><br><span class="line">/data                    ：已经挂载</span><br></pre></td></tr></table></figure></p>
+<h2 id="逻辑卷（LV）扩容">逻辑卷（LV）扩容</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment"># lvextend -l +100%FREE /dev/centos/aurthur # 用 lvextend 将 /dev/centos/aurthur 所在卷组所有剩余空间都分配给了它</span></span><br><span class="line">  Size of logical volume centos/aurthur changed from 40.00 GiB (10240 extents) to 60.04 GiB (15369 extents).</span><br><span class="line">  Logical volume centos/aurthur successfully resized.</span><br><span class="line">[root@node2 ~]<span class="comment"># xfs_growfs /dev/centos/aurthur # 用 xfs_growfs 对扩容后的 LV 进行 xfs 格式大小调整，Centos 6 使用 resize2fs</span></span><br><span class="line">meta-data=/dev/mapper/centos-aurthur isize=512    agcount=4, agsize=2621440 blks</span><br><span class="line">         =                       sectsz=512   attr=2, projid32bit=1</span><br><span class="line">         =                       crc=1        finobt=0 spinodes=0</span><br><span class="line">data     =                       bsize=4096   blocks=10485760, imaxpct=25</span><br><span class="line">         =                       sunit=0      swidth=0 blks</span><br><span class="line">naming   =version 2              bsize=4096   ascii-ci=0 ftype=1</span><br><span class="line"><span class="built_in">log</span>      =internal               bsize=4096   blocks=5120, version=2</span><br><span class="line">         =                       sectsz=512   sunit=0 blks, lazy-count=1</span><br><span class="line">realtime =none                   extsz=4096   blocks=0, rtextents=0</span><br><span class="line">data blocks changed from 10485760 to 15737856</span><br><span class="line"></span><br><span class="line">[root@node2 ~]<span class="comment"># vgdisplay # 查看卷组信息，可用 PE 已经为 0 个</span></span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               centos</span><br><span class="line">  System ID</span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        2</span><br><span class="line">  Metadata Sequence No  7</span><br><span class="line">  VG Access             <span class="built_in">read</span>/write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                3</span><br><span class="line">  Open LV               3</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                2</span><br><span class="line">  Act PV                2</span><br><span class="line">  VG Size               79.50 GiB</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              20353</span><br><span class="line">  Alloc PE / Size       20353 / 79.50 GiB</span><br><span class="line">  Free  PE / Size       0 / 0</span><br><span class="line">  VG UUID               pQd8HL-4SpW-36rY-oQoF-wIcL-8vXl-BTjQTz</span><br><span class="line">[root@node2 ~]<span class="comment"># lvdisplay # 查看 LV 信息，/dev/centos/aurthur 已扩大为 60.04 G</span></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/swap</span><br><span class="line">  LV Name                swap</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                2Dhfs3-Vl5T-wJft-5KCe-Rhwv-3rmv-olue6A</span><br><span class="line">  LV Write Access        <span class="built_in">read</span>/write</span><br><span class="line">  LV Creation host, time node1, 2017-01-05 16:22:47 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  <span class="comment"># open                 2</span></span><br><span class="line">  LV Size                2.00 GiB</span><br><span class="line">  Current LE             512</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently <span class="built_in">set</span> to     8192</span><br><span class="line">  Block device           253:1</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/root</span><br><span class="line">  LV Name                root</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                kzgrfG-vO3b-ehtS-Ydxx-92jK-ol2T<span class="_">-l</span>7NJw7</span><br><span class="line">  LV Write Access        <span class="built_in">read</span>/write</span><br><span class="line">  LV Creation host, time node1, 2017-01-05 16:22:47 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  <span class="comment"># open                 1</span></span><br><span class="line">  LV Size                17.47 GiB</span><br><span class="line">  Current LE             4472</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently <span class="built_in">set</span> to     8192</span><br><span class="line">  Block device           253:0</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/centos/aurthur</span><br><span class="line">  LV Name                aurthur</span><br><span class="line">  VG Name                centos</span><br><span class="line">  LV UUID                GemtcP-9beI-Cao9-oJ3a-p1oD-ee3e-THh5Bd</span><br><span class="line">  LV Write Access        <span class="built_in">read</span>/write</span><br><span class="line">  LV Creation host, time node2, 2017-01-07 21:20:13 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  <span class="comment"># open                 1</span></span><br><span class="line">  LV Size                60.04 GiB</span><br><span class="line">  Current LE             15369</span><br><span class="line">  Segments               2</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently <span class="built_in">set</span> to     8192</span><br><span class="line">  Block device           253:2</span><br><span class="line"></span><br><span class="line">[root@node2 ~]<span class="comment"># df -Th # 查看挂载信息，/data 容量已扩大为 60 G</span></span><br><span class="line">文件系统                   类型      容量  已用  可用 已用% 挂载点</span><br><span class="line">/dev/mapper/centos-root    xfs        18G  1.5G   17G    9% /</span><br><span class="line">devtmpfs                   devtmpfs  3.9G     0  3.9G    0% /dev</span><br><span class="line">tmpfs                      tmpfs     3.9G     0  3.9G    0% /dev/shm</span><br><span class="line">tmpfs                      tmpfs     3.9G  8.5M  3.9G    1% /run</span><br><span class="line">tmpfs                      tmpfs     3.9G     0  3.9G    0% /sys/fs/cgroup</span><br><span class="line">/dev/sda1                  xfs       497M  169M  329M   34% /boot</span><br><span class="line">tmpfs                      tmpfs     783M     0  783M    0% /run/user/0</span><br><span class="line">/dev/mapper/centos-aurthur xfs        61G   33M   60G    1% /data</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Aurthur-2017/Linux-add-new-volume.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux 不重启识别新磁盘</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Aurthur
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

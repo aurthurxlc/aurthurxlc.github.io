@@ -5,17 +5,26 @@
   
   <title>手把手教你给 CentOS 7 添加硬盘及扩容(LVM) | Aurthur Article</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。 通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间， without getting caught up in the problems of fdi">
+  <meta name="description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间。
+LVM的基本组成块（building blocks）如下：
+
+物理卷 Physical volum">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手把手教你给 CentOS 7 添加硬盘及扩容(LVM)">
 <meta property="og:url" content="http://aurthur.gitos.cn/Aurthur-2017/Centos-7-extend-lvm-volume.html">
 <meta property="og:site_name" content="Aurthur Article">
-<meta property="og:description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。 通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间， without getting caught up in the problems of fdi">
+<meta property="og:description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间。
+LVM的基本组成块（building blocks）如下：
+
+物理卷 Physical volum">
 <meta property="og:image" content="http://public.gitos.cn/blog/linux/lvm-volume.png">
-<meta property="og:updated_time" content="2017-01-09T02:14:03.000Z">
+<meta property="og:updated_time" content="2017-01-09T02:16:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手把手教你给 CentOS 7 添加硬盘及扩容(LVM)">
-<meta name="twitter:description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。 通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间， without getting caught up in the problems of fdi">
+<meta name="twitter:description" content="前言LVM基本组成LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间。
+LVM的基本组成块（building blocks）如下：
+
+物理卷 Physical volum">
 <meta name="twitter:image" content="http://public.gitos.cn/blog/linux/lvm-volume.png">
   
   
@@ -174,7 +183,7 @@
   
     <div class="article-meta">
       <a href="/Aurthur-2017/Centos-7-extend-lvm-volume.html" class="article-date">
-  	<time datetime="2017-01-09T02:14:03.000Z" itemprop="datePublished">2017-01-09</time>
+  	<time datetime="2017-01-09T02:16:18.000Z" itemprop="datePublished">2017-01-09</time>
 </a>
     </div>
   
@@ -211,7 +220,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言">前言</h2><h3 id="LVM基本组成">LVM基本组成</h3><p>LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。 通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间， without getting caught up in the problems of fdisking a disk that is in use (and wondering whether the kernel is using the old or new partition table) and without having to move other partition out of the way. LVM是用来方便管理的，不会提供额外的安全保证。 However, it sits nicely with the other two technologies we are using.</p>
+        <h2 id="前言">前言</h2><h3 id="LVM基本组成">LVM基本组成</h3><p>LVM利用Linux内核的device-mapper来实现存储系统的虚拟化（系统分区独立于底层硬件）。通过LVM，你可以实现存储空间的抽象化并在上面建立虚拟分区（virtual partitions），可以更简便地扩大和缩小分区，可以增删分区时无需担心某个硬盘上没有足够的连续空间。</p>
 <p>LVM的基本组成块（building blocks）如下：</p>
 <ol>
 <li><p>物理卷 Physical volume (PV) ：可以在上面建立卷组的媒介，可以是硬盘分区，也可以是硬盘本身或者回环文件（loopback file）。物理卷包括一个特殊的header，其余部分被切割为一块块物理区域（physical extents）</p>
